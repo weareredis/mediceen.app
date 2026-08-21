@@ -38,11 +38,6 @@ export function Hero() {
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3" data-reveal>
-              <Button asChild size="lg">
-                <Link to="/" hash="download">
-                  Download the app
-                </Link>
-              </Button>
               <Button asChild variant="outline" size="lg">
                 <Link to="/" hash="product">
                   See how it works
@@ -52,13 +47,12 @@ export function Hero() {
 
             <div className="mt-8" data-reveal>
               <StoreBadges />
-              <p className="mt-3 text-xs text-muted-foreground">Store links go live at launch.</p>
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-center">
             <div data-hero-phone className="will-change-transform">
-              <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(22vw,15.5rem)]">
+              <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(25vw,17.5rem)]">
                 <HeroScreen />
               </PhoneMockup>
             </div>
