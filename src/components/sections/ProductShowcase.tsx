@@ -35,8 +35,7 @@ const steps: Step[] = [
     id: "recall",
     eyebrow: "Flashcards",
     title: "Turn information into recall.",
-    description:
-      "Use flashcards to strengthen memory and rate each card as Easy, Hard, or Missed.",
+    description: "Use flashcards to strengthen memory and rate each card as Easy, Hard, or Missed.",
     points: ["Flip to reveal the answer", "Self-rate to shape your next session"],
     screen: <FlashcardExperience />,
   },
