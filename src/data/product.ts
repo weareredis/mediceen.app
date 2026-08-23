@@ -135,3 +135,34 @@ export const subjectAccuracy = [
   { subject: "Pharmacology", value: 61 },
   { subject: "Pathology", value: 69 },
 ];
+
+
+export const reviewQueueSummary = {
+  itemsDue: 20,
+};
+
+export const quizReviews = [
+  { subject: "Anatomy", due: 5 },
+  { subject: "Biochemistry", due: 4 },
+  { subject: "Genetics", due: 3 },
+];
+
+export const quizReviewsDueTotal = 12;
+
+export const flashcardReviewSummary = {
+  count: 8,
+  subjects: "Anatomy, Physiology and Genetics",
+};
+
+export const weeklyMock = {
+  subject: "Medical Biology",
+  totalQuestions: 20,
+  daysLeft: 1,
+  progress: 0,
+};
+
+export const pastMocks = [
+  { week: "Week 12", date: "20 Jul 2026", questions: 20, score: 72 },
+  { week: "Week 11", date: "12 Jul 2026", questions: 20, score: 50 },
+  { week: "Week 5", date: "10 Jul 2026", questions: 20, score: 20 },
+];
