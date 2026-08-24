@@ -19,8 +19,8 @@ export const PLACEHOLDERS = {
   privacyEmail: "hello@redisdigital.com",
   publishDate: "[PUBLISH_DATE]",
   governingLaw: "[GOVERNING_LAW]",
-  minimumAge: "[MINIMUM_AGE]",
-  supabaseRegion: "[SUPABASE_REGION]",
+  minimumAge: "10+",
+  supabaseRegion: "South Asia (Mumbai)",
 } as const;
 
 /** Store URLs are placeholders until the listings are live (Part 0). */

@@ -14,9 +14,9 @@ export const Route = createFileRoute("/support/")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://mediceen-journey.lovable.app/support" },
+      { property: "og:url", content: "https://mediceen.app/support" },
     ],
-    links: [{ rel: "canonical", href: "https://mediceen-journey.lovable.app/support" }],
+    links: [{ rel: "canonical", href: "https://mediceen.app/support" }],
   }),
   component: SupportPage,
 });

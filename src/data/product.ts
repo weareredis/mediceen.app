@@ -166,3 +166,29 @@ export const pastMocks = [
   { week: "Week 11", date: "12 Jul 2026", questions: 20, score: 50 },
   { week: "Week 5", date: "10 Jul 2026", questions: 20, score: 20 },
 ];
+
+export const profileUser = {
+  initials: "AK",
+  name: "Alex Karki",
+  email: "alex@medschool.edu",
+  questions: 1240,
+  accuracy: 76,
+  streak: 12,
+  rank: 24,
+  xp: 9310,
+  xpToTop10: 640,
+  weeklyGainRank: 1,
+};
+
+export const leaderboardPodium = [
+  { place: 2, name: "Sanjay", xp: 17650 },
+  { place: 1, name: "Priya", xp: 18420 },
+  { place: 3, name: "Anmol", xp: 16980 },
+];
+
+export const accountLinks = [
+  { label: "Change password", icon: "lock" as const },
+  { label: "Privacy", icon: "shield" as const },
+  { label: "Help & support", icon: "help" as const },
+  { label: "Log out", icon: "logout" as const, danger: true },
+];
