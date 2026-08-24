@@ -13,7 +13,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-surface">
-      <div className="mx-auto grid w-full max-w-[76rem] gap-12 px-6 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr_auto]">
+      <div className="mx-auto grid w-full max-w-[68em] gap-12 px-6 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr_auto]">
         <div>
           <BrandLogo markClassName="h-9 w-9" wordmarkClassName="h-[1.3rem]" />
           <p className="mt-4 text-sm text-muted-foreground">{SITE.tagline}</p>
@@ -45,13 +45,11 @@ export function Footer() {
 
         {/* {!isHomePage && ( */}
         <div>
-  <h2 className="font-display text-sm font-semibold text-brand-ink">
-    Download Our App
-  </h2>
-  <div className="mt-4">
-    <StoreBadges className="flex-col items-start" />
-  </div>
-</div>
+          <h2 className="font-display text-sm font-semibold text-brand-ink">Download Our App</h2>
+          <div className="mt-4">
+            <StoreBadges className="flex-col items-start" />
+          </div>
+        </div>
         {/* )} */}
       </div>
 

@@ -11,11 +11,11 @@ export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
 
   return (
-    <section ref={ref} className="brand-wash relative overflow-hidden pt-32 sm:pt-40">
+    <section ref={ref} className="brand-wash relative flex min-h-dvh flex-col  pt-24 sm:pt-28">
       <div className="grid-fade pointer-events-none absolute inset-0 opacity-50" />
 
-      <PageContainer width="wide" className="relative">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+      <PageContainer width="wide" className="relative flex flex-1 items-center">
+        <div className="grid w-full items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-xl">
             <p
               className="text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-brand"
@@ -50,7 +50,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-center">
+          <div className="flex justify-center lg:justify-end">
             <div data-hero-phone className="will-change-transform">
               <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(25vw,17.5rem)]">
                 <HeroScreen />
@@ -60,7 +60,7 @@ export function Hero() {
         </div>
       </PageContainer>
 
-      <div className="h-24 sm:h-32" />
+      <div className="h-12 sm:h-16" />
     </section>
   );
 }

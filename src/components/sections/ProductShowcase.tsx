@@ -75,14 +75,14 @@ const steps: Step[] = [
     screen: <ProgressExperience />,
   },
   {
-  id: "leaderboard",
-  eyebrow: "Leaderboard",
-  title: "Consistency deserves recognition.",
-  description:
-    "See how you rank against the MECEE-BL cohort weekly, monthly, and all-time — your streak keeps the habit intact.",
-  points: ["Daily streak tracking", "Weekly, monthly and all-time boards"],
-  screen: <ProfileExperience />,
-},
+    id: "leaderboard",
+    eyebrow: "Leaderboard",
+    title: "Consistency deserves recognition.",
+    description:
+      "See how you rank against the MECEE-BL cohort weekly, monthly, and all-time — your streak keeps the habit intact.",
+    points: ["Daily streak tracking", "Weekly, monthly and all-time boards"],
+    screen: <ProfileExperience />,
+  },
   {
     id: "word",
     eyebrow: "Word of the Day",
@@ -142,57 +142,60 @@ export function ProductShowcase() {
       </h2>
 
       {/* Desktop: sticky phone on the right, copy always from the left */}
-<PageContainer width="wide" className="relative hidden lg:grid lg:grid-cols-[max-content_1fr] lg:gap-14">  
-  {/* gap-6 for justify center of sticky phone */}
-  {/* Left column: scrolling copy panels */}
-  <div className="relative">
-    {steps.map((step, i) => (
-      <div
-        key={step.id}
-        data-showcase-panel
-        className="flex min-h-screen items-center justify-start"
+      <PageContainer
+        width="wide"
+        className="relative hidden lg:grid lg:grid-cols-[max-content_1fr] lg:gap-14"
       >
-        <Copy step={step} index={i} />
-      </div>
-    ))}
-  </div>
-
-  {/* Right column: sticky phone */}
-  <div className="pointer-events-auto sticky top-0 flex h-screen items-center justify-center">
-    <div className="relative">
-<PhoneMockup className="w-[min(25vw,17.5rem)]" screenClassName="bg-background">  
-  {/* desktoptablet ko stuck vako phone ko size */}
-  
-  <div className="relative h-full w-full">
+        {/* gap-6 for justify center of sticky phone */}
+        {/* Left column: scrolling copy panels */}
+        <div className="relative">
           {steps.map((step, i) => (
             <div
               key={step.id}
-              className={cn(
-                "absolute inset-0 transition-opacity duration-500 ease-out",
-                i === active ? "opacity-100" : "pointer-events-none opacity-0",
-              )}
-              aria-hidden={i !== active}
+              data-showcase-panel
+              className="flex min-h-screen items-center justify-start"
             >
-              {step.screen}
+              <Copy step={step} index={i} />
             </div>
           ))}
         </div>
-      </PhoneMockup>
 
-      <div className="mt-6 flex items-center justify-center gap-1.5">
-        {steps.map((step, i) => (
-          <span
-            key={step.id}
-            className={cn(
-              "h-1.5 rounded-full transition-all duration-500",
-              i === active ? "w-6 bg-brand" : "w-1.5 bg-border",
-            )}
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-</PageContainer>
+        {/* Right column: sticky phone */}
+        <div className="pointer-events-auto sticky top-0 flex h-screen items-center justify-end">
+          <div className="relative">
+            <PhoneMockup className="w-[min(25vw,17.5rem)]" screenClassName="bg-background">
+              {/* desktoptablet ko stuck vako phone ko size */}
+
+              <div className="relative h-full w-full">
+                {steps.map((step, i) => (
+                  <div
+                    key={step.id}
+                    className={cn(
+                      "absolute inset-0 transition-opacity duration-500 ease-out",
+                      i === active ? "opacity-100" : "pointer-events-none opacity-0",
+                    )}
+                    aria-hidden={i !== active}
+                  >
+                    {step.screen}
+                  </div>
+                ))}
+              </div>
+            </PhoneMockup>
+
+            <div className="mt-6 flex items-center justify-center gap-1.5">
+              {steps.map((step, i) => (
+                <span
+                  key={step.id}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-500",
+                    i === active ? "w-6 bg-brand" : "w-1.5 bg-border",
+                  )}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </PageContainer>
 
       {/* Mobile / tablet: compact stacked pairs, phone close to its copy */}
       <PageContainer className="space-y-20 lg:hidden">
@@ -209,42 +212,37 @@ export function ProductShowcase() {
   );
 }
 
-function Copy({
-  step,
-  index,
-  className,
-}: {
-  step: Step;
-  index: number;
-  className?: string;
-}) {
+function Copy({ step, index, className }: { step: Step; index: number; className?: string }) {
   return (
     <div className={cn("w-full max-w-xl", className)}>
       <p
-  data-panel-item
-  className="flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground"
->
-  <span className="tabular-nums text-brand">{String(index + 1).padStart(2, "0")}</span>
-  <span className="h-px w-8 bg-border" />
-  <span className="text-brand">{step.eyebrow}</span>
-</p>
-<h3
-  data-panel-item
-  className="mt-4 text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold leading-[1.05] text-brand-ink"
->
-  {step.title}
-</h3>
-<p data-panel-item className="mt-5 max-w-md text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground">
-  {step.description}
-</p>
-<ul data-panel-item className="mt-6 space-y-3">
-  {step.points.map((point) => (
-    <li key={point} className="flex items-start gap-3 text-base text-muted-foreground">
-      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-success" />
-      {point}
-    </li>
-  ))}
-</ul>
+        data-panel-item
+        className="flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground"
+      >
+        <span className="tabular-nums text-brand">{String(index + 1).padStart(2, "0")}</span>
+        <span className="h-px w-8 bg-border" />
+        <span className="text-brand">{step.eyebrow}</span>
+      </p>
+      <h3
+        data-panel-item
+        className="mt-4 text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold leading-[1.05] text-brand-ink"
+      >
+        {step.title}
+      </h3>
+      <p
+        data-panel-item
+        className="mt-5 max-w-md text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
+      >
+        {step.description}
+      </p>
+      <ul data-panel-item className="mt-6 space-y-3">
+        {step.points.map((point) => (
+          <li key={point} className="flex items-start gap-3 text-base text-muted-foreground">
+            <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-success" />
+            {point}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
