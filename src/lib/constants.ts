@@ -18,7 +18,7 @@ export const PLACEHOLDERS = {
   supportEmail: "hello@redisdigital.com",
   privacyEmail: "hello@redisdigital.com",
   publishDate: "[PUBLISH_DATE]",
-  governingLaw: "[GOVERNING_LAW]",
+  governingLaw: "Nepal",
   minimumAge: "10+",
   supabaseRegion: "South Asia (Mumbai)",
 } as const;
