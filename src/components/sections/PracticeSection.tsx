@@ -21,7 +21,7 @@ export function PracticeSection() {
           <div>
             <SectionHeading
               eyebrow="Practice"
-              title={<span id="practice-heading">Practice with purpose.</span>}
+              title={<span id="practice-heading">Practice with purposes.</span>}
               description="Focused practice built around your MECEE-BL preparation. Filter by subject and difficulty, choose a question count, and work through a curated bank."
             />
 
