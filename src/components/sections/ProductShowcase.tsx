@@ -7,7 +7,7 @@ import { ReviewQueueExperience } from "@/components/product/ReviewQueueExperienc
 import { MockTestExperience } from "@/components/product/MockTestExperience";
 import { ResultsExperience } from "@/components/product/ResultsExperience";
 import { ProgressExperience } from "@/components/product/ProgressExperience";
-import { LeaderboardExperience } from "@/components/product/LeaderboardExperience";
+import { ProfileExperience } from "@/components/product/ProfileExperience";
 import { WordExperience } from "@/components/product/WordExperience";
 import { gsap, ScrollTrigger, prefersReducedMotion, registerGsap } from "@/animations/gsap";
 import { cn } from "@/lib/utils";
@@ -75,18 +75,14 @@ const steps: Step[] = [
     screen: <ProgressExperience />,
   },
   {
-    id: "leaderboard",
-    eyebrow: "Leaderboard",
-    title: "Consistency deserves recognition.",
-    description:
-      "See how you rank against the MECEE-BL cohort weekly, monthly, and all-time — your streak keeps the habit intact.",
-    points: ["Daily streak tracking", "Weekly, monthly and all-time boards"],
-    screen: (
-      <div className="flex h-full items-center justify-center px-3">
-        <LeaderboardExperience />
-      </div>
-    ),
-  },
+  id: "leaderboard",
+  eyebrow: "Leaderboard",
+  title: "Consistency deserves recognition.",
+  description:
+    "See how you rank against the MECEE-BL cohort weekly, monthly, and all-time — your streak keeps the habit intact.",
+  points: ["Daily streak tracking", "Weekly, monthly and all-time boards"],
+  screen: <ProfileExperience />,
+},
   {
     id: "word",
     eyebrow: "Word of the Day",

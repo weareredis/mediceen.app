@@ -68,14 +68,14 @@ export const subjects = [
 /** Illustrative MCQ content for the marketing mockups (not a live question bank). */
 export const demoQuestions = [
   {
-    subject: "Anatomy",
+    subject: "Biochemistry",
     difficulty: "Medium",
-    stem: "Which structure passes through the foramen ovale of the sphenoid bone?",
+    stem: "Which vitamin deficiency causes megaloblastic anaemia with neurological signs?",
     options: [
-      "Mandibular nerve",
-      "Maxillary nerve",
-      "Middle meningeal artery",
-      "Internal carotid artery",
+      "Vitamin B12",
+      "Vitamin C",
+      "Folate",
+      "Vitamin K",
     ],
   },
   {
@@ -134,4 +134,61 @@ export const subjectAccuracy = [
   { subject: "Physiology", value: 74 },
   { subject: "Pharmacology", value: 61 },
   { subject: "Pathology", value: 69 },
+];
+
+
+export const reviewQueueSummary = {
+  itemsDue: 20,
+};
+
+export const quizReviews = [
+  { subject: "Anatomy", due: 5 },
+  { subject: "Biochemistry", due: 4 },
+  { subject: "Genetics", due: 3 },
+];
+
+export const quizReviewsDueTotal = 12;
+
+export const flashcardReviewSummary = {
+  count: 8,
+  subjects: "Anatomy, Physiology and Genetics",
+};
+
+export const weeklyMock = {
+  subject: "Medical Biology",
+  totalQuestions: 20,
+  daysLeft: 1,
+  progress: 0,
+};
+
+export const pastMocks = [
+  { week: "Week 12", date: "20 Jul 2026", questions: 20, score: 72 },
+  { week: "Week 11", date: "12 Jul 2026", questions: 20, score: 50 },
+  { week: "Week 5", date: "10 Jul 2026", questions: 20, score: 20 },
+];
+
+export const profileUser = {
+  initials: "AK",
+  name: "Alex Karki",
+  email: "alex@medschool.edu",
+  questions: 1240,
+  accuracy: 76,
+  streak: 12,
+  rank: 24,
+  xp: 9310,
+  xpToTop10: 640,
+  weeklyGainRank: 1,
+};
+
+export const leaderboardPodium = [
+  { place: 2, name: "Sanjay", xp: 17650 },
+  { place: 1, name: "Priya", xp: 18420 },
+  { place: 3, name: "Anmol", xp: 16980 },
+];
+
+export const accountLinks = [
+  { label: "Change password", icon: "lock" as const },
+  { label: "Privacy", icon: "shield" as const },
+  { label: "Help & support", icon: "help" as const },
+  { label: "Log out", icon: "logout" as const, danger: true },
 ];

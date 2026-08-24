@@ -1,65 +1,121 @@
-import { PhoneStatusBar } from "@/components/ui/PhoneMockup";
-import { demoQuestions } from "@/data/product";
+import { Home, SquarePen, Trophy, BarChart3, User } from "lucide-react";
+import { weeklyMock, pastMocks } from "@/data/product";
+
+function scoreTone(score: number): "success" | "warning" | "danger" {
+  if (score >= 65) return "success";
+  if (score >= 35) return "warning";
+  return "danger";
+}
+
+const badgeClasses = {
+  success: "bg-success-soft text-success",
+  warning: "bg-warning-soft text-warning",
+  danger: "bg-destructive-soft text-destructive",
+} as const;
+
+const barClasses = {
+  success: "bg-success",
+  warning: "bg-warning",
+  danger: "bg-destructive",
+} as const;
 
 /**
- * Weekly MECEE-style mock: countdown, shared paper, auto-submit.
- * Choreographed artwork — the timer is not a functioning exam clock.
+ * Weekly test hub: current week's test card plus past attempts with scores.
+ * Choreographed artwork, not a live scheduler.
  */
 export function MockTestExperience() {
-  const q = demoQuestions[1]!;
+  const progressPct = (weeklyMock.progress / weeklyMock.totalQuestions) * 100;
 
   return (
-    <div className="flex h-full flex-col">
-      <PhoneStatusBar label="Weekly Mock" />
-
-      <div className="mx-4 rounded-2xl bg-brand px-4 py-3 text-primary-foreground">
-        <p className="text-[0.6rem] uppercase tracking-[0.22em] opacity-80">Time remaining</p>
-        <p
-          data-mock-timer
-          className="font-display text-2xl font-semibold tabular-nums tracking-tight"
-        >
-          02:59:42
+    <div className="flex h-full flex-col bg-surface">
+      {/* Header */}
+      <div className="bg-card px-5 pb-3 pt-5">
+        <p className="font-display text-xl font-bold text-brand-ink">Weekly</p>
+        <p className="mt-0.5 text-[0.7rem] text-muted-foreground">
+          One test a week keeps you sharp
         </p>
       </div>
 
-      <div className="flex items-center justify-between px-5 pt-4 text-[0.62rem] text-muted-foreground">
-        <span data-mock-counter>Question 12 / 200</span>
-        <span>Auto-submit on</span>
-      </div>
+      <div className="flex-1 space-y-5 overflow-hidden px-4 pt-4">
+        {/* This week's test — hero card */}
+        <div className="rounded-2xl bg-gradient-to-br from-brand via-success/70 to-teal p-4">
+          <p className="text-[0.6rem] font-bold uppercase tracking-wider text-white/75">
+            This week&apos;s test
+          </p>
+          <p className="font-display text-lg font-bold text-white">{weeklyMock.subject}</p>
+          <p className="mt-0.5 text-[0.72rem] text-white/80">
+            {weeklyMock.totalQuestions} questions · {weeklyMock.daysLeft} day left
+          </p>
 
-      <div className="mt-2 px-5">
-        <div className="h-1 overflow-hidden rounded-full bg-surface-2">
-          <div data-mock-progress className="h-full w-[6%] rounded-full bg-success" />
+          <div className="mt-3 flex items-center justify-between text-[0.62rem] font-medium text-white/80">
+            <span>Progress</span>
+            <span>
+              {weeklyMock.progress} / {weeklyMock.totalQuestions}
+            </span>
+          </div>
+          <div className="mt-1 h-1 overflow-hidden rounded-full bg-white/30">
+            <div className="h-full rounded-full bg-white" style={{ width: `${progressPct}%` }} />
+          </div>
+
+          <button
+            type="button"
+            className="mt-3 w-full rounded-2xl bg-white py-2.5 text-sm font-semibold text-brand shadow-soft"
+          >
+            Start test
+          </button>
+        </div>
+
+        {/* Past tests */}
+        <div>
+          <p className="font-display text-sm font-semibold text-brand-ink">Past tests</p>
+          <div className="mt-2 space-y-2.5">
+            {pastMocks.map((test) => {
+              const tone = scoreTone(test.score);
+              return (
+                <div
+                  key={test.week}
+                  className="rounded-xl border border-border bg-card p-3"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="text-[0.8rem] font-semibold text-brand-ink">{test.week}</p>
+                      <p className="text-[0.62rem] text-muted-foreground">
+                        {test.date} · {test.questions} questions
+                      </p>
+                    </div>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[0.62rem] font-semibold ${badgeClasses[tone]}`}
+                    >
+                      {test.score}%
+                    </span>
+                  </div>
+                  <div className="mt-2 h-1 overflow-hidden rounded-full bg-surface-2">
+                    <div
+                      className={`h-full rounded-full ${barClasses[tone]}`}
+                      style={{ width: `${test.score}%` }}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    className="mt-2.5 w-full rounded-xl bg-gradient-to-r from-success/60 to-teal/60 py-2 text-[0.75rem] font-medium text-white"
+                  >
+                    Review results
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      <div className="flex-1 px-4 pt-4">
-        <article className="rounded-2xl border border-border bg-card p-4 shadow-soft">
-          <h3
-            data-mock-stem
-            className="font-display text-[0.88rem] font-semibold leading-snug text-brand-ink"
-          >
-            {q.stem}
-          </h3>
-          <ul className="mt-4 space-y-2">
-            {q.options.map((opt, i) => (
-              <li
-                key={opt}
-                className="flex items-center gap-3 rounded-xl border border-border px-3 py-2 text-[0.76rem] text-brand-ink"
-              >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-border text-[0.6rem] text-muted-foreground">
-                  {String.fromCharCode(65 + i)}
-                </span>
-                {opt}
-              </li>
-            ))}
-          </ul>
-        </article>
+      {/* Bottom nav */}
+      <div className="flex items-center justify-around border-t border-border bg-card px-2 py-3">
+        <Home className="h-4 w-4 text-muted-foreground" strokeWidth={2} />
+        <SquarePen className="h-4 w-4 text-muted-foreground" strokeWidth={2} />
+        <Trophy className="h-4 w-4 text-brand" strokeWidth={2} />
+        <BarChart3 className="h-4 w-4 text-muted-foreground" strokeWidth={2} />
+        <User className="h-4 w-4 text-muted-foreground" strokeWidth={2} />
       </div>
-
-      <p className="px-5 pb-5 pt-3 text-center text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">
-        One scored attempt · Resume if interrupted
-      </p>
     </div>
   );
 }

@@ -13,9 +13,9 @@ export const Route = createFileRoute("/licenses")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://mediceen-journey.lovable.app/licenses" },
+      { property: "og:url", content: "https://mediceen.app/licenses" },
     ],
-    links: [{ rel: "canonical", href: "https://mediceen-journey.lovable.app/licenses" }],
+    links: [{ rel: "canonical", href: "https://mediceen.app/licenses" }],
   }),
   component: LicensesPage,
 });

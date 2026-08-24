@@ -1,4 +1,7 @@
 /** FAQ copy — verbatim from Part 5 of the Website & Legal Content Pack. */
+import { PLACEHOLDERS } from "@/lib/constants";
+
+/** FAQ copy — verbatim from Part 5 of the Website & Legal Content Pack. */
 export type FaqItem = { question: string; answer: string };
 
 export const faqItems: FaqItem[] = [
@@ -9,8 +12,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "Who is it for?",
-    answer:
-      "Medical entrance aspirants in Nepal (phase 1). You should be at least [MINIMUM_AGE] years old to create an account.",
+    answer: `Medical entrance aspirants in Nepal (phase 1). You should be at least ${PLACEHOLDERS.minimumAge} years old to create an account.`,
   },
   {
     question: "How do I sign up?",

@@ -15,9 +15,9 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://mediceen-journey.lovable.app/privacy" },
+      { property: "og:url", content: "https://mediceen.app/privacy" },
     ],
-    links: [{ rel: "canonical", href: "https://mediceen-journey.lovable.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://mediceen.app/privacy" }],
   }),
   component: PrivacyPage,
 });
@@ -243,7 +243,7 @@ function PrivacyPage() {
         <LegalSection heading="11. Changes">
           <p>
             We may update this policy. We will post the new version at
-            https://mediceen-journey.lovable.app/privacy and update the “Last updated” date.
+            https://mediceen.app/privacy and update the “Last updated” date.
             Continued use after changes means you accept the updated policy where permitted by law.
           </p>
         </LegalSection>
