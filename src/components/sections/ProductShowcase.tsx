@@ -198,16 +198,16 @@ export function ProductShowcase() {
       </PageContainer>
 
       {/* Mobile / tablet: compact stacked pairs, phone close to its copy */}
-      <PageContainer className="space-y-20 lg:hidden">
-        {steps.map((step, i) => (
-          <div key={step.id} data-showcase-panel className="flex flex-col items-center gap-6">
-            <PhoneMockup className="w-[min(70.5vw,13rem)]" tilt={i % 2 === 0 ? "right" : "left"}>
-              {step.screen}
-            </PhoneMockup>
-            <Copy step={step} index={i} align="left" className="max-w-md text-center" />
-          </div>
-        ))}
-      </PageContainer>
+<PageContainer className="space-y-20 lg:hidden">
+  {steps.map((step, i) => (
+    <div key={step.id} data-showcase-panel className="flex flex-col items-center gap-6">
+      <Copy step={step} index={i} align="left" className="max-w-md text-center" />
+      <PhoneMockup className="w-[min(70.5vw,13rem)]" tilt={i % 2 === 0 ? "right" : "left"}>
+        {step.screen}
+      </PhoneMockup>
+    </div>
+  ))}
+</PageContainer>
     </section>
   );
 }

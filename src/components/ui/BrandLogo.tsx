@@ -1,5 +1,3 @@
-import markAsset from "@/assets/mediceen-mark.png.asset.json";
-import wordmarkAsset from "@/assets/mediceen-wordmark.png.asset.json";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {

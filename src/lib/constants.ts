@@ -13,15 +13,21 @@ export const SITE = {
 
 /** Part 0 placeholders — keep as placeholders until legal supplies real values. */
 export const PLACEHOLDERS = {
-  legalEntityName: "Redis Digital",
+  legalEntityName: "Mediceen",
   registeredAddress: "Panipokhari, Kathmandu, Nepal",
   supportEmail: "hello@redisdigital.com",
   privacyEmail: "hello@redisdigital.com",
-  publishDate: "[PUBLISH_DATE]",
+  publishDate: "2026-08-24",
   governingLaw: "Nepal",
   minimumAge: "10+",
   supabaseRegion: "South Asia (Mumbai)",
 } as const;
+
+export const DEVELOPER = {
+  name: "Redis Digital",
+} as const;
+
+export const ADDRESS_MAP_URL = "https://maps.app.goo.gl/5aaBp2MfAxmq9Akt9";
 
 /** Store URLs are placeholders until the listings are live (Part 0). */
 export const STORE_LINKS = {

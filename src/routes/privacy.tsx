@@ -49,12 +49,11 @@ function PrivacyPage() {
   return (
     <main>
       <LegalPage
-        eyebrow="Legal"
-        title="Privacy Policy"
-        draft
-        showEffectiveDate
-        intro={`This Privacy Policy describes how ${PLACEHOLDERS.legalEntityName} (“Mediceen”, “we”, “us”) collects, uses, and protects personal data when you use the Mediceen mobile application (iOS and Android) and our public website at https://mediceen.app (when published).`}
-      >
+  eyebrow="Legal"
+  title="Privacy Policy"
+  showEffectiveDate
+  intro={`This Privacy Policy describes how ${PLACEHOLDERS.legalEntityName} (“Mediceen”, “we”, “us”) collects, uses, and protects personal data when you use the Mediceen mobile application (iOS and Android) and our public website at https://mediceen.app.`}
+>
         <LegalSection heading="1. Contact">
           <p>
             Contact: {PLACEHOLDERS.privacyEmail}

@@ -23,7 +23,7 @@ export const Route = createFileRoute("/cookies")({
 function CookiesPage() {
   return (
     <main>
-      <LegalPage eyebrow="Legal" title="Cookie notice" draft>
+      <LegalPage eyebrow="Legal" title="Cookie notice">
         <LegalSection heading="Cookies on our website">
           <p>
             Our initial public website is a static site with no advertising cookies and no

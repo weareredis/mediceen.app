@@ -1,4 +1,4 @@
-import { gsap } from "./gsap";
+import { gsap, isMobileViewport } from "./gsap";
 import type { SceneBuilder } from "@/hooks/useScrollAnimation";
 
 export const heroTimeline: SceneBuilder = ({ root, reducedMotion }) => {
@@ -10,6 +10,8 @@ export const heroTimeline: SceneBuilder = ({ root, reducedMotion }) => {
     return;
   }
 
+  const mobile = isMobileViewport();
+
   gsap
     .timeline({ defaults: { ease: "power3.out" } })
     .from(copy, { opacity: 0, y: 28, duration: 1, stagger: 0.09 })
@@ -17,7 +19,7 @@ export const heroTimeline: SceneBuilder = ({ root, reducedMotion }) => {
 
   if (phone) {
     gsap.to(phone, {
-      y: -10,
+      y: mobile ? -5 : -10,
       duration: 4,
       ease: "sine.inOut",
       repeat: -1,
@@ -25,9 +27,10 @@ export const heroTimeline: SceneBuilder = ({ root, reducedMotion }) => {
     });
 
     // The phone gently approaches as the visitor enters the product story.
+    // Halved on mobile so the downward drift doesn't creep into the heading below.
     gsap.to(phone, {
-      scale: 1.08,
-      yPercent: 4,
+      scale: mobile ? 1.04 : 1.08,
+      yPercent: mobile ? 2 : 4,
       ease: "none",
       scrollTrigger: {
         trigger: root,

@@ -21,19 +21,20 @@ export function PhoneMockup({
 }) {
   return (
     <div
-      className={cn(
-        "relative aspect-[9/18] w-[min(60vw,15rem)] shrink-0 rounded-[2.2rem] p-[3px]",
-        "bg-[linear-gradient(160deg,oklch(0.86_0.01_260),oklch(0.42_0.02_260)_45%,oklch(0.72_0.01_260))]",
-        "shadow-phone transition-transform duration-500 ease-out",
-        tilt === "left" &&
-          "[transform:perspective(1600px)_rotateY(7deg)_rotateX(1.5deg)_rotateZ(-1deg)]",
-        tilt === "right" &&
-          "[transform:perspective(1600px)_rotateY(-7deg)_rotateX(1.5deg)_rotateZ(1deg)]",
-        className,
-      )}
-      role="img"
-      aria-label={label}
-    >
+  className={cn(
+    "relative aspect-[9/18] w-[min(60vw,15rem)] shrink-0 overflow-hidden rounded-[2.2rem] p-[3px]",
+    "bg-[linear-gradient(160deg,oklch(0.86_0.01_260),oklch(0.42_0.02_260)_45%,oklch(0.72_0.01_260))]",
+    "shadow-phone transition-transform duration-500 ease-out",
+    tilt === "left" &&
+      "[transform:perspective(1600px)_rotateY(7deg)_rotateX(1.5deg)_rotateZ(-1deg)]",
+    tilt === "right" &&
+      "[transform:perspective(1600px)_rotateY(-7deg)_rotateX(1.5deg)_rotateZ(1deg)]",
+    className,
+  )}
+  style={{ aspectRatio: "9 / 18" }}
+  role="img"
+  aria-label={label}
+>
       <div className="h-full w-full rounded-[2.05rem] bg-[oklch(0.18_0.02_260)] p-[5px]">
         <div
           className={cn(

@@ -23,7 +23,7 @@ export const Route = createFileRoute("/terms")({
 function TermsPage() {
   return (
     <main>
-      <LegalPage eyebrow="Legal" title="Terms of Service" draft showEffectiveDate>
+      <LegalPage eyebrow="Legal" title="Terms of Service" showEffectiveDate>
         <LegalSection heading="1. Agreement">
           <p>
             By downloading, accessing, or using Mediceen, you agree to these Terms of Service
@@ -138,13 +138,13 @@ function TermsPage() {
         </LegalSection>
 
         <LegalSection heading="13. Governing law">
-          <p>
-            These Terms are governed by the laws of {PLACEHOLDERS.governingLaw}, without regard to
-            conflict-of-law principles. Disputes shall be subject to the exclusive jurisdiction of
-            the courts of {PLACEHOLDERS.governingLaw} unless mandatory consumer law requires
-            otherwise. (Confirm with legal counsel before publish.)
-          </p>
-        </LegalSection>
+  <p>
+    These Terms are governed by the laws of {PLACEHOLDERS.governingLaw}, without regard to
+    conflict-of-law principles. Disputes shall be subject to the exclusive jurisdiction of
+    the courts of {PLACEHOLDERS.governingLaw} unless mandatory consumer law requires
+    otherwise.
+  </p>
+</LegalSection>
 
         <LegalSection heading="14. Changes">
           <p>
