@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/redisdi1/mediceen.app/
+    - source /home1/redisdi1/nodevenv/mediceen.app/22/bin/activate
+    - cd /home1/redisdi1/mediceen.app/repos
+    - npm install
+    - npm run build
+    - cp -r .output/* $DEPLOYPATH/.output/
+    - deactivate
