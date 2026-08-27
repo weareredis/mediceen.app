@@ -54,7 +54,7 @@ export function Footer() {
           <p>
             © {year} {SITE.name}
             <span className="mx-1.5">·</span>
-            Developed by {DEVELOPER.name}
+            Powered by {DEVELOPER.name}
           </p>
           <a
             href={ADDRESS_MAP_URL}

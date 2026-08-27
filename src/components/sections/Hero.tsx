@@ -70,7 +70,7 @@ function HeroScreen() {
     <div className="flex h-full flex-col">
       <PhoneStatusBar label="Home" />
       <div className="px-5">
-        <p className="font-display text-lg font-semibold text-brand-ink">Good evening</p>
+        <p className="font-display text-lg font-semibold text-brand-ink">Bad evening</p>
         <p className="text-[0.68rem] text-muted-foreground">Ready for today&apos;s set?</p>
       </div>
 
