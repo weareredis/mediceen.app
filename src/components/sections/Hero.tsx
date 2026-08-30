@@ -23,12 +23,14 @@ export function Hero() {
             >
               Mediceen
             </p>
-            <h1
-              className="mt-6 text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold text-brand-ink"
-              data-reveal
-            >
-              Prepare smarter for MECEE-BL
-            </h1>
+            <h1 className="mt-6" data-reveal>
+  <span className="block text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold text-brand-ink">
+    Prepare smarter for MECEE-BL
+  </span>{" "}
+  <span className="mt-2 block font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-medium text-muted-foreground">
+    Medical entrance exam prep for Nepal
+  </span>
+</h1>
             <p
               className="mt-6 max-w-lg text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
               data-reveal
@@ -70,7 +72,7 @@ function HeroScreen() {
     <div className="flex h-full flex-col">
       <PhoneStatusBar label="Home" />
       <div className="px-5">
-        <p className="font-display text-lg font-semibold text-brand-ink">Bad evening</p>
+        <p className="font-display text-lg font-semibold text-brand-ink">Good evening</p>
         <p className="text-[0.68rem] text-muted-foreground">Ready for today&apos;s set?</p>
       </div>
 

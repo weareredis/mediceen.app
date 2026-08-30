@@ -201,7 +201,7 @@ export function ProductShowcase() {
 <PageContainer className="space-y-20 lg:hidden">
   {steps.map((step, i) => (
     <div key={step.id} data-showcase-panel className="flex flex-col items-center gap-6">
-      <Copy step={step} index={i} align="left" className="max-w-md text-center" />
+      <Copy step={step} index={i} className="max-w-md text-center" headingTag="p" />
       <PhoneMockup className="w-[min(70.5vw,13rem)]" tilt={i % 2 === 0 ? "right" : "left"}>
         {step.screen}
       </PhoneMockup>
@@ -212,7 +212,21 @@ export function ProductShowcase() {
   );
 }
 
-function Copy({ step, index, className }: { step: Step; index: number; className?: string }) {
+function Copy({
+  step,
+  index,
+  className,
+  headingTag = "h3",
+}: {
+  step: Step;
+  index: number;
+  className?: string;
+  headingTag?: "h3" | "p";
+}) {
+  const HeadingComp = headingTag;
+  const headingProps =
+    headingTag === "p" ? { role: "heading" as const, "aria-level": 3 } : {};
+
   return (
     <div className={cn("w-full max-w-xl", className)}>
       <p
@@ -223,12 +237,13 @@ function Copy({ step, index, className }: { step: Step; index: number; className
         <span className="h-px w-8 bg-border" />
         <span className="text-brand">{step.eyebrow}</span>
       </p>
-      <h3
+      <HeadingComp
         data-panel-item
+        {...headingProps}
         className="mt-4 text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold leading-[1.05] text-brand-ink"
       >
         {step.title}
-      </h3>
+      </HeadingComp>
       <p
         data-panel-item
         className="mt-5 max-w-md text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
