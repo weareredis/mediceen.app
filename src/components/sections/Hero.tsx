@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { PhoneMockup, PhoneStatusBar } from "@/components/ui/PhoneMockup";
+import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { StoreBadges } from "@/components/ui/StoreBadge";
 import { Button } from "@/components/ui/brand-button";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { heroTimeline } from "@/animations/heroTimeline";
 import { wordOfTheDay } from "@/data/product";
+import { Bell, Flame, Sparkles } from "lucide-react";
 
 export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
@@ -69,34 +70,66 @@ export function Hero() {
 
 function HeroScreen() {
   return (
-    <div className="flex h-full flex-col">
-      <PhoneStatusBar label="Home" />
-      <div className="px-5">
-        <p className="font-display text-lg font-semibold text-brand-ink">Good evening</p>
-        <p className="text-[0.68rem] text-muted-foreground">Ready for today&apos;s set?</p>
-      </div>
-
-      <div className="mt-4 grid grid-cols-2 gap-2 px-4">
-        <Tile label="Study streak" value="12 days" tone="success" />
-        <Tile label="Due reviews" value="24" tone="brand" />
-      </div>
-
-      <div className="mt-3 px-4">
-        <div className="rounded-2xl border border-teal/40 bg-teal-soft p-3">
-          <p className="text-[0.58rem] uppercase tracking-[0.2em] text-brand">Word of the Day</p>
-          <p className="mt-1 font-display text-sm font-semibold text-brand-ink">
-            {wordOfTheDay.term}
-          </p>
-          <p className="mt-1 text-[0.68rem] leading-snug text-muted-foreground">
-            {wordOfTheDay.definition}
-          </p>
+        <div className="flex h-full flex-col">
+            <div className="flex items-center justify-between px-4 pt-4">
+        <div>
+          <p className="text-[0.62rem] text-muted-foreground">Welcome back,</p>
+          <p className="font-display text-base font-bold text-brand-ink">Bajra Riyaz</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-border bg-card">
+            <Bell className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={2} />
+          </span>
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-success text-[0.6rem] font-semibold text-white">
+            BR
+          </span>
         </div>
       </div>
 
-      <div className="mt-3 space-y-2 px-4 pb-6">
-        <Row label="Practice MCQs" meta="Anatomy · 20 Q" />
-        <Row label="Flashcards" meta="Biochemistry" />
-        <Row label="Weekly MECEE mock" meta="Live now" />
+      <div className="mt-3 px-4">
+        <div className="flex items-center gap-2 rounded-xl border border-warning/30 bg-warning-soft px-3 py-2.5">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-warning/15">
+            <Flame className="h-3.5 w-3.5 text-warning" strokeWidth={2.5} />
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-[0.68rem] font-semibold text-brand-ink">7 day streak</p>
+            <p className="truncate text-[0.58rem] text-muted-foreground">2 days to a new record</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Fixed gradient + white text is intentional here, same rationale as
+          FlashcardExperience: this card's contrast is against its own gradient,
+          not the page background, so it doesn't flip with theme tokens. */}
+      <div className="mt-3 px-4">
+        <div className="relative overflow-hidden rounded-2xl bg-[linear-gradient(135deg,var(--teal),var(--brand))] p-3.5">
+          <div className="flex items-center gap-1.5">
+            <Sparkles className="h-3 w-3 text-white/90" strokeWidth={2.5} />
+            <p className="text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-white/90">
+              Word of the Day
+            </p>
+          </div>
+          <p className="mt-2 font-display text-sm font-bold text-white">{wordOfTheDay.term}</p>
+          <p className="mt-1 text-[0.62rem] leading-snug text-white/75">{wordOfTheDay.definition}</p>
+        </div>
+      </div>
+
+      <div className="mt-3 px-4 pb-6">
+        <div className="rounded-2xl border border-border bg-card p-3.5">
+          <div className="flex items-center justify-between">
+            <p className="text-[0.68rem] font-semibold text-brand-ink">Today&apos;s goal</p>
+            <p className="text-[0.62rem] font-semibold text-muted-foreground">
+              <span className="text-brand-ink">12</span> / 20 questions
+            </p>
+          </div>
+          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
+            <div className="h-full w-3/5 rounded-full bg-success" />
+          </div>
+          <p className="mt-2 text-[0.58rem] text-muted-foreground">8 questions left today</p>
+          <div className="mt-2.5 flex items-center justify-center rounded-xl bg-primary py-2">
+            <p className="text-[0.65rem] font-semibold text-primary-foreground">Continue practicing</p>
+          </div>
+        </div>
       </div>
     </div>
   );

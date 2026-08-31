@@ -15,7 +15,7 @@ export function PhoneMockup({
   children: ReactNode;
   className?: string;
   screenClassName?: string;
-  /** Slight perspective tilt so the device leans toward the centre of the screen. */
+  /** Tilt is currently disabled — all phones render straight regardless of this prop. */
   tilt?: "left" | "right" | "none";
   label?: string;
 }) {
@@ -25,10 +25,6 @@ export function PhoneMockup({
     "relative aspect-[9/18] w-[min(60vw,15rem)] shrink-0 overflow-hidden rounded-[2.2rem] p-[3px]",
     "bg-[linear-gradient(160deg,oklch(0.86_0.01_260),oklch(0.42_0.02_260)_45%,oklch(0.72_0.01_260))]",
     "shadow-phone transition-transform duration-500 ease-out",
-    tilt === "left" &&
-      "[transform:perspective(1600px)_rotateY(7deg)_rotateX(1.5deg)_rotateZ(-1deg)]",
-    tilt === "right" &&
-      "[transform:perspective(1600px)_rotateY(-7deg)_rotateX(1.5deg)_rotateZ(1deg)]",
     className,
   )}
   style={{ aspectRatio: "9 / 18" }}
