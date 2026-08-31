@@ -1,7 +1,8 @@
 import { PageContainer } from "@/components/layout/PageContainer";
-import { PhoneMockup, PhoneStatusBar } from "@/components/ui/PhoneMockup";
+import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { gsap, revealFrom } from "@/animations/gsap";
+import { ProfileExperience } from "@/components/product/ProfileExperience";
 
 export function FinalMomentSection() {
   const ref = useScrollAnimation<HTMLElement>(({ root, reducedMotion }) => {
@@ -39,18 +40,9 @@ export function FinalMomentSection() {
           Your pace.
         </p>
 
-        <div data-final-phone className="mt-16">
+                <div data-final-phone className="mt-16">
           <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(25vw,17.5rem)]">
-            <div className="flex h-full flex-col">
-              <PhoneStatusBar label="Today" />
-              <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6 text-center">
-                <p className="font-display text-3xl font-semibold text-brand-ink">12</p>
-                <p className="text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground">
-                  Day streak
-                </p>
-                <div className="mt-4 h-1 w-24 rounded-full bg-success" />
-              </div>
-            </div>
+            <ProfileExperience />
           </PhoneMockup>
         </div>
       </PageContainer>

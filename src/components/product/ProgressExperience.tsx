@@ -34,47 +34,47 @@ export function ProgressExperience() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="px-5 pt-5">
-        <p className="font-display text-2xl font-bold text-brand-ink">Insights</p>
-        <p className="mt-0.5 text-[0.7rem] text-muted-foreground">Last 7 days</p>
+      <div className="px-[7.1cqw] pt-[7.1cqw]">
+        <p className="font-display text-[8.6cqw] font-bold text-brand-ink">Insights</p>
+        <p className="mt-[0.7cqw] text-[4cqw] text-muted-foreground">Last 7 days</p>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-3 px-5">
+      <div className="mt-[7.1cqw] grid grid-cols-2 gap-[4.3cqw] px-[7.1cqw]">
         {stats.map((stat) => (
           <div
             key={stat.label}
             data-insight-stat
-            className="rounded-xl bg-card p-3 text-center shadow-soft"
+            className="rounded-xl bg-card p-[4.3cqw] text-center shadow-soft"
           >
             <p
-              className={`font-display text-2xl font-bold tabular-nums ${
+              className={`font-display text-[8.6cqw] font-bold tabular-nums ${
                 stat.tone === "success" ? "text-success" : "text-brand-ink"
               }`}
             >
               {stat.value}
-              {stat.suffix && <span className="ml-0.5">{stat.suffix}</span>}
+              {stat.suffix && <span className="ml-[0.7cqw]">{stat.suffix}</span>}
             </p>
-            <p className="mt-0.5 text-[0.66rem] text-muted-foreground">{stat.label}</p>
+            <p className="mt-[0.7cqw] text-[3.8cqw] text-muted-foreground">{stat.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-6 px-5">
-        <p className="font-display text-base font-semibold text-brand-ink">Accuracy trend</p>
+      <div className="mt-[8.6cqw] px-[7.1cqw]">
+        <p className="font-display text-[5.7cqw] font-semibold text-brand-ink">Accuracy trend</p>
       </div>
 
-      <div className="mt-3 px-5 pb-6">
-        <div data-insight-chart className="rounded-2xl bg-card p-4 shadow-soft">
-          <div className="flex items-center gap-2">
-            <p className="font-display text-xl font-bold tabular-nums text-brand-ink">{last}%</p>
-            <span className="rounded-xl bg-success-soft px-2 py-0.5 text-[0.62rem] font-semibold text-success">
+      <div className="mt-[4.3cqw] px-[7.1cqw] pb-[8.6cqw]">
+        <div data-insight-chart className="rounded-2xl bg-card p-[5.7cqw] shadow-soft">
+          <div className="flex items-center gap-[2.9cqw]">
+            <p className="font-display text-[7.1cqw] font-bold tabular-nums text-brand-ink">{last}%</p>
+            <span className="rounded-xl bg-success-soft px-[2.9cqw] py-[0.7cqw] text-[3.5cqw] font-semibold text-success">
               {delta >= 0 ? "+" : ""}
               {delta} pts this week
             </span>
           </div>
 
-          <div className="mt-3 border-t border-border pt-3">
-            <svg viewBox="0 0 260 64" className="h-16 w-full overflow-visible" aria-hidden="true">
+          <div className="mt-[4.3cqw] border-t border-border pt-[4.3cqw]">
+            <svg viewBox="0 0 260 64" className="h-[22.9cqw] w-full overflow-visible" aria-hidden="true">
               <path d={toAreaPath(trend7)} fill="var(--success)" fillOpacity={0.06} stroke="none" />
               <path
                 data-insight-line
@@ -105,7 +105,7 @@ export function ProgressExperience() {
               })}
             </svg>
 
-            <div className="mt-2 flex justify-between text-[0.62rem] text-muted-foreground">
+            <div className="mt-[2.9cqw] flex justify-between text-[3.5cqw] text-muted-foreground">
               {dayLabels.map((day) => (
                 <span key={day}>{day}</span>
               ))}

@@ -2,7 +2,7 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { ProgressExperience } from "@/components/product/ProgressExperience";
-import { LeaderboardExperience } from "@/components/product/LeaderboardExperience";
+import { ProfileLeaderboardExperience } from "@/components/product/ProfileLeaderboardExperience";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { progressTimeline } from "@/animations/progressTimeline";
 
@@ -37,7 +37,7 @@ export function ProgressSection() {
             />
           </div>
           <div className="flex justify-center lg:justify-end">
-            <LeaderboardExperience />
+            <ProfileLeaderboardExperience />
           </div>
         </div>
       </PageContainer>

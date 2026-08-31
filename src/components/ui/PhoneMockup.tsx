@@ -32,9 +32,9 @@ export function PhoneMockup({
   aria-label={label}
 >
       <div className="h-full w-full rounded-[2.05rem] bg-[oklch(0.18_0.02_260)] p-[5px]">
-        <div
+                <div
           className={cn(
-            "relative h-full w-full overflow-hidden rounded-[1.75rem] bg-background",
+            "@container relative h-full w-full overflow-hidden rounded-[1.75rem] bg-background",
             screenClassName,
           )}
         >

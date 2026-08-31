@@ -7,7 +7,7 @@ import { ReviewQueueExperience } from "@/components/product/ReviewQueueExperienc
 import { MockTestExperience } from "@/components/product/MockTestExperience";
 import { ResultsExperience } from "@/components/product/ResultsExperience";
 import { ProgressExperience } from "@/components/product/ProgressExperience";
-import { ProfileExperience } from "@/components/product/ProfileExperience";
+import { LeaderboardExperience } from "@/components/product/LeaderboardExperience";
 import { WordExperience } from "@/components/product/WordExperience";
 import { gsap, ScrollTrigger, prefersReducedMotion, registerGsap } from "@/animations/gsap";
 import { cn } from "@/lib/utils";
@@ -81,7 +81,7 @@ const steps: Step[] = [
     description:
       "See how you rank against the MECEE-BL cohort weekly, monthly, and all-time — your streak keeps the habit intact.",
     points: ["Daily streak tracking", "Weekly, monthly and all-time boards"],
-    screen: <ProfileExperience />,
+    screen: <LeaderboardExperience />,
   },
   {
     id: "word",
