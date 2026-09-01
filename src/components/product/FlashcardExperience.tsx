@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, X, Atom } from "lucide-react";
+import { X } from "lucide-react";
 import { demoFlashcards } from "@/data/product";
 
 const TOTAL_QUESTIONS = 20;
@@ -45,19 +45,17 @@ export function FlashcardExperience() {
         </span>
       </div>
 
-      <div
+            <div
         className="relative flex flex-1 items-center justify-center px-[8.6cqw]"
         style={{ perspective: "1200px" }}
         data-card-scene
       >
-        <div className="relative aspect-[4/5] w-[68%]">
-          <div
-            className="absolute inset-0 translate-x-[1.4cqw] translate-y-[0.7cqw] rotate-2 rounded-[1.4rem] bg-brand/30"
+                        <div className="relative aspect-[4/5] w-[70%]">
+          <img
+            src="/flashcard-front.png"
+            alt=""
             aria-hidden="true"
-          />
-          <div
-            className="absolute inset-0 -translate-x-[0.7cqw] translate-y-[0.7cqw] -rotate-2 rounded-[1.4rem] bg-surface-2 shadow-soft"
-            aria-hidden="true"
+            className="absolute inset-0 h-full w-full rotate-[4deg] rounded-[2rem] object-cover opacity-70 shadow-[0px_0px_13px_0px_rgba(31,60,104,0.25)]"
           />
 
           <button
@@ -72,32 +70,12 @@ export function FlashcardExperience() {
               transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
             }}
           >
-            <Face className="border-none bg-success shadow-soft outline outline-2 -outline-offset-2 outline-success">
-              <div className="flex items-start justify-between">
-                <span className="rounded-3xl bg-white/40 px-[2.9cqw] py-[0.7cqw] text-[3cqw] font-extrabold text-success">
-                  {card.subject}
-                </span>
-                <Star className="h-[4.3cqw] w-[4.3cqw] fill-yellow-400 text-yellow-400" aria-hidden="true" />
-              </div>
-              <p className="mt-[5.7cqw] flex-1 text-center font-display text-[3.9cqw] font-extrabold leading-snug text-white">
-                {card.front}
-              </p>
-              <p className="text-center text-[2.7cqw] font-extrabold uppercase tracking-wide text-white/75">
-                Tap to reveal answer
-              </p>
+            <Face>
+              <img src="/flashcard-front.png" alt={card.front} className="h-full w-full object-cover" />
             </Face>
 
-            <Face
-              className="border-none bg-success shadow-soft outline outline-2 -outline-offset-2 outline-success"
-              style={{ transform: "rotateY(180deg)" }}
-            >
-              <Atom className="absolute left-[2.9cqw] top-[2.9cqw] h-[8.6cqw] w-[8.6cqw] text-white/25" strokeWidth={1.5} aria-hidden="true" />
-              <Atom className="absolute bottom-[2.9cqw] right-[2.9cqw] h-[8.6cqw] w-[8.6cqw] rotate-45 text-white/25" strokeWidth={1.5} aria-hidden="true" />
-              <div className="flex flex-1 items-center justify-center">
-                <p className="text-center font-display text-[5cqw] font-extrabold text-white">
-                  {card.back}
-                </p>
-              </div>
+            <Face style={{ transform: "rotateY(180deg)" }}>
+              <img src="/flashcard-back.png" alt={card.back} className="h-full w-full object-cover" />
             </Face>
           </button>
         </div>
@@ -118,7 +96,7 @@ export function FlashcardExperience() {
 function Face({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
   return (
     <div
-      className={`absolute inset-0 flex flex-col justify-between overflow-hidden rounded-[1.4rem] p-[5cqw] ${className ?? ""}`}
+      className={`absolute inset-0 overflow-hidden rounded-[2rem] ${className ?? ""}`}
       style={{ backfaceVisibility: "hidden", ...style }}
     >
       {children}
