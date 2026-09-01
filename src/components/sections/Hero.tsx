@@ -74,7 +74,7 @@ function HeroScreen() {
             <div className="flex items-center justify-between px-4 pt-4">
         <div>
           <p className="text-[0.62rem] text-muted-foreground">Welcome back,</p>
-          <p className="font-display text-base font-bold text-brand-ink">Bajra Riyaz</p>
+          <p className="font-display text-base font-bold text-brand-ink">Alex Karki</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="flex h-7 w-7 items-center justify-center rounded-full border border-border bg-card">

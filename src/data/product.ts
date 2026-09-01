@@ -115,8 +115,8 @@ export const leaderboardRows = [
 export const leaderboardScopes = ["Weekly", "This Month", "All-time"] as const;
 
 export const wordOfTheDay = {
-  term: "Synapse",
-  definition: "The junction between two communicating neurons.",
+  term: "Neural Tube Defect",
+  definition: "Failure of neural tube closure during early development, which may cause conditions such as anencephaly or spina bifida.",
 };
 
 export const journeySteps = [
