@@ -33,12 +33,12 @@ export function Hero() {
   </span>
 </h1>
             <p
-              className="mt-6 max-w-lg text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
-              data-reveal
-            >
-              Practice. Review. Improve. Mediceen helps Nepal medical aspirants build recall with
-              MCQs, spaced repetition, flashcards, and weekly MECEE-style mocks.
-            </p>
+  className="mt-6 max-w-lg text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
+  data-reveal
+>
+  Practice. Review. Improve smarter. Mediceen helps Nepal medical aspirants build recall with
+  MCQs, spaced repetition, flashcards, and weekly MECEE-style mocks.
+</p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3" data-reveal>
               <Button asChild variant="outline" size="lg">
