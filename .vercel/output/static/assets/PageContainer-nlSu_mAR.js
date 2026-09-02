@@ -1,1 +1,0 @@
-import{c as e,f as t}from"./index-D2i_eYZo.js";var n=t();function r({children:t,className:r,width:i=`default`}){return(0,n.jsx)(`div`,{className:e(`mx-auto w-full px-6 sm:px-8`,i===`wide`&&`max-w-[76rem]`,i==="default"&&`max-w-[76rem]`,i===`prose`&&`max-w-[46rem]`,r),children:t})}export{r as t};
