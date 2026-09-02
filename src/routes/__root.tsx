@@ -95,7 +95,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:site_name", content: "Mediceen" },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://mediceen.app/" },
+      { property: "og:title", content: "Mediceen - MECEE-BL Medical Entrance Prep" },
+      {
+        property: "og:description",
+        content:
+          "Practice MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+      },
+      { property: "og:image", content: "https://mediceen.app/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Mediceen - MECEE-BL Medical Entrance Prep" },
+      {
+        name: "twitter:description",
+        content:
+          "Practice MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+      },
+      { name: "twitter:image", content: "https://mediceen.app/og-image.png" },
     ],
     links: [
   { rel: "stylesheet", href: appCss },
