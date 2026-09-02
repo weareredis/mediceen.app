@@ -27,6 +27,8 @@ export const DEVELOPER = {
   name: "Redis Digital",
 } as const;
 
+export const DEVELOPER_URL ="https://www.redisdigital.com/";
+
 export const ADDRESS_MAP_URL = "https://maps.app.goo.gl/5aaBp2MfAxmq9Akt9";
 
 /** Store URLs are placeholders until the listings are live (Part 0). */

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { footerNav } from "@/data/navigation";
-import { DISCLAIMER, PLACEHOLDERS, SITE, DEVELOPER, ADDRESS_MAP_URL } from "@/lib/constants";
+import { DISCLAIMER, PLACEHOLDERS, SITE, DEVELOPER,DEVELOPER_URL, ADDRESS_MAP_URL } from "@/lib/constants";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { StoreBadges } from "@/components/ui/StoreBadge";
 
@@ -54,7 +54,14 @@ export function Footer() {
           <p>
             © {year} {SITE.name}
             <span className="mx-1.5">·</span>
-            Powered by {DEVELOPER.name}
+            Powered by <a
+            href={DEVELOPER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-brand hover:underline"
+          >
+            {DEVELOPER.name}
+          </a>
           </p>
           <a
             href={ADDRESS_MAP_URL}
