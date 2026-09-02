@@ -14,9 +14,9 @@ const subjects = [
 const focusSubject = { name: "Physiology", accuracy: 54, questionCount: 42 };
 
 const statusStyle = {
-  Mastered: { badge: "bg-emerald-50 text-green-700", bar: "bg-green-700" },
-  Review: { badge: "bg-gray-100 text-slate-500", bar: "bg-slate-500" },
-  "Needs practice": { badge: "bg-slate-100 text-slate-500", bar: "bg-slate-500" },
+  Mastered: { badge: "bg-success-soft text-success", bar: "bg-success" },
+  Review: { badge: "bg-surface-2 text-muted-foreground", bar: "bg-muted-foreground" },
+  "Needs practice": { badge: "bg-surface-2 text-muted-foreground", bar: "bg-muted-foreground" },
 } as const;
 
 /** End-of-attempt summary: score, subject breakdown, focus recommendation, and next actions. */
@@ -26,7 +26,7 @@ export function ResultsExperience() {
   const offset = circumference * (1 - SCORE / SCORE_TOTAL);
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-white">
+    <div className="flex h-full flex-col overflow-hidden bg-card">
       {/* Header */}
       <div className="px-[4.3cqw] pt-[4.3cqw]">
         <div
@@ -96,25 +96,25 @@ export function ResultsExperience() {
 
       {/* Subject performance */}
       <div className="px-[4.3cqw] pt-[5cqw]">
-        <p className="text-[3.4cqw] font-extrabold text-slate-500">Subject performance</p>
+        <p className="text-[3.4cqw] font-extrabold text-muted-foreground">Subject performance</p>
 
         <div className="mt-[2.5cqw] space-y-[2.1cqw]">
-        {subjects.map((subject) => {
+          {subjects.map((subject) => {
             const style = statusStyle[subject.status];
             const fillPct = (subject.correct / subject.total) * 100;
             const Icon = subject.icon;
             return (
               <div
                 key={subject.name}
-                className="rounded-xl border border-gray-200 bg-white p-[2.9cqw]"
+                className="rounded-xl border border-border bg-card p-[2.9cqw]"
               >
                 <div className="flex items-center gap-[2.9cqw]">
-                  <span className="flex h-[7.5cqw] w-[7.5cqw] shrink-0 items-center justify-center rounded-xl bg-gray-100">
-                    <Icon className="h-[3.6cqw] w-[3.6cqw] text-slate-500" strokeWidth={2} />
+                  <span className="flex h-[7.5cqw] w-[7.5cqw] shrink-0 items-center justify-center rounded-xl bg-surface-2">
+                    <Icon className="h-[3.6cqw] w-[3.6cqw] text-muted-foreground" strokeWidth={2} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[3.2cqw] font-semibold text-gray-900">{subject.name}</p>
-                    <p className="text-[2.6cqw] font-medium text-slate-500">
+                    <p className="text-[3.2cqw] font-semibold text-brand-ink">{subject.name}</p>
+                    <p className="text-[2.6cqw] font-medium text-muted-foreground">
                       {subject.correct}/{subject.total} correct
                     </p>
                   </div>
@@ -122,8 +122,8 @@ export function ResultsExperience() {
                     {subject.status}
                   </span>
                 </div>
-                <div className="mt-[1.8cqw] h-[1.1cqw] overflow-hidden rounded-full bg-zinc-200">
-                <div className={`h-full rounded-full ${style.bar}`} style={{ width: `${fillPct}%` }} />
+                <div className="mt-[1.8cqw] h-[1.1cqw] overflow-hidden rounded-full bg-surface-2">
+                  <div className={`h-full rounded-full ${style.bar}`} style={{ width: `${fillPct}%` }} />
                 </div>
               </div>
             );
@@ -133,13 +133,13 @@ export function ResultsExperience() {
 
       {/* Focus recommendation */}
       <div className="px-[4.3cqw] pt-[3.6cqw]">
-        <div className="flex gap-[2.9cqw] rounded-2xl border border-gray-200 bg-white p-[3.2cqw] shadow-sm">
-          <span className="flex h-[7.9cqw] w-[7.9cqw] shrink-0 items-center justify-center rounded-xl bg-indigo-50">
-            <Target className="h-[4cqw] w-[4cqw] text-indigo-600" strokeWidth={2} />
+        <div className="flex gap-[2.9cqw] rounded-2xl border border-border bg-card p-[3.2cqw] shadow-sm">
+          <span className="flex h-[7.9cqw] w-[7.9cqw] shrink-0 items-center justify-center rounded-xl bg-brand-soft">
+            <Target className="h-[4cqw] w-[4cqw] text-brand" strokeWidth={2} />
           </span>
           <div>
-            <p className="text-[3.2cqw] font-semibold text-gray-900">Focus on {focusSubject.name}</p>
-            <p className="mt-[0.9cqw] text-[2.7cqw] leading-relaxed text-slate-500">
+            <p className="text-[3.2cqw] font-semibold text-brand-ink">Focus on {focusSubject.name}</p>
+            <p className="mt-[0.9cqw] text-[2.7cqw] leading-relaxed text-muted-foreground">
               Your accuracy is {focusSubject.accuracy}% across {focusSubject.questionCount} questions
               the lowest of any subject you have practised this month.
             </p>
@@ -159,31 +159,31 @@ export function ResultsExperience() {
         </button>
         <button
           type="button"
-          className="w-full rounded-2xl border border-gray-200 py-[3.2cqw] text-[3.6cqw] font-semibold text-black/60 shadow-sm"
+          className="w-full rounded-2xl border border-border py-[3.2cqw] text-[3.6cqw] font-semibold text-foreground/70 shadow-sm"
         >
           Review answer
         </button>
-        <p className="pt-[1.1cqw] text-center text-[3.2cqw] font-semibold text-slate-500">
+        <p className="pt-[1.1cqw] text-center text-[3.2cqw] font-semibold text-muted-foreground">
           Back to Home
         </p>
       </div>
 
       {/* Completion toast */}
       <div className="px-[4.3cqw] pb-[4.3cqw] pt-[4.3cqw]">
-        <div className="relative flex items-center gap-[2.9cqw] overflow-hidden rounded-xl border border-gray-200 bg-white p-[2.9cqw]">
-          <span className="absolute left-0 top-0 h-full w-[0.5cqw] bg-green-700" />
+        <div className="relative flex items-center gap-[2.9cqw] overflow-hidden rounded-xl border border-border bg-card p-[2.9cqw]">
+          <span className="absolute left-0 top-0 h-full w-[0.5cqw] bg-success" />
           <span className="absolute left-[3cqw] top-[1.5cqw] h-[1cqw] w-[1cqw] rounded-full bg-slate-400" />
           <span className="absolute bottom-[1.5cqw] left-[2cqw] h-[1.4cqw] w-[1.4cqw] rounded-full bg-amber-300" />
           <span className="absolute bottom-[1.5cqw] left-[15cqw] h-[1.4cqw] w-[1.4cqw] rounded-full bg-pink-400" />
           <span className="absolute right-[8cqw] top-0 h-[1.4cqw] w-[1.4cqw] rounded-full bg-pink-400" />
           <span className="absolute bottom-[2cqw] right-[10cqw] h-[1.8cqw] w-[1.8cqw] rounded-full bg-blue-300" />
           <span className="absolute right-[3cqw] top-[2cqw] h-[1.2cqw] w-[1.2cqw] rounded-full bg-blue-300" />
-          <span className="relative flex h-[10cqw] w-[10cqw] shrink-0 items-center justify-center rounded-full bg-emerald-50">
-            <CheckCircle2 className="h-[5.7cqw] w-[5.7cqw] text-green-700" strokeWidth={2} fill="currentColor" />
+          <span className="relative flex h-[10cqw] w-[10cqw] shrink-0 items-center justify-center rounded-full bg-success-soft">
+            <CheckCircle2 className="h-[5.7cqw] w-[5.7cqw] text-success" strokeWidth={2} fill="currentColor" />
           </span>
           <div className="relative">
-            <p className="text-[3.2cqw] font-semibold text-gray-900">Session complete</p>
-            <p className="text-[2.8cqw] font-medium text-slate-500">Your result have been saved</p>
+            <p className="text-[3.2cqw] font-semibold text-brand-ink">Session complete</p>
+            <p className="text-[2.8cqw] font-medium text-muted-foreground">Your result have been saved</p>
           </div>
         </div>
       </div>
