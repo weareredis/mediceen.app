@@ -56,7 +56,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How do I delete my account?",
-    answer: "See Delete account & data or email hello@redisdigital.com from your registered email.",
+    answer: "See Delete account & data or email support@mediceen.app from your registered email.",
   },
   {
     question: "Does Mediceen give medical advice?",
@@ -70,6 +70,6 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How do I get help?",
-    answer: "Email hello@redisdigital.com — see the Support page for what to include in your message.",
+    answer: "Email support@mediceen.app — see the Support page for what to include in your message.",
   },
 ];

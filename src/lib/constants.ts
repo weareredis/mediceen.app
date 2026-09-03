@@ -15,8 +15,8 @@ export const SITE = {
 export const PLACEHOLDERS = {
   legalEntityName: "Mediceen",
   registeredAddress: "Panipokhari, Kathmandu, Nepal",
-  supportEmail: "hello@redisdigital.com",
-  privacyEmail: "hello@redisdigital.com",
+  supportEmail: "support@mediceen.app",
+  privacyEmail: "support@mediceen.app",
   publishDate: "2026-08-24",
   governingLaw: "Nepal",
   minimumAge: "10+",
@@ -27,7 +27,7 @@ export const DEVELOPER = {
   name: "Redis Digital",
 } as const;
 
-export const DEVELOPER_URL ="https://www.redisdigital.com/";
+export const DEVELOPER_URL = "https://www.redisdigital.com/";
 
 export const ADDRESS_MAP_URL = "https://maps.app.goo.gl/5aaBp2MfAxmq9Akt9";
 
