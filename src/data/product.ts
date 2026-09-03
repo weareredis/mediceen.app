@@ -116,7 +116,9 @@ export const leaderboardScopes = ["Weekly", "This Month", "All-time"] as const;
 
 export const wordOfTheDay = {
   term: "Neural Tube Defect",
+  pronunciation: "/NOOR-uhl tyoob DEE-fekt/",
   definition: "Failure of neural tube closure during early development, which may cause conditions such as anencephaly or spina bifida.",
+  category: "Embryology",
 };
 
 export const journeySteps = [

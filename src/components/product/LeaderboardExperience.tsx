@@ -16,7 +16,7 @@ const nearbyRanks = [
   { rank: 5, name: "Rohan Thapa", time: "24m 02s", score: "18/20" },
   { rank: 6, name: "Manisha Gurung", time: "23m 48s", score: "17/20" },
   { rank: 127, name: "Bibek Rai", time: "27m 30s", score: "14/20" },
-  { rank: 128, name: "You (you)", time: "28m 12s", score: "14/20", you: true },
+  { rank: 128, name: "You (Alex Karki)", time: "28m 12s", score: "14/20", you: true },
   { rank: 129, name: "Sneha Joshi", time: "28m 55s", score: "14/20" },
 ];
 
@@ -82,7 +82,7 @@ export function LeaderboardExperience() {
             <div className="flex items-center gap-[2.4cqw]">
               <p className="shrink-0 text-[3.2cqw] font-bold text-success">#24</p>
               <span className="flex h-[9.6cqw] w-[9.6cqw] shrink-0 items-center justify-center rounded-full bg-success text-[3.2cqw] font-semibold text-white">
-                BP
+                AK
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[2.6cqw] font-semibold tracking-tight text-muted-foreground">

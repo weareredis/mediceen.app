@@ -6,7 +6,9 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { heroTimeline } from "@/animations/heroTimeline";
 import { wordOfTheDay } from "@/data/product";
-import { Bell, Flame, Sparkles } from "lucide-react";
+import { Bell, Flame, Sparkles, X, ArrowRight, ChevronDown, ListChecks, BookOpen, Home, SquarePen, Trophy, BarChart3, User } from "lucide-react";
+import { useState } from "react";
+import { quizReviewsDueTotal, flashcardReviewSummary } from "@/data/product";
 
 export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
@@ -68,91 +70,258 @@ export function Hero() {
   );
 }
 
+const TODAY_GOAL = { done: 12, total: 20 };
+const WEEKLY_MOCK = { subject: "Medical Biology", total: 20, daysLeft: 1, progress: 0 };
+const QUICK_STATS = [
+  { label: "Answered", value: "320" },
+  { label: "Accuracy", value: "76%" },
+  { label: "Day streak", value: "7" },
+  { label: "Study time", value: "18h" },
+];
+const RECENT_ACTIVITY = [
+  { subject: "Biochemistry", meta: "10 questions · 60% accuracy", time: "Mon, 09:12", accent: "bg-warning" },
+  { subject: "Genetics", meta: "15 questions · 87% accuracy", time: "Wed, 09:12", accent: "bg-success" },
+  { subject: "Anatomy", meta: "20 questions · 75% accuracy", time: "Today, 09:12", accent: "bg-success" },
+];
+
 function HeroScreen() {
-  return (
-        <div className="flex h-full flex-col">
-            <div className="flex items-center justify-between px-4 pt-4">
-        <div>
-          <p className="text-[0.62rem] text-muted-foreground">Welcome back,</p>
-          <p className="font-display text-base font-bold text-brand-ink">Alex Karki</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-border bg-card">
-            <Bell className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={2} />
-          </span>
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-success text-[0.6rem] font-semibold text-white">
-            BR
-          </span>
-        </div>
-      </div>
+  const [revealed, setRevealed] = useState(false);
+  const goalPct = (TODAY_GOAL.done / TODAY_GOAL.total) * 100;
+  const mockPct = (WEEKLY_MOCK.progress / WEEKLY_MOCK.total) * 100;
 
-      <div className="mt-3 px-4">
-        <div className="flex items-center gap-2 rounded-xl border border-warning/30 bg-warning-soft px-3 py-2.5">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-warning/15">
-            <Flame className="h-3.5 w-3.5 text-warning" strokeWidth={2.5} />
-          </span>
-          <div className="min-w-0">
-            <p className="truncate text-[0.68rem] font-semibold text-brand-ink">7 day streak</p>
-            <p className="truncate text-[0.58rem] text-muted-foreground">2 days to a new record</p>
+  return (
+    <div className="flex h-full flex-col overflow-hidden bg-background">
+      <div className="min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-[5.7cqw] pt-[4.3cqw]">
+          <div>
+            <p className="text-[3cqw] text-muted-foreground">Welcome back,</p>
+            <p className="font-display text-[6.4cqw] font-bold text-brand-ink">Bajra Riyaz</p>
+          </div>
+          <div className="flex items-center gap-[2.1cqw]">
+            <span className="flex h-[7.9cqw] w-[7.9cqw] items-center justify-center rounded-full border border-border bg-card">
+              <Bell className="h-[3.6cqw] w-[3.6cqw] text-muted-foreground" strokeWidth={2} />
+            </span>
+            <span className="flex h-[7.9cqw] w-[7.9cqw] items-center justify-center rounded-full bg-success text-[3cqw] font-semibold text-white">
+              BR
+            </span>
           </div>
         </div>
-      </div>
 
-      {/* Fixed gradient + white text is intentional here, same rationale as
-          FlashcardExperience: this card's contrast is against its own gradient,
-          not the page background, so it doesn't flip with theme tokens. */}
-      <div className="mt-3 px-4">
-        <div className="relative overflow-hidden rounded-2xl bg-[linear-gradient(135deg,var(--teal),var(--brand))] p-3.5">
-          <div className="flex items-center gap-1.5">
-            <Sparkles className="h-3 w-3 text-white/90" strokeWidth={2.5} />
-            <p className="text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-white/90">
-              Word of the Day
+        {/* Streak card */}
+        <div className="px-[5.7cqw] pt-[3.6cqw]">
+          <div className="flex items-center gap-[2.9cqw] rounded-2xl bg-card p-[3.2cqw] shadow-soft">
+            <span className="flex h-[8.6cqw] w-[8.6cqw] shrink-0 items-center justify-center rounded-full bg-destructive/10">
+              <Flame className="h-[4.3cqw] w-[4.3cqw] text-destructive" strokeWidth={2} />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[3.4cqw] font-semibold text-brand-ink">7 day streak</p>
+              <p className="truncate text-[2.7cqw] text-muted-foreground">
+                Keep it going - 2 days to a new record
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Verify email banner */}
+        <div className="px-[5.7cqw] pt-[2.9cqw]">
+          <div className="rounded-xl bg-destructive/5 p-[3.2cqw]">
+            <div className="flex items-start justify-between gap-[2.1cqw]">
+              <p className="text-[3.2cqw] font-semibold text-brand-ink">Verify your email</p>
+              <X className="h-[3cqw] w-[3cqw] shrink-0 text-muted-foreground" strokeWidth={2} />
+            </div>
+            <p className="mt-[1.1cqw] text-[2.6cqw] leading-relaxed text-muted-foreground">
+              Verify bajra@gmail.com to make account recovery easier and enable certain account
+              actions.
+            </p>
+            <p className="mt-[1.4cqw] flex items-center gap-[0.7cqw] text-[2.6cqw] font-semibold text-brand">
+              Verify your mail
+              <ArrowRight className="h-[2.6cqw] w-[2.6cqw]" strokeWidth={2.5} />
             </p>
           </div>
-          <p className="mt-2 font-display text-sm font-bold text-white">{wordOfTheDay.term}</p>
-          <p className="mt-1 text-[0.62rem] leading-snug text-white/75">{wordOfTheDay.definition}</p>
         </div>
-      </div>
 
-      <div className="mt-3 px-4 pb-6">
-        <div className="rounded-2xl border border-border bg-card p-3.5">
+        {/* Word of the Day card */}
+        <div className="px-[5.7cqw] pt-[3.6cqw]">
+          <div
+            className="relative overflow-hidden rounded-2xl p-[3.6cqw]"
+            style={{ background: "linear-gradient(139deg, var(--teal), var(--success))" }}
+          >
+            <div className="absolute -right-[6cqw] -top-[8cqw] h-[18cqw] w-[18cqw] rounded-full bg-white/10 blur-xl" />
+            <div className="relative flex items-center gap-[1.4cqw] text-white/90">
+              <Sparkles className="h-[3cqw] w-[3cqw]" strokeWidth={2.5} />
+              <p className="text-[2.7cqw] font-semibold uppercase tracking-[0.18em]">Word of the day</p>
+            </div>
+            <p className="relative mt-[2.1cqw] font-display text-[5cqw] font-bold text-white">
+              {wordOfTheDay.term}
+            </p>
+            <p className="relative text-[2.6cqw] text-white/60">{wordOfTheDay.pronunciation}</p>
+            {revealed && (
+              <>
+                <p className="relative mt-[2.5cqw] text-[3cqw] font-medium leading-relaxed text-white">
+                  {wordOfTheDay.definition}
+                </p>
+                <span className="relative mt-[2.5cqw] inline-flex rounded-full bg-white/90 px-[2.9cqw] py-[0.9cqw] text-[2.4cqw] font-semibold text-success">
+                  {wordOfTheDay.category}
+                </span>
+              </>
+            )}
+            <button
+              type="button"
+              onClick={() => setRevealed((r) => !r)}
+              className="relative mt-[3.2cqw] flex items-center gap-[2.1cqw] text-[2.7cqw] font-semibold text-white/90"
+            >
+              <span className="flex h-[7.1cqw] w-[7.1cqw] items-center justify-center rounded-2xl border border-white">
+                <ChevronDown
+                  className={`h-[3.6cqw] w-[3.6cqw] text-white transition-transform duration-300 ${revealed ? "rotate-180" : ""}`}
+                  strokeWidth={2.5}
+                />
+              </span>
+              {revealed ? "Hide definition" : "Reveal definition"}
+            </button>
+          </div>
+        </div>
+
+        {/* Today's goal */}
+        <div className="px-[5.7cqw] pt-[3.6cqw]">
+          <div className="rounded-2xl bg-card p-[3.6cqw] shadow-soft">
+            <div className="flex items-center justify-between">
+              <p className="text-[3.2cqw] font-semibold text-brand-ink">Today&apos;s goal</p>
+              <p className="text-[3.2cqw] font-semibold text-brand-ink">
+                {TODAY_GOAL.done}
+                <span className="text-muted-foreground"> / {TODAY_GOAL.total} questions</span>
+              </p>
+            </div>
+            <div className="mt-[2.1cqw] h-[1.1cqw] overflow-hidden rounded-full bg-surface-2">
+              <div className="h-full rounded-full bg-success" style={{ width: `${goalPct}%` }} />
+            </div>
+            <p className="mt-[1.8cqw] text-[2.6cqw] text-muted-foreground">
+              {TODAY_GOAL.total - TODAY_GOAL.done} questions left today
+            </p>
+            <button
+              type="button"
+              className="mt-[2.5cqw] flex w-full items-center justify-center rounded-2xl py-[2.9cqw] text-[3.4cqw] text-white shadow-md"
+              style={{ background: "linear-gradient(to right, var(--teal), var(--success))" }}
+            >
+              Continue practicing
+            </button>
+          </div>
+        </div>
+
+        {/* This week's test */}
+        <div className="px-[5.7cqw] pt-[3.6cqw]">
+          <div
+            className="relative overflow-hidden rounded-2xl p-[3.6cqw]"
+            style={{ background: "linear-gradient(139deg, var(--teal), var(--success))" }}
+          >
+            <div className="absolute -right-[6cqw] -top-[8cqw] h-[18cqw] w-[18cqw] rounded-full bg-white/10 blur-xl" />
+            <p className="relative text-[2.7cqw] font-bold uppercase tracking-[0.18em] text-white/75">
+              This week&apos;s test
+            </p>
+            <p className="relative mt-[0.7cqw] font-display text-[4.6cqw] font-bold text-white">
+              {WEEKLY_MOCK.subject}
+            </p>
+            <p className="relative text-[2.9cqw] text-white/80">
+              {WEEKLY_MOCK.total} questions · {WEEKLY_MOCK.daysLeft} day left
+            </p>
+            <div className="relative mt-[2.9cqw] flex items-center justify-between text-[2.6cqw] font-medium text-white/80">
+              <span>Progress</span>
+              <span>{WEEKLY_MOCK.progress} / {WEEKLY_MOCK.total}</span>
+            </div>
+            <div className="relative mt-[1.1cqw] h-[1.1cqw] overflow-hidden rounded-full bg-white/25">
+              <div className="h-full rounded-full bg-white" style={{ width: `${mockPct}%` }} />
+            </div>
+            <button
+              type="button"
+              className="relative mt-[2.9cqw] flex w-full items-center justify-center rounded-2xl bg-white py-[2.9cqw] text-[3.4cqw] font-medium text-success shadow-md"
+            >
+              Join live mock
+            </button>
+          </div>
+        </div>
+
+        {/* Due for review */}
+        <div className="px-[5.7cqw] pt-[5cqw]">
           <div className="flex items-center justify-between">
-            <p className="text-[0.68rem] font-semibold text-brand-ink">Today&apos;s goal</p>
-            <p className="text-[0.62rem] font-semibold text-muted-foreground">
-              <span className="text-brand-ink">12</span> / 20 questions
-            </p>
+            <p className="font-display text-[4cqw] font-semibold text-brand-ink">Due for review</p>
+            <span className="text-[2.7cqw] font-semibold text-muted-foreground">See all</span>
           </div>
-          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
-            <div className="h-full w-3/5 rounded-full bg-success" />
-          </div>
-          <p className="mt-2 text-[0.58rem] text-muted-foreground">8 questions left today</p>
-          <div className="mt-2.5 flex items-center justify-center rounded-xl bg-primary py-2">
-            <p className="text-[0.65rem] font-semibold text-primary-foreground">Continue practicing</p>
+          <div className="mt-[2.9cqw] flex gap-[2.9cqw]">
+            <div className="flex-1 rounded-xl border border-border bg-card p-[3.2cqw] shadow-soft">
+              <span className="flex h-[8cqw] w-[8cqw] items-center justify-center rounded-[10px] bg-surface-2">
+                <ListChecks className="h-[4cqw] w-[4cqw] text-muted-foreground" strokeWidth={2} />
+              </span>
+              <p className="mt-[3.6cqw] text-[3.4cqw] font-semibold text-brand-ink">Quiz reviews</p>
+              <p className="text-[2.6cqw] text-muted-foreground">{quizReviewsDueTotal} questions due</p>
+              <p className="mt-[1.8cqw] text-[2.6cqw] font-semibold text-success">Start review</p>
+            </div>
+            <div className="flex-1 rounded-xl border border-border bg-card p-[3.2cqw] shadow-soft">
+              <span className="flex h-[8cqw] w-[8cqw] items-center justify-center rounded-[10px] bg-teal-soft">
+                <BookOpen className="h-[4cqw] w-[4cqw] text-teal" strokeWidth={2} />
+              </span>
+              <p className="mt-[3.6cqw] text-[3.4cqw] font-semibold text-brand-ink">Flashcards</p>
+              <p className="text-[2.6cqw] text-muted-foreground">{flashcardReviewSummary.count} cards due</p>
+              <p className="mt-[1.8cqw] text-[2.6cqw] font-semibold text-success">Start review</p>
+            </div>
           </div>
         </div>
+
+        {/* Quick stats */}
+        <div className="px-[5.7cqw] pt-[5cqw]">
+          <p className="font-display text-[4cqw] font-semibold text-brand-ink">Quick stats</p>
+          <div className="mt-[2.1cqw] flex items-center justify-between rounded-2xl border border-border bg-card px-[3.2cqw] py-[3.6cqw] shadow-soft">
+            {QUICK_STATS.map((stat, i) => (
+              <div key={stat.label} className={`flex flex-1 flex-col items-center ${i > 0 ? "border-l border-border" : ""}`}>
+                <p className="text-[3.6cqw] font-bold text-brand-ink">{stat.value}</p>
+                <p className="mt-[0.4cqw] text-[2.3cqw] text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Recent activity */}
+        <div className="px-[5.7cqw] pt-[5cqw]">
+          <div className="flex items-center justify-between">
+            <p className="font-display text-[4cqw] font-semibold text-brand-ink">Recent activity</p>
+            <span className="text-[2.7cqw] font-semibold text-brand">Insights</span>
+          </div>
+          <div className="mt-[2.1cqw] overflow-hidden rounded-2xl border border-border bg-card">
+            {RECENT_ACTIVITY.map((row, i) => (
+              <div
+                key={row.subject}
+                className={`flex items-center gap-[2.9cqw] px-[3.6cqw] py-[3.2cqw] ${i > 0 ? "border-t border-border" : ""}`}
+              >
+                <span className={`h-[6.4cqw] w-[0.9cqw] shrink-0 rounded-full ${row.accent}`} />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[3.4cqw] font-medium text-brand-ink">{row.subject}</p>
+                  <p className="text-[2.6cqw] text-muted-foreground">{row.meta}</p>
+                </div>
+                <span className="shrink-0 text-[2.6cqw] text-muted-foreground">{row.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="px-[5.7cqw] pb-[5.7cqw] pt-[5cqw]">
+          <button
+            type="button"
+            className="flex w-full items-center justify-center rounded-2xl py-[3.2cqw] text-[3.4cqw] font-semibold text-white shadow-md"
+            style={{ background: "linear-gradient(to right, var(--teal), var(--success))" }}
+          >
+            Start a practice session
+          </button>
+        </div>
       </div>
-    </div>
-  );
-}
 
-function Tile({ label, value, tone }: { label: string; value: string; tone: "success" | "brand" }) {
-  return (
-    <div
-      className={`rounded-2xl border p-3 ${
-        tone === "success" ? "border-success/30 bg-success-soft" : "border-brand/20 bg-brand-soft"
-      }`}
-    >
-      <p className="text-[0.55rem] uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
-      <p className="mt-1 font-display text-base font-semibold text-brand-ink">{value}</p>
-    </div>
-  );
-}
-
-function Row({ label, meta }: { label: string; meta: string }) {
-  return (
-    <div className="flex items-center justify-between rounded-xl border border-border bg-surface px-3 py-2.5">
-      <span className="text-[0.75rem] font-medium text-brand-ink">{label}</span>
-      <span className="text-[0.62rem] text-muted-foreground">{meta}</span>
+      {/* Bottom nav */}
+      <div className="flex shrink-0 items-center justify-around border-t border-border bg-card px-[2.9cqw] py-[3.6cqw]">
+        <Home className="h-[4.6cqw] w-[4.6cqw] text-brand-ink" strokeWidth={2} />
+        <SquarePen className="h-[4.6cqw] w-[4.6cqw] text-muted-foreground" strokeWidth={2} />
+        <Trophy className="h-[4.6cqw] w-[4.6cqw] text-muted-foreground" strokeWidth={2} />
+        <BarChart3 className="h-[4.6cqw] w-[4.6cqw] text-muted-foreground" strokeWidth={2} />
+        <User className="h-[4.6cqw] w-[4.6cqw] text-muted-foreground" strokeWidth={2} />
+      </div>
     </div>
   );
 }
