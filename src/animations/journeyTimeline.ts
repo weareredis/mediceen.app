@@ -37,7 +37,7 @@ export const journeyTimeline: SceneBuilder = ({ root, reducedMotion }) => {
     gsap.to(state, {
       progress: 1,
       ease: "none",
-      scrollTrigger: { trigger: root, start: "top 70%", end: "bottom 85%", scrub: 0.7 },
+      scrollTrigger: { trigger: root, start: "top 0%", end: "bottom 85%", scrub: 0.7 },
       onUpdate: () => {
         gsap.set(track, { strokeDashoffset: length * (1 - state.progress) });
         if (dot) {

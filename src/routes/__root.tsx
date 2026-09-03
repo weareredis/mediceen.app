@@ -123,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "SoftwareApplication",
           name: "Mediceen",
           applicationCategory: "EducationalApplication",
-          operatingSystem: "Android",
+          operatingSystem: "Android, iOS",
           description:
             "MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
           offers: {
