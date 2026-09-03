@@ -59,7 +59,7 @@ export function Footer() {
               href={DEVELOPER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-brand hover:underline"
+              className="transition-colors hover:text-brand hover:text-red-500"
             >
               {DEVELOPER.name}
             </a>
@@ -70,7 +70,7 @@ export function Footer() {
               href={ADDRESS_MAP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-brand hover:underline"
+               className="transition-colors hover:text-brand hover:underline"
             >
               {PLACEHOLDERS.registeredAddress}
             </a>

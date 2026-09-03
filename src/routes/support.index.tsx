@@ -49,23 +49,23 @@ function SupportPage() {
         <LegalSection heading="Common topics">
           <LegalList
             items={[
-              "Password reset — Use Forgot password on the login screen.",
+              "Password reset: Use Forgot password on the login screen.",
               <>
-                Account deletion — See{" "}
+                Account deletion: See{" "}
                 <Link to="/support/delete-account" className="text-brand underline">
                   Delete account &amp; data
                 </Link>{" "}
                 or email {PLACEHOLDERS.privacyEmail}.
               </>,
               <>
-                FAQ —{" "}
+                FAQ:{" "}
                 <Link to="/faq" className="text-brand underline">
                   Frequently asked questions
                 </Link>
                 .
               </>,
               <>
-                Privacy —{" "}
+                Privacy:{" "}
                 <Link to="/privacy" className="text-brand underline">
                   Privacy Policy
                 </Link>

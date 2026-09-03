@@ -112,17 +112,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://mediceen.app/og-image.png" },
     ],
     links: [
-  { rel: "stylesheet", href: appCss },
-  { rel: "icon", href: "/favicon.png", type: "image/png" },
-],
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
+          "@type": "SoftwareApplication",
           name: "Mediceen",
-          url: "https://mediceen.app/",
+          applicationCategory: "EducationalApplication",
+          operatingSystem: "Android",
+          description:
+            "MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+          },
         }),
       },
     ],
