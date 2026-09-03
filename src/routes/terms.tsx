@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, LegalList, LegalSection } from "@/components/layout/LegalPage";
-import { PLACEHOLDERS } from "@/lib/constants";
+import { DEVELOPER, PLACEHOLDERS } from "@/lib/constants";
 
 const title = "Terms of Service - Mediceen";
 const description = "Terms of use for the Mediceen mobile app and website.";
@@ -156,7 +156,7 @@ function TermsPage() {
 
         <LegalSection heading="15. Contact">
           <p>
-            {PLACEHOLDERS.legalEntityName}
+            {DEVELOPER.name}
             <br />
             {PLACEHOLDERS.registeredAddress}
             <br />

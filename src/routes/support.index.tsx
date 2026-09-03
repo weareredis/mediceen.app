@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, LegalList, LegalSection } from "@/components/layout/LegalPage";
-import { PLACEHOLDERS } from "@/lib/constants";
+import { PLACEHOLDERS, DEVELOPER } from "@/lib/constants";
 
 const title = "Support - Mediceen";
 const description =
@@ -77,7 +77,7 @@ function SupportPage() {
 
         <LegalSection heading="Postal address">
           <p>
-            {PLACEHOLDERS.legalEntityName}
+            {DEVELOPER.name}
             <br />
             {PLACEHOLDERS.registeredAddress}
           </p>

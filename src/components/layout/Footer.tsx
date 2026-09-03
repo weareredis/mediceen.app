@@ -1,6 +1,7 @@
+import { MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { footerNav } from "@/data/navigation";
-import { DISCLAIMER, PLACEHOLDERS, SITE, DEVELOPER,DEVELOPER_URL, ADDRESS_MAP_URL } from "@/lib/constants";
+import { DISCLAIMER, PLACEHOLDERS, SITE, DEVELOPER, DEVELOPER_URL, ADDRESS_MAP_URL } from "@/lib/constants";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { StoreBadges } from "@/components/ui/StoreBadge";
 
@@ -55,22 +56,25 @@ export function Footer() {
             © {year} {SITE.name}
             <span className="mx-1.5">·</span>
             Powered by <a
-            href={DEVELOPER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-brand hover:underline"
-          >
-            {DEVELOPER.name}
-          </a>
+              href={DEVELOPER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-brand hover:underline"
+            >
+              {DEVELOPER.name}
+            </a>
           </p>
-          <a
-            href={ADDRESS_MAP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-brand hover:underline"
-          >
-            {PLACEHOLDERS.registeredAddress}
-          </a>
+          <p>
+            <MapPin className="h-4 w-4 inline-block mr-1.5 align-middle" />
+            <a
+              href={ADDRESS_MAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-brand hover:underline"
+            >
+              {PLACEHOLDERS.registeredAddress}
+            </a>
+          </p>
         </div>
       </div>
     </footer>

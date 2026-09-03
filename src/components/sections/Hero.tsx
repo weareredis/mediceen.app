@@ -6,7 +6,7 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { heroTimeline } from "@/animations/heroTimeline";
 import { wordOfTheDay } from "@/data/product";
-import { Bell, Flame, Sparkles, X, ArrowRight, ChevronDown, ListChecks, BookOpen, Home, SquarePen, Trophy, BarChart3, User } from "lucide-react";
+import { Bell, Flame, Sparkles, ChevronDown, ListChecks, BookOpen, Home, SquarePen, Trophy, BarChart3, User } from "lucide-react";
 import { useState } from "react";
 import { quizReviewsDueTotal, flashcardReviewSummary } from "@/data/product";
 
@@ -96,14 +96,14 @@ function HeroScreen() {
         <div className="flex items-center justify-between px-[5.7cqw] pt-[4.3cqw]">
           <div>
             <p className="text-[3cqw] text-muted-foreground">Welcome back,</p>
-            <p className="font-display text-[6.4cqw] font-bold text-brand-ink">Bajra Riyaz</p>
+            <p className="font-display text-[6.4cqw] font-bold text-brand-ink">Alex Karki</p>
           </div>
           <div className="flex items-center gap-[2.1cqw]">
             <span className="flex h-[7.9cqw] w-[7.9cqw] items-center justify-center rounded-full border border-border bg-card">
               <Bell className="h-[3.6cqw] w-[3.6cqw] text-muted-foreground" strokeWidth={2} />
             </span>
             <span className="flex h-[7.9cqw] w-[7.9cqw] items-center justify-center rounded-full bg-success text-[3cqw] font-semibold text-white">
-              BR
+              AK
             </span>
           </div>
         </div>
@@ -123,23 +123,7 @@ function HeroScreen() {
           </div>
         </div>
 
-        {/* Verify email banner */}
-        <div className="px-[5.7cqw] pt-[2.9cqw]">
-          <div className="rounded-xl bg-destructive/5 p-[3.2cqw]">
-            <div className="flex items-start justify-between gap-[2.1cqw]">
-              <p className="text-[3.2cqw] font-semibold text-brand-ink">Verify your email</p>
-              <X className="h-[3cqw] w-[3cqw] shrink-0 text-muted-foreground" strokeWidth={2} />
-            </div>
-            <p className="mt-[1.1cqw] text-[2.6cqw] leading-relaxed text-muted-foreground">
-              Verify bajra@gmail.com to make account recovery easier and enable certain account
-              actions.
-            </p>
-            <p className="mt-[1.4cqw] flex items-center gap-[0.7cqw] text-[2.6cqw] font-semibold text-brand">
-              Verify your mail
-              <ArrowRight className="h-[2.6cqw] w-[2.6cqw]" strokeWidth={2.5} />
-            </p>
-          </div>
-        </div>
+       
 
         {/* Word of the Day card */}
         <div className="px-[5.7cqw] pt-[3.6cqw]">

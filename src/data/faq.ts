@@ -37,7 +37,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Can I practice past weekly mocks again?",
     answer:
-      "Yes — you can review answers and run an unscored \u201cpractice again\u201d session after your official attempt.",
+      "Yes, you can review answers and run an unscored \u201cpractice again\u201d session after your official attempt.",
   },
   {
     question: "How do streaks and review work?",
