@@ -27,7 +27,19 @@ function SupportPage() {
       <LegalPage
         eyebrow="Support"
         title="Get help"
-        intro={`Email us at ${PLACEHOLDERS.supportEmail}. We aim to respond within 2-5 business days. Complex issues (account recovery, data deletion) may take longer.`}
+        intro={
+          <>
+            Email us at{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}?subject=Support%20request`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>
+            . We aim to respond within 2-5 business days. Complex issues (account recovery, data
+            deletion) may take longer.
+          </>
+        }
       >
         <LegalSection heading="Before you write">
           <ol className="space-y-2">
@@ -55,7 +67,14 @@ function SupportPage() {
                 <Link to="/support/delete-account" className="text-brand underline">
                   Delete account &amp; data
                 </Link>{" "}
-                or email {PLACEHOLDERS.privacyEmail}.
+                or email{" "}
+                <a
+                  href={`mailto:${PLACEHOLDERS.privacyEmail}?subject=Account%20deletion%20request`}
+                  className="text-brand transition-colors hover:text-green-700"
+                >
+                  {PLACEHOLDERS.privacyEmail}
+                </a>
+                .
               </>,
               <>
                 FAQ:{" "}

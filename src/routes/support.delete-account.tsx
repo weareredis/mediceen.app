@@ -37,11 +37,20 @@ function DeleteAccountPage() {
         <LegalSection heading="Request deletion">
           <ol className="space-y-2">
             {[
-              `Email ${PLACEHOLDERS.privacyEmail} from the same email address registered on your account.`,
+              <>
+                Email{" "}
+                <a
+                  href={`mailto:${PLACEHOLDERS.privacyEmail}?subject=Account%20deletion%20request`}
+                  className="text-brand transition-colors hover:text-green-700"
+                >
+                  {PLACEHOLDERS.privacyEmail}
+                </a>{" "}
+                from the same email address registered on your account.
+              </>,
               "Subject line: Account deletion request",
               "Include your display name (if known), the phone number on your account (if any), and a statement that you want your account permanently deleted.",
             ].map((item, i) => (
-              <li key={item} className="flex gap-3">
+              <li key={i} className="flex gap-3">
                 <span className="font-display text-sm tabular-nums text-brand">{i + 1}.</span>
                 <span>{item}</span>
               </li>
@@ -49,7 +58,13 @@ function DeleteAccountPage() {
           </ol>
           <p>
             If you signed up with Google only and cannot email from that address, contact{" "}
-            {PLACEHOLDERS.supportEmail} with proof of account ownership (we will verify manually).
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}?subject=Account%20ownership%20verification`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>{" "}
+            with proof of account ownership (we will verify manually).
           </p>
           <p>
             When in-app account deletion is added to the app, this page will be updated to describe
@@ -83,7 +98,14 @@ function DeleteAccountPage() {
         </LegalSection>
 
         <LegalSection heading="Questions">
-          <p>{PLACEHOLDERS.privacyEmail}</p>
+          <p>
+            <a
+              href={`mailto:${PLACEHOLDERS.privacyEmail}?subject=Privacy%20question`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.privacyEmail}
+            </a>
+          </p>
         </LegalSection>
       </LegalPage>
     </main>
