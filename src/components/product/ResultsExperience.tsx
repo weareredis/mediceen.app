@@ -1,4 +1,5 @@
 import { Atom, Microscope, HeartPulse, FlaskConical, Target, CheckCircle2 } from "lucide-react";
+import { Picture } from "@/components/ui/Picture";
 
 const SCORE = 5;
 const SCORE_TOTAL = 10;
@@ -80,8 +81,8 @@ export function ResultsExperience() {
 
           <div className="relative mt-[3.6cqw] flex items-center gap-[2.9cqw] rounded-2xl bg-white/20 p-[2.9cqw] backdrop-blur-sm">
             <span className="relative flex h-[10cqw] w-[10cqw] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
-              <img
-                src="/results-brain.png"
+              <Picture
+                src="/results-brain"
                 alt=""
                 aria-hidden="true"
                 className="h-[132%] w-[132%] max-w-none object-cover"

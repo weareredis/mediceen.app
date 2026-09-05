@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { demoFlashcards } from "@/data/product";
+import { Picture } from "@/components/ui/Picture";
 
 const TOTAL_QUESTIONS = 20;
 const CURRENT_QUESTION = 1;
@@ -51,8 +52,8 @@ export function FlashcardExperience() {
         data-card-scene
       >
                         <div className="relative aspect-[4/5] w-[70%]">
-          <img
-            src="/flashcard-front.png"
+          <Picture
+            src="/flashcard-front"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full rotate-[4deg] rounded-[2rem] object-cover opacity-70 shadow-[0px_0px_13px_0px_rgba(31,60,104,0.25)]"
@@ -71,11 +72,11 @@ export function FlashcardExperience() {
             }}
           >
             <Face>
-              <img src="/flashcard-front.png" alt={card.front} className="h-full w-full object-cover" />
+              <Picture src="/flashcard-front" alt={card.front} className="h-full w-full object-cover" />
             </Face>
 
             <Face style={{ transform: "rotateY(180deg)" }}>
-              <img src="/flashcard-back.png" alt={card.back} className="h-full w-full object-cover" />
+              <Picture src="/flashcard-back" alt={card.back} className="h-full w-full object-cover" />
             </Face>
           </button>
         </div>

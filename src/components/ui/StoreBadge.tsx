@@ -1,17 +1,18 @@
 import { STORE_LINKS, isStoreLinkLive } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { Picture } from "@/components/ui/Picture";
 
 type Store = "apple" | "google";
 
 const config: Record<Store, { url: string; src: string; alt: string }> = {
   apple: {
     url: STORE_LINKS.appStore,
-    src: "/app-store-badge.png",
+    src: "/app-store-badge",
     alt: "Download Mediceen on the App Store",
   },
   google: {
     url: STORE_LINKS.playStore,
-    src: "/google-play-badge.png",
+    src: "/google-play-badge",
     alt: "Get Mediceen on Google Play",
   },
 };
@@ -21,7 +22,7 @@ export function StoreBadge({ store, className }: { store: Store; className?: str
   const live = isStoreLinkLive(url);
 
   const image = (
-    <img
+    <Picture
       src={src}
       alt={alt}
       width={1360}
