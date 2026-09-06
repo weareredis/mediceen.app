@@ -167,7 +167,7 @@ export function ProductShowcase() {
               {/* desktoptablet ko stuck vako phone ko size */}
 
               <div className="relative h-full w-full">
-                {steps.map((step, i) => (
+              {steps.map((step, i) => (
                   <div
                     key={step.id}
                     className={cn(
@@ -175,6 +175,7 @@ export function ProductShowcase() {
                       i === active ? "opacity-100" : "pointer-events-none opacity-0",
                     )}
                     aria-hidden={i !== active}
+                    inert={i !== active}
                   >
                     {step.screen}
                   </div>

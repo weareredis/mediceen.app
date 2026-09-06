@@ -49,11 +49,11 @@ function PrivacyPage() {
   return (
     <main>
       <LegalPage
-  eyebrow="Legal"
-  title="Privacy Policy"
-  showEffectiveDate
-  intro={`This Privacy Policy describes how ${PLACEHOLDERS.legalEntityName} (“Mediceen”, “we”, “us”) collects, uses, and protects personal data when you use the Mediceen mobile application (iOS and Android) and our public website at https://mediceen.app.`}
->
+        eyebrow="Legal"
+        title="Privacy Policy"
+        showEffectiveDate
+        intro={`This Privacy Policy describes how ${PLACEHOLDERS.legalEntityName} (“Mediceen”, “we”, “us”) collects, uses, and protects personal data when you use the Mediceen mobile application (iOS and Android) and our public website at https://mediceen.app.`}
+      >
         <LegalSection heading="1. Contact">
           <p>
             Contact: {PLACEHOLDERS.privacyEmail}
@@ -151,6 +151,7 @@ function PrivacyPage() {
         </LegalSection>
 
         <LegalSection heading="4. How we use data">
+          <p>We use the data described above to:</p>
           <Table
             head={["Purpose", "Legal basis (summary)"]}
             rows={[
@@ -170,7 +171,11 @@ function PrivacyPage() {
           </p>
         </LegalSection>
 
-        <LegalSection heading="5. Third-party service providers">
+        <LegalSection heading="5. Data sharing and third-party service providers">
+          <p>
+            We do not sell your personal data. We share data only when needed to operate the
+            service, to comply with law, or to protect the platform and its users.
+          </p>
           <p>We use trusted processors, including:</p>
           <Table
             head={["Provider", "Purpose"]}
@@ -186,15 +191,22 @@ function PrivacyPage() {
           <p>
             These providers process data on our behalf under their own terms and security measures.
             Data may be stored in {PLACEHOLDERS.supabaseRegion} and other regions where these
-            providers operate.
+            providers operate. We may also disclose information if required by law, to respond to a
+            valid legal request, to enforce our terms, or to investigate fraud or security issues.
           </p>
         </LegalSection>
 
         <LegalSection heading="6. Retention">
           <p>
-            We retain account and learning data while your account is active. If you request
+            We retain account and learning data while your account is active so we can provide your
+            history, streaks, bookmarks, and progress from one session to the next. If you request
             deletion, we delete or anonymize personal data within a reasonable period, except where
-            law requires longer retention (e.g. security logs).
+            law requires longer retention (e.g. security logs, anti-abuse records, or accounting
+            records).
+          </p>
+          <p>
+            Backup copies may persist until they are overwritten as part of our normal backup cycle.
+            During that period, deleted data is not used for normal product operations.
           </p>
         </LegalSection>
 
@@ -203,6 +215,10 @@ function PrivacyPage() {
             We use industry-standard measures including encryption in transit (HTTPS/TLS), access
             controls, and row-level security on our database so users can only access their own data
             where applicable. No method of transmission over the Internet is 100% secure.
+          </p>
+          <p>
+            If you believe your account or device has been compromised, contact{" "}
+            {PLACEHOLDERS.supportEmail} immediately.
           </p>
         </LegalSection>
 
@@ -241,9 +257,9 @@ function PrivacyPage() {
 
         <LegalSection heading="11. Changes">
           <p>
-            We may update this policy. We will post the new version at
-            https://mediceen.app/privacy and update the “Last updated” date.
-            Continued use after changes means you accept the updated policy where permitted by law.
+            We may update this policy. We will post the new version at https://mediceen.app/privacy
+            and update the “Last updated” date. Continued use after changes means you accept the
+            updated policy where permitted by law.
           </p>
         </LegalSection>
 

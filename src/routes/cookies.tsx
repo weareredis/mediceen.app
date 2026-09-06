@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LegalPage, LegalSection } from "@/components/layout/LegalPage";
+import { LegalList, LegalPage, LegalSection } from "@/components/layout/LegalPage";
 import { PLACEHOLDERS } from "@/lib/constants";
 
 const title = "Cookie Notice - Mediceen";
@@ -23,20 +23,42 @@ export const Route = createFileRoute("/cookies")({
 function CookiesPage() {
   return (
     <main>
-      <LegalPage eyebrow="Legal" title="Cookie notice">
+      <LegalPage eyebrow="Legal" title="Cookie notice" showEffectiveDate>
         <LegalSection heading="Cookies on our website">
           <p>
-            Our initial public website is a static site with no advertising cookies and no
-            third-party analytics unless we enable them later.
+            Our public website is designed to run with only the cookies and local storage needed for
+            basic operation, security, and session handling. We do not use advertising cookies.
           </p>
           <p>
             Essential cookies (if any) are used only for basic site delivery or security. If we add
-            analytics (e.g. privacy-friendly visit counts), we will update this page and, where
-            required, ask for consent.
+            privacy-friendly analytics or similar measurement tools later, we will update this page
+            and, where required, ask for consent before enabling them.
           </p>
+          <LegalList
+            items={[
+              "Strictly necessary cookies — keep the site available and secure",
+              "Preference storage — remember basic site settings where used",
+              "Analytics cookies — only if introduced in the future and disclosed here",
+            ]}
+          />
+        </LegalSection>
+
+        <LegalSection heading="Mobile app storage">
           <p>
             The Mediceen mobile app does not use browser cookies. It stores your login session in
-            secure device storage (SecureStore on native platforms).
+            secure device storage (SecureStore on native platforms) so you can stay signed in
+            between app launches.
+          </p>
+          <p>
+            The app may also use local caches or on-device storage to improve performance and reduce
+            repeated network requests.
+          </p>
+        </LegalSection>
+
+        <LegalSection heading="Your choices">
+          <p>
+            You can clear cookies through your browser settings and remove app storage by signing
+            out or uninstalling the app. Disabling necessary cookies may affect site functionality.
           </p>
           <p>Contact: {PLACEHOLDERS.privacyEmail}</p>
         </LegalSection>

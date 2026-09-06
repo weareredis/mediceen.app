@@ -27,7 +27,9 @@ function TermsPage() {
         <LegalSection heading="1. Agreement">
           <p>
             By downloading, accessing, or using Mediceen, you agree to these Terms of Service
-            (“Terms”) and our Privacy Policy. If you do not agree, do not use the service.
+            (“Terms”) and our Privacy Policy. If you do not agree, do not use the service. We may
+            update these Terms from time to time, and continued use of the service means you accept
+            the version then in effect, where permitted by law.
           </p>
         </LegalSection>
 
@@ -43,8 +45,9 @@ function TermsPage() {
           <p>
             Mediceen provides educational MCQ practice, spaced repetition, flashcards, scheduled
             mock exams, progress analytics, and related features for medical entrance exam
-            preparation. We may add, change, or remove features with reasonable notice where
-            practicable.
+            preparation. We may add, change, suspend, or remove features with reasonable notice
+            where practicable. Some features may require an internet connection, a supported device,
+            or an app update.
           </p>
         </LegalSection>
 
@@ -56,6 +59,10 @@ function TermsPage() {
             Mediceen is not affiliated with MECEE, NMC, or any official exam body unless we state
             otherwise in writing.
           </p>
+          <p>
+            You are responsible for using your own judgment before relying on any answer,
+            explanation, or score displayed in the app.
+          </p>
         </LegalSection>
 
         <LegalSection heading="5. Your account">
@@ -64,6 +71,7 @@ function TermsPage() {
               "One person per account unless we approve otherwise.",
               "Provide accurate registration information, including a mobile number you control for required signup verification.",
               "Do not share your password or allow others to use your account.",
+              "Keep your device secure and sign out if you use a shared phone.",
               `Notify us promptly at ${PLACEHOLDERS.supportEmail} if you suspect unauthorized access.`,
               "We may suspend or terminate accounts that violate these Terms.",
             ]}
@@ -77,6 +85,8 @@ function TermsPage() {
               "Cheat, scrape, reverse engineer, or automate access to the app or API",
               "Upload malware, harass others, or impersonate any person",
               "Share answer keys or content in ways that harm exam integrity or our rights",
+              "Bypass security, access controls, or rate limits",
+              "Use the service in a way that interferes with other users or the stability of the platform",
               "Use the service for any unlawful purpose",
             ]}
           />
@@ -89,6 +99,10 @@ function TermsPage() {
             non-transferable license to use the app for study. User-generated content is limited to
             profile fields (e.g. display name); you grant us a license to display your display name
             on leaderboards as part of the service.
+          </p>
+          <p>
+            Any feedback, suggestions, or ideas you send us may be used by us without obligation to
+            compensate you.
           </p>
         </LegalSection>
 
@@ -103,14 +117,16 @@ function TermsPage() {
         <LegalSection heading="9. Availability">
           <p>
             We strive for reliable service but do not guarantee uninterrupted access. Maintenance,
-            updates, or factors outside our control may cause downtime.
+            updates, third-party outages, or factors outside our control may cause downtime or
+            reduced functionality.
           </p>
         </LegalSection>
 
         <LegalSection heading="10. Termination">
           <p>
             You may stop using Mediceen at any time and request account deletion. We may suspend or
-            terminate access for violations of these Terms or to protect the platform.
+            terminate access for violations of these Terms or to protect the platform. Sections that
+            by their nature should survive termination will continue to apply.
           </p>
         </LegalSection>
 
@@ -138,19 +154,19 @@ function TermsPage() {
         </LegalSection>
 
         <LegalSection heading="13. Governing law">
-  <p>
-    These Terms are governed by the laws of {PLACEHOLDERS.governingLaw}, without regard to
-    conflict-of-law principles. Disputes shall be subject to the exclusive jurisdiction of
-    the courts of {PLACEHOLDERS.governingLaw} unless mandatory consumer law requires
-    otherwise.
-  </p>
-</LegalSection>
+          <p>
+            These Terms are governed by the laws of {PLACEHOLDERS.governingLaw}, without regard to
+            conflict-of-law principles. Disputes shall be subject to the exclusive jurisdiction of
+            the courts of {PLACEHOLDERS.governingLaw} unless mandatory consumer law requires
+            otherwise.
+          </p>
+        </LegalSection>
 
         <LegalSection heading="14. Changes">
           <p>
-            We may modify these Terms. We will post updates at
-            https://mediceen.app/terms. Material changes may be communicated via the
-            app or email where appropriate.
+            We may modify these Terms. We will post updates at https://mediceen.app/terms. Material
+            changes may be communicated via the app or email where appropriate. If a change is
+            material, we will take reasonable steps to make it visible before it applies.
           </p>
         </LegalSection>
 
