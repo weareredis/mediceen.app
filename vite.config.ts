@@ -11,6 +11,11 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    router: {
+      // Splits each route's component into its own chunk instead of
+      // bundling every route (legal pages, FAQ, etc.) into one shared file.
+      autoCodeSplitting: true,
+    },
   },
   nitro: {
     preset: "vercel",
