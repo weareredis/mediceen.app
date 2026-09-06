@@ -9,9 +9,9 @@ import { wordOfTheDay } from "@/data/product";
 import { Bell, Flame, Sparkles, ChevronDown, ListChecks, BookOpen, Home, SquarePen, Trophy, BarChart3, User } from "lucide-react";
 import { useState } from "react";
 import { quizReviewsDueTotal, flashcardReviewSummary } from "@/data/product";
+import { StyledQrCode } from "@/components/ui/StyledQrCode";
 
 const QR_DESTINATION = "https://mediceen.app/";
-const QR_IMAGE_URL = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(QR_DESTINATION)}`;
 
 export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
@@ -61,34 +61,20 @@ export function Hero() {
           <div className="flex justify-center lg:justify-end">
             <div data-hero-phone className="relative will-change-transform">
               <a
-                href={QR_DESTINATION}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Scan to open Mediceen on your phone"
-                className="group absolute -left-28 bottom-28 z-20 hidden w-36 -rotate-3 overflow-hidden rounded-[1.35rem] border border-white/55 bg-white/20 p-2.5 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-md backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/20 dark:bg-white/10 lg:block"
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/90"
-                />
-                <img
-                  src={QR_IMAGE_URL}
-                  alt="Scan to open Mediceen"
-                  width={144}
-                  height={144}
-                  className="relative h-auto w-full rounded-[1.05rem] p-2 mix-blend-multiply opacity-90 shadow-[0_8px_24px_-12px_rgba(31,60,104,0.4)]"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-              <div className="absolute -left-24 bottom-14 z-20 hidden w-32 -rotate-1 text-center lg:block">
-                <span className="block font-display text-xs font-bold text-brand-ink">
-                  Scan to explore
-                </span>
-                <span className="mt-1 block text-[0.65rem] leading-snug text-muted-foreground">
-                  Open Mediceen on your phone
-                </span>
-              </div>
+               
+                             
+               href={QR_DESTINATION}
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Scan to open Mediceen on your phone"
+               className="group absolute -left-28 bottom-8 z-20 hidden -rotate-3 overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10 lg:block"
+             >
+               <span
+                 aria-hidden="true"
+                 className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80"
+               />
+               <StyledQrCode data={QR_DESTINATION} size={144} />
+             </a>
               <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(25vw,17.5rem)]">
                 <HeroScreen />
               </PhoneMockup>

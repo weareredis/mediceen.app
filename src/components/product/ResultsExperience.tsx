@@ -85,7 +85,7 @@ export function ResultsExperience() {
                 src="/results-brain"
                 alt=""
                 aria-hidden="true"
-                className="h-[132%] w-[132%] max-w-none object-cover"
+                className="h-[132%] w-[132%] max-w-none object-cover "
               />
             </span>
             <p className="text-[3.2cqw] font-bold leading-snug text-white">
