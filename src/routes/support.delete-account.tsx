@@ -19,9 +19,7 @@ export const Route = createFileRoute("/support/delete-account")({
         content: "https://mediceen.app/support/delete-account",
       },
     ],
-    links: [
-      { rel: "canonical", href: "https://mediceen.app/support/delete-account" },
-    ],
+    links: [{ rel: "canonical", href: "https://mediceen.app/support/delete-account" }],
   }),
   component: DeleteAccountPage,
 });
@@ -35,6 +33,11 @@ function DeleteAccountPage() {
         intro="To delete your Mediceen account and associated personal data, follow the steps below."
       >
         <LegalSection heading="Request deletion">
+          <p>
+            You can request permanent deletion of your account and associated personal data by
+            contacting us directly. We will first verify that the request comes from the account
+            owner or an authorized contact.
+          </p>
           <ol className="space-y-2">
             {[
               <>
@@ -79,6 +82,7 @@ function DeleteAccountPage() {
               "Account credentials and profile (email, phone number, display name, avatar URL)",
               "Quiz history, answers, scores, bookmarks, streaks, and spaced-repetition data",
               "Leaderboard entries tied to your account",
+              "Saved preferences that are directly linked to your user profile",
             ]}
           />
         </LegalSection>
@@ -89,12 +93,26 @@ function DeleteAccountPage() {
               "Aggregated, anonymized statistics that cannot identify you",
               "Security and audit logs for a limited period where required by law or legitimate security needs",
               "Backup copies until overwritten on our normal backup cycle (typically up to 30 days)",
+              "Records required to meet legal, tax, or anti-fraud obligations",
             ]}
           />
         </LegalSection>
 
+        <LegalSection heading="What happens after deletion">
+          <p>
+            After your request is completed, you will no longer be able to sign in to the deleted
+            account, and your history will no longer appear in the app. Deletion is generally
+            irreversible. If you later create a new account, it will start without the deleted
+            account&apos;s data.
+          </p>
+        </LegalSection>
+
         <LegalSection heading="Timeline">
-          <p>We process verified requests within 30 days and confirm by email when complete.</p>
+          <p>
+            We process verified requests within 30 days and confirm by email when complete. More
+            complex requests may take longer if we need to confirm ownership or complete backup
+            rotation.
+          </p>
         </LegalSection>
 
         <LegalSection heading="Questions">

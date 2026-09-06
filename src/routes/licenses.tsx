@@ -26,20 +26,27 @@ function LicensesPage() {
       <LegalPage
         eyebrow="Legal"
         title="Open-source licenses"
-        intro="Mediceen is built with open-source software. We are grateful to the communities behind projects including, among others:"
+        intro="Mediceen is built with open-source software. We are grateful to the communities behind projects included in the app and website, including:"
       >
         <LegalSection heading="Acknowledgements">
+          <p>
+            This page is a summary of key projects used by Mediceen. Where required, full license
+            texts and notices are included with the application build or in the relevant in-app
+            acknowledgements screen.
+          </p>
           <LegalList
             items={[
-              "React Native and Expo — mobile application framework",
-              "Supabase — client libraries for auth and data",
-              "React — user interface (admin dashboard)",
+              "React and React DOM — user interface rendering",
+              "TanStack Router and TanStack Query — routing and data fetching",
+              "Radix UI — accessible UI primitives",
+              "Tailwind CSS — styling system",
+              "Lucide React — icon set",
             ]}
           />
           <p>
-            A full license notice file (NOTICE) may be shipped with app builds. For third-party
-            license texts, refer to the “Open source licenses” or “Acknowledgements” section in the
-            app settings when available, or contact {PLACEHOLDERS.supportEmail}.
+            Some dependencies may be used indirectly through other packages. If you need a specific
+            third-party license text, contact {PLACEHOLDERS.supportEmail} and we will provide the
+            relevant notice where available.
           </p>
         </LegalSection>
       </LegalPage>
