@@ -55,7 +55,15 @@ function AboutPage() {
             <br />
             {PLACEHOLDERS.registeredAddress}
           </p>
-          <p>Questions: {PLACEHOLDERS.supportEmail}</p>
+          <p>
+            Questions:{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>
+          </p>
         </LegalSection>
 
         <LegalSection heading="Disclaimer">

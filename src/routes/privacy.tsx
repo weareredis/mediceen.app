@@ -56,7 +56,13 @@ function PrivacyPage() {
       >
         <LegalSection heading="1. Contact">
           <p>
-            Contact: {PLACEHOLDERS.privacyEmail}
+            Contact:{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.privacyEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.privacyEmail}
+            </a>
             <br />
             Address: {PLACEHOLDERS.registeredAddress}
           </p>
@@ -218,7 +224,13 @@ function PrivacyPage() {
           </p>
           <p>
             If you believe your account or device has been compromised, contact{" "}
-            {PLACEHOLDERS.supportEmail} immediately.
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>{" "}
+            immediately.
           </p>
         </LegalSection>
 
@@ -234,8 +246,14 @@ function PrivacyPage() {
             ]}
           />
           <p>
-            To exercise these rights, contact {PLACEHOLDERS.privacyEmail} or follow the
-            delete-account process.
+            To exercise these rights, contact{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.privacyEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.privacyEmail}
+            </a>{" "}
+            or follow the delete-account process.
           </p>
         </LegalSection>
 
@@ -265,9 +283,21 @@ function PrivacyPage() {
 
         <LegalSection heading="12. Contact">
           <p>
-            Privacy questions: {PLACEHOLDERS.privacyEmail}
+            Privacy questions:{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.privacyEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.privacyEmail}
+            </a>
             <br />
-            General support: {PLACEHOLDERS.supportEmail}
+            General support:{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>
             <br />
             {PLACEHOLDERS.legalEntityName}, {PLACEHOLDERS.registeredAddress}
           </p>

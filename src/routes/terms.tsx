@@ -72,7 +72,16 @@ function TermsPage() {
               "Provide accurate registration information, including a mobile number you control for required signup verification.",
               "Do not share your password or allow others to use your account.",
               "Keep your device secure and sign out if you use a shared phone.",
-              `Notify us promptly at ${PLACEHOLDERS.supportEmail} if you suspect unauthorized access.`,
+              <>
+                Notify us promptly at{" "}
+                <a
+                  href={`mailto:${PLACEHOLDERS.supportEmail}`}
+                  className="text-brand transition-colors hover:text-green-700"
+                >
+                  {PLACEHOLDERS.supportEmail}
+                </a>{" "}
+                if you suspect unauthorized access.
+              </>,
               "We may suspend or terminate accounts that violate these Terms.",
             ]}
           />
@@ -176,7 +185,12 @@ function TermsPage() {
             <br />
             {PLACEHOLDERS.registeredAddress}
             <br />
-            {PLACEHOLDERS.supportEmail}
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>
           </p>
         </LegalSection>
       </LegalPage>

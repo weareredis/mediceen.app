@@ -45,8 +45,14 @@ function LicensesPage() {
           />
           <p>
             Some dependencies may be used indirectly through other packages. If you need a specific
-            third-party license text, contact {PLACEHOLDERS.supportEmail} and we will provide the
-            relevant notice where available.
+            third-party license text, contact{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.supportEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.supportEmail}
+            </a>{" "}
+            and we will provide the relevant notice where available.
           </p>
         </LegalSection>
       </LegalPage>

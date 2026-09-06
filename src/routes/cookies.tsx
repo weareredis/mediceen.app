@@ -60,7 +60,15 @@ function CookiesPage() {
             You can clear cookies through your browser settings and remove app storage by signing
             out or uninstalling the app. Disabling necessary cookies may affect site functionality.
           </p>
-          <p>Contact: {PLACEHOLDERS.privacyEmail}</p>
+          <p>
+            Contact:{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.privacyEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.privacyEmail}
+            </a>
+          </p>
         </LegalSection>
       </LegalPage>
     </main>

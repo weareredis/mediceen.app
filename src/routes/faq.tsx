@@ -1,10 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/layout/LegalPage";
 import { faqItems } from "@/data/faq";
+import { PLACEHOLDERS } from "@/lib/constants";
 
 const title = "FAQ - Mediceen";
 const description =
   "Answers about signup, phone verification, weekly mocks, leaderboards, password reset, and account deletion.";
+
+function renderAnswer(answer: string) {
+  const parts = answer.split(PLACEHOLDERS.supportEmail);
+
+  return parts.map((part, index) => (
+    <span key={`${part}-${index}`}>
+      {part}
+      {index < parts.length - 1 ? (
+        <a
+          href={`mailto:${PLACEHOLDERS.supportEmail}`}
+          className="text-brand transition-colors hover:text-green-700"
+        >
+          {PLACEHOLDERS.supportEmail}
+        </a>
+      ) : null}
+    </span>
+  ));
+}
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
@@ -59,7 +78,7 @@ function FaqPage() {
                 </span>
               </summary>
               <p className="mt-3 text-[0.93rem] leading-relaxed text-muted-foreground">
-                {item.answer}
+                {renderAnswer(item.answer)}
               </p>
             </details>
           ))}

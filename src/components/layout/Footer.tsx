@@ -30,7 +30,7 @@ export function Footer() {
                   <Link
                     to={item.to}
                     {...(item.hash ? { hash: item.hash } : {})}
-                    className="text-sm text-muted-foreground transition-colors hover:text-green-500"
+                    className="text-sm text-muted-foreground transition-colors hover:text-green-700"
                   >
                     {item.label}
                   </Link>
@@ -70,7 +70,7 @@ export function Footer() {
               href={ADDRESS_MAP_URL}
               target="_blank"
               rel="noopener noreferrer"
-               className="transition-colors hover:text-brand hover:text-green-500"
+              className="text-muted-foreground transition-colors hover:text-green-700"
             >
               {PLACEHOLDERS.registeredAddress}
             </a>

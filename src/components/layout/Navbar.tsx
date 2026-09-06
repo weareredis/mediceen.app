@@ -51,7 +51,7 @@ export function Navbar() {
               <Link
                 to={item.to}
                 {...(item.hash ? { hash: item.hash } : {})}
-                className="text-sm text-muted-foreground transition-colors hover:text-brand"
+                className="text-sm text-muted-foreground transition-colors hover:text-green-700"
                 activeOptions={{ exact: true, includeHash: false }}
                 activeProps={{ className: "text-brand-ink" }}
               >
@@ -92,7 +92,7 @@ export function Navbar() {
                 <Link
                   to={item.to}
                   {...(item.hash ? { hash: item.hash } : {})}
-                  className="block rounded-xl px-3 py-3 text-base text-brand-ink hover:bg-surface-2"
+                  className="block rounded-xl px-3 py-3 text-base text-brand-ink transition-colors hover:bg-surface-2 hover:text-green-700"
                 >
                   {item.label}
                 </Link>

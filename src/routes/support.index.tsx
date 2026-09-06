@@ -64,7 +64,10 @@ function SupportPage() {
               "Password reset: Use Forgot password on the login screen.",
               <>
                 Account deletion: See{" "}
-                <Link to="/support/delete-account" className="text-brand underline">
+                <Link
+                  to="/support/delete-account"
+                  className="text-brand underline transition-colors hover:text-green-700"
+                >
                   Delete account &amp; data
                 </Link>{" "}
                 or email{" "}
@@ -78,14 +81,17 @@ function SupportPage() {
               </>,
               <>
                 FAQ:{" "}
-                <Link to="/faq" className="text-brand underline">
+                <Link to="/faq" className="text-brand underline transition-colors hover:text-green-700">
                   Frequently asked questions
                 </Link>
                 .
               </>,
               <>
                 Privacy:{" "}
-                <Link to="/privacy" className="text-brand underline">
+                <Link
+                  to="/privacy"
+                  className="text-brand underline transition-colors hover:text-green-700"
+                >
                   Privacy Policy
                 </Link>
                 .

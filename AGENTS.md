@@ -1,12 +1,76 @@
-<!-- LOVABLE:BEGIN -->
+# AGENTS.md — Mediceen.app
 
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
+This file is the single source of truth for any AI coding assistant (Claude, Cursor, Copilot, Codex, etc.) working on this project. Update it as the project evolves so you never have to re-explain context per tool.
 
-<!-- LOVABLE:END -->
+## Project Overview
+
+- **Name:** Mediceen.app
+- **What it does:** Marketing/product website for Mediceen, a mobile app (Android + iOS) that helps Nepal medical aspirants prepare for the MECEE-BL entrance exam — MCQ practice, spaced repetition (SM-2), flashcards, weekly timed mock exams, a leaderboard, progress insights, and a daily Word of the Day. The website itself is a client-side frontend with **no backend, database, or auth of its own** — all app-screen content shown on the site is illustrative marketing mockup, not a live connection to the real app's data.
+- **Stack:** TanStack Start (React 19), Tailwind v4, GSAP (scroll animations), Vite 8, TypeScript. Package manager is unresolved — see "Conventions" below, confirm before assuming.
+- **Repo structure:**
+  - `src/routes/` — file-based routes (`index.tsx`, `about.tsx`, `faq.tsx`, `privacy.tsx`, `terms.tsx`, `cookies.tsx`, `licenses.tsx`, `support.index.tsx`, `support.delete-account.tsx`, `__root.tsx`)
+  - `src/components/sections/` — page-level sections (`Hero.tsx`, `ProductShowcase.tsx`, `JourneySection.tsx`, etc.)
+  - `src/components/product/` — the individual phone-mockup "Experience" components (`FlashcardExperience`, `ResultsExperience`, `ProgressExperience`, `ReviewQueueExperience`, `LeaderboardExperience`, `WordExperience`, `McqExperience`, `MockTestExperience`)
+  - `src/components/ui/` — shared primitives (`PhoneMockup.tsx`, `Picture.tsx`, `StyledQrCode.tsx`, `SectionHeading.tsx`, `brand-button.tsx`, etc.)
+  - `src/components/layout/` — `Navbar.tsx`, `Footer.tsx`, `PageContainer.tsx`
+  - `src/data/product.ts` — shared mock content (word of the day, leaderboard rows, demo questions/flashcards, etc.) used across multiple Experience components — reuse this rather than hardcoding parallel data
+  - `src/animations/` — GSAP timelines (`heroTimeline.ts`, `journeyTimeline.ts`, `gsap.ts` setup/registration)
+  - `src/router.tsx`, `src/routeTree.gen.ts` (auto-generated, never hand-edit), `src/server.ts` (custom SSR error wrapper)
+  - `vite.config.ts` — wrapped by `@lovable.dev/vite-tanstack-config` (see Architecture Notes)
+
+## Current State (update this often — this is the important part)
+
+- **What's in progress right now:** Verifying whether a desktop PageSpeed performance drop (91 → 64) after enabling TanStack Router's `autoCodeSplitting` + shipping the QR code redesign is a real regression or single-run noise. Needs multiple re-runs and a look at LCP/TBT/FCP/Speed Index diagnostics before concluding either way.
+- **Last completed:**
+  - Migrated hosting from cPanel (Node.js/Passenger) to Vercel; DNS nameservers now point to Vercel
+  - `support@mediceen.app` mailbox set up via the *existing* cPanel account's mail server (not Vercel, not a third-party like Zoho) — required a manual `mail` A record in Vercel's DNS pointing at the cPanel server IP (`182.93.80.120`), since Vercel's wildcard ALIAS silently swallows unlisted subdomains
+  - SEO pass: H1/body keyword alignment, `og:image`/`twitter:image`, `SoftwareApplication` + `Organization` JSON-LD, WebP/PNG fallback via a shared `<Picture>` component (all raw `<img>` call sites converted except the QR code and a third-party-generated QR image)
+  - Fixed a real accessibility bug: `ProductShowcase.tsx`'s desktop layout stacks all 8 phone screens with `aria-hidden` + `opacity-0` for inactive ones, but didn't block keyboard focus — added `inert` to fully block it (also fixed Lighthouse's "Agentic Browsing" desktop score)
+  - Enabled TanStack Router's `autoCodeSplitting` (via `router.autoCodeSplitting: true` inside the `tanstackStart` config in `vite.config.ts`) — previously every route (including legal/support pages) was statically bundled into one shared chunk loaded on every page
+  - Rebuilt `ProgressExperience`, `ResultsExperience`, `WordExperience`, and the Hero phone screen to match new Figma designs; `LeaderboardExperience` confirmed already dark-mode-token-clean
+  - Redesigned the Hero section's QR code using the `qr-code-styling` library (brand-colored dots/corners, transparent background, dark-mode-reactive via a `MutationObserver` watching the `dark` class) inside a glassmorphism card
+  - Google Play Console store listing fully complete (icon, descriptions, feature graphic, screenshots, content rating, data safety, privacy policy, category/tags, contact details)
+- **Known issues / blockers:**
+  - Desktop PageSpeed performance regression (see "in progress" above) — unconfirmed as of last check
+  - `dashboard.mediceen.app` subdomain nameserver migration to Vercel was recently completed by a senior team member; propagation should be settled but hasn't been explicitly re-verified since
+  - `ProductShowcase.tsx` renders its content twice in the DOM (once for the desktop sticky-scroll layout, once for the mobile stacked layout) — causes a Seobility duplicate-content warning; judged low real-world SEO impact and deliberately left alone
+- **Next planned step:** Confirm the desktop perf regression is real or noise. Once confirmed live Play Store + App Store URLs exist, add the `sameAs` field (currently missing) to the `SoftwareApplication` JSON-LD in `__root.tsx`.
+
+## Conventions
+
+- **Package manager:** **Unresolved — confirm with the team before assuming.** `bunfig.toml`/`bun.lock` exist and were the original documented convention, but recent local builds were run with plain `npm run build` against an `npm`-style `node_modules`. Don't assume one or the other; ask if it matters for the task at hand.
+- **Test command:** None — no automated testing (Vitest, Jest, Playwright, etc.) is set up yet. This is a deliberate choice for now, not an oversight; revisit if the project grows more complex business logic worth guarding with tests.
+- **Lint/format:** `npm run lint` (ESLint) / `npm run format` (Prettier — `prettier --write .`)
+- **Code style notes:**
+  - Every phone-mockup "Experience" component uses **`cqw` (container-query width) units**, not `rem`/`px`, so components scale correctly inside `PhoneMockup`'s `@container` — follow this pattern for any new Experience component
+  - **Always use semantic CSS tokens** (`bg-card`, `text-brand-ink`, `text-muted-foreground`, `border-border`, `bg-surface-2`, etc.) defined in `styles.css`, never raw Tailwind grays (`gray-900`, `slate-500`, etc.) — raw grays break dark mode, since `styles.css` defines separate `:root` and `.dark` values for every semantic token
+  - Icons: `lucide-react`, consistently, across all components
+  - Images: use the shared `<Picture src="/name">` component (renders `.webp` with a `.png` fallback) instead of raw `<img>`, for every static local asset — exceptions are only third-party-generated images (e.g., a remote QR API) that have no local file pair
+  - Reuse shared mock data from `src/data/product.ts` (e.g., `wordOfTheDay`, `quizReviewsDueTotal`, `flashcardReviewSummary`) rather than hardcoding parallel numbers in multiple components — several past inconsistencies came from this being skipped
+- **Branching/commit convention:** Not yet established — ask before assuming a format.
+
+## Architecture Notes
+
+- **`vite.config.ts` is wrapped by `@lovable.dev/vite-tanstack-config`** (a public npm package, MIT licensed). The project was originally scaffolded on Lovable.dev; all *active* connections to Lovable (OAuth, git-sync, etc.) have been cut, but this config wrapper is deliberately still in use — fully removing it and hand-writing a plain `vite.config.ts` was estimated at 6–8 hours of work and is intentionally deferred, not forgotten. Config overrides are passed through via `defineConfig({ tanstackStart: {...}, nitro: {...} })` — this is how `nitro.preset` and TanStack Router's `autoCodeSplitting` were both configured.
+- **Nitro preset is `"vercel"`** (changed from `"node-server"`, which was correct for the old cPanel/Passenger hosting but wrong for Vercel's Build Output format).
+- **DNS is authoritative on Vercel, not cPanel.** Nameservers were switched during the hosting migration. Any new DNS record (MX, TXT, A, CNAME) must be added in **Vercel's dashboard DNS records for the domain**, not cPanel's Zone Editor — cPanel will still let you edit its own (now-irrelevant) zone file, which does nothing.
+- **Vercel's wildcard `*` ALIAS record silently catches any subdomain without its own explicit record** — this caused real bugs twice (mail delivery, and briefly a `dashboard` subdomain issue) before being understood. Any new subdomain needs its own explicit record in Vercel's DNS, or it'll transparently route through Vercel instead of wherever it's actually supposed to go.
+- **`PhoneMockup.tsx`** is the single shared device-frame component every phone screen renders through — includes the ambient glow (togglable via a `glow` prop, default `true`), fixed 9:18 aspect ratio, and `@container` context for `cqw` sizing. Changes here affect every phone mockup site-wide.
+- **`ProductShowcase.tsx`** has two structurally different DOM trees for desktop (sticky-scroll phone via absolute-positioned stacked panels + GSAP `ScrollTrigger`) vs. mobile (stacked, always-visible panels) — this is a known, deliberate tradeoff (see "Known issues" above), not an oversight to "fix" without discussion.
+
+## Do NOT
+
+- Don't hand-edit `src/routeTree.gen.ts` — it's auto-generated and regenerates on every dev/build run.
+- Don't hardcode raw Tailwind gray/color classes in components meant to support dark mode — use the semantic tokens from `styles.css`.
+- Don't add new `@fontsource` packages (or other dependencies) without checking they're actually used first — an orphaned `@fontsource/baloo-2` import was found and removed; avoid repeating that.
+- Don't assume a manual build/deploy has already happened — confirm before assuming the live site reflects local code changes.
+- Don't touch DNS/nameservers without first confirming whether Vercel or cPanel is currently authoritative for the zone (see Architecture Notes) — getting this backwards has caused real outages before.
+- Don't attempt to fully remove the `@lovable.dev/vite-tanstack-config` wrapper without an explicit go-ahead — it's a known, deliberately deferred, larger task.
+
+## Environment / Setup
+
+- **Local dev:** `npm run dev` (or `bun run dev` — see package manager note above)
+- **Build:** `npm run build` → outputs to `.vercel/output/` (Vercel's Build Output format)
+- **Hosting:** Vercel (primary site, auto-deploys from GitHub on push); cPanel account is still active separately, used only for `support@mediceen.app` email
+- **Repo:** `github.com/weareredis/mediceen.app` (public)
+- **Required env vars:** None. No `.env` file exists in this project.
