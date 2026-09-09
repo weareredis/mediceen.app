@@ -109,7 +109,7 @@ function GetTheAppBadge({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
+      className={cn(className, "cursor-capsule")}
       aria-label="Get the app"
     >
       {label}
@@ -166,6 +166,7 @@ export function FinalMomentSection() {
                 const isOn = active === device.id;
                 const dimmed = hovering && !isOn;
                 const hasBadge = device.href !== null;
+                const badgeLive = device.href !== null && isStoreLinkLive(device.href);
 
                 return (
                   <div
@@ -199,7 +200,8 @@ export function FinalMomentSection() {
                         className={cn(
                           "block outline-none",
                           hasBadge &&
-                            "cursor-pointer focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                            "focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                          badgeLive ? "cursor-capsule" : hasBadge && "cursor-pointer",
                         )}
                       >
                         <DevicePicture

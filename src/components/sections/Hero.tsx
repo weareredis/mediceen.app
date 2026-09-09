@@ -76,7 +76,7 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Scan to open Mediceen on your phone"
-                className="group absolute -left-28 bottom-8 z-20 hidden -rotate-3 overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10 lg:block"
+                className="group absolute -left-28 bottom-8 z-20 hidden -rotate-3 cursor-capsule overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10 lg:block"
               >
                 <span
                   aria-hidden="true"

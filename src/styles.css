@@ -193,6 +193,15 @@
     mask-image: radial-gradient(65% 65% at 50% 50%, black 0%, transparent 100%);
   }
 
+  /* Capsule custom cursor for download / store conversion surfaces (desktop only). */
+  @utility cursor-capsule {
+    cursor: pointer;
+
+    @media (pointer: fine) {
+      cursor: url("/capsule-cursor.png") 4 4, pointer;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

@@ -5,17 +5,33 @@ defines a route. Do **not** create `src/pages/`, `src/routes/_app/index.tsx`, or
 `app/layout.tsx` — those are Next.js / Remix conventions. The only root layout
 is `src/routes/__root.tsx`.
 
-## Conventions
+## This project
 
-| File                     | URL                                                     |
-| ------------------------ | ------------------------------------------------------- |
-| `index.tsx`              | `/`                                                     |
-| `about.tsx`              | `/about`                                                |
-| `users/index.tsx`        | `/users`                                                |
-| `users/$id.tsx`          | `/users/:id` (dynamic — bare `$`, no curly braces)      |
-| `posts/{-$category}.tsx` | `/posts/:category?` (optional segment)                  |
-| `files/$.tsx`            | `/files/*` (splat — read via `_splat` param, never `*`) |
-| `_layout.tsx`            | layout route (renders children via `<Outlet />`)        |
-| `__root.tsx`             | app shell — wraps every page; preserve `<Outlet />`     |
+| File | URL |
+| ---- | --- |
+| `index.tsx` | `/` |
+| `about.tsx` | `/about` |
+| `faq.tsx` | `/faq` |
+| `support.index.tsx` | `/support` |
+| `support.delete-account.tsx` | `/support/delete-account` |
+| `privacy.tsx` | `/privacy` |
+| `terms.tsx` | `/terms` |
+| `cookies.tsx` | `/cookies` |
+| `licenses.tsx` | `/licenses` |
+| `__root.tsx` | app shell — wraps every page; preserve `<Outlet />` |
 
-`routeTree.gen.ts` is auto-generated. Don't edit it by hand.
+Home (`index.tsx`) renders: `Hero` → `ProductShowcase` → `JourneySection` → `FinalMomentSection`.
+`FinalMomentSection` owns `id="download"` (Navbar / skip-link target).
+`__root.tsx` also has a “Skip to download” link (`#download`) — visually hidden until keyboard focus (`sr-only` / `focus:not-sr-only`).
+
+`../routeTree.gen.ts` is auto-generated. Don't edit it by hand.
+
+## TanStack conventions (reference)
+
+| Pattern | Meaning |
+| ------- | ------- |
+| `users/index.tsx` | `/users` |
+| `users/$id.tsx` | `/users/:id` (dynamic — bare `$`, no curly braces) |
+| `posts/{-$category}.tsx` | `/posts/:category?` (optional segment) |
+| `files/$.tsx` | `/files/*` (splat — read via `_splat` param, never `*`) |
+| `_layout.tsx` | layout route (renders children via `<Outlet />`) |

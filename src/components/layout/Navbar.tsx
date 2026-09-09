@@ -63,7 +63,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button asChild size="sm" className="hidden md:inline-flex">
+          <Button asChild size="sm" className="hidden cursor-capsule md:inline-flex">
             <Link to="/" hash="download">
               Download App
             </Link>
@@ -99,7 +99,7 @@ export function Navbar() {
               </li>
             ))}
             <li className="pt-2">
-              <Button asChild className="w-full">
+              <Button asChild className="w-full cursor-capsule">
                 <Link to="/" hash="download">
                   Download App
                 </Link>
