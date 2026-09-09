@@ -13,17 +13,21 @@ This file is the single source of truth for any AI coding assistant (Claude, Cur
   - `src/components/product/` — the individual phone-mockup "Experience" components (`FlashcardExperience`, `ResultsExperience`, `ProgressExperience`, `ReviewQueueExperience`, `LeaderboardExperience`, `WordExperience`, `McqExperience`, `MockTestExperience`)
   - `src/components/ui/` — shared primitives (`PhoneMockup.tsx`, `Picture.tsx`, `StyledQrCode.tsx`, `SectionHeading.tsx`, `brand-button.tsx`, etc.)
   - `src/components/layout/` — `Navbar.tsx`, `Footer.tsx`, `PageContainer.tsx`
+  - `src/lib/constants.ts` — site config including `STORE_LINKS`, `QR_DESTINATION` (Hero QR + FinalMoment tablet CTA; replace when a single store redirect is ready), legal placeholders
   - `src/data/product.ts` — shared mock content (word of the day, leaderboard rows, demo questions/flashcards, etc.) used across multiple Experience components — reuse this rather than hardcoding parallel data
   - `src/animations/` — GSAP timelines (`heroTimeline.ts`, `journeyTimeline.ts`, `gsap.ts` setup/registration)
   - `src/router.tsx`, `src/routeTree.gen.ts` (auto-generated, never hand-edit), `src/server.ts` (custom SSR error wrapper)
   - `vite.config.ts` — wrapped by `@lovable.dev/vite-tanstack-config` (see Architecture Notes)
+  - `design-refs/` — designer comps (e.g. FinalMoment light/dark layouts); **not** served from `public/`, do not deploy as site assets
+  - `public/` FinalMoment devices — `macbook|iphone|samsung|tablet-{light,dark}.{png,webp}`
 
 ## Current State (update this often — this is the important part)
 
-- **What's in progress right now:** Verifying whether a desktop PageSpeed performance drop (91 → 64) after enabling TanStack Router's `autoCodeSplitting` + shipping the QR code redesign is a real regression or single-run noise. Needs multiple re-runs and a look at LCP/TBT/FCP/Speed Index diagnostics before concluding either way.
+- **What's in progress right now:** Re-verify desktop PageSpeed (prior 91 → 64 drop after autoCodeSplitting + QR redesign) with FinalMoment’s optimized device WebPs in place — multiple runs + LCP/TBT/FCP/Speed Index before concluding.
 - **Last completed:**
+  - Redesigned `FinalMomentSection` into a spaced 4-device gallery (MacBook / iPhone / Samsung / tablet) matching designer comps in `design-refs/` (not deployed). Light/dark device assets live in `public/` as PNG+WebP pairs via `<Picture>`. DLR-inspired hover: active device lifts, siblings dim; “Get the app” pill badges (not store icons) appear under iPhone → `STORE_LINKS.appStore`, Samsung → `STORE_LINKS.playStore`, tablet → `QR_DESTINATION`; MacBook has no CTA. Badge sits as a sibling under the image (`top-full`), not overlaid on the device. Light mode uses deep `brand-ink` fill; dark mode uses brighter `bg-brand`. Moved `QR_DESTINATION` into `src/lib/constants.ts` (shared by Hero QR card + tablet CTA). Old `PhoneMockup`/`ProfileExperience` usage removed from this section (`ProfileExperience.tsx` still in repo, currently unused).
   - Migrated hosting from cPanel (Node.js/Passenger) to Vercel; DNS nameservers now point to Vercel
-  - `support@mediceen.app` mailbox set up via the *existing* cPanel account's mail server (not Vercel, not a third-party like Zoho) — required a manual `mail` A record in Vercel's DNS pointing at the cPanel server IP (`182.93.80.120`), since Vercel's wildcard ALIAS silently swallows unlisted subdomains
+  - `support@mediceen.app` mailbox set up via the _existing_ cPanel account's mail server (not Vercel, not a third-party like Zoho) — required a manual `mail` A record in Vercel's DNS pointing at the cPanel server IP (`182.93.80.120`), since Vercel's wildcard ALIAS silently swallows unlisted subdomains
   - SEO pass: H1/body keyword alignment, `og:image`/`twitter:image`, `SoftwareApplication` + `Organization` JSON-LD, WebP/PNG fallback via a shared `<Picture>` component (all raw `<img>` call sites converted except the QR code and a third-party-generated QR image)
   - Fixed a real accessibility bug: `ProductShowcase.tsx`'s desktop layout stacks all 8 phone screens with `aria-hidden` + `opacity-0` for inactive ones, but didn't block keyboard focus — added `inert` to fully block it (also fixed Lighthouse's "Agentic Browsing" desktop score)
   - Enabled TanStack Router's `autoCodeSplitting` (via `router.autoCodeSplitting: true` inside the `tanstackStart` config in `vite.config.ts`) — previously every route (including legal/support pages) was statically bundled into one shared chunk loaded on every page
@@ -31,10 +35,10 @@ This file is the single source of truth for any AI coding assistant (Claude, Cur
   - Redesigned the Hero section's QR code using the `qr-code-styling` library (brand-colored dots/corners, transparent background, dark-mode-reactive via a `MutationObserver` watching the `dark` class) inside a glassmorphism card
   - Google Play Console store listing fully complete (icon, descriptions, feature graphic, screenshots, content rating, data safety, privacy policy, category/tags, contact details)
 - **Known issues / blockers:**
-  - Desktop PageSpeed performance regression (see "in progress" above) — unconfirmed as of last check
+  - Desktop PageSpeed performance regression (91 → 64 after autoCodeSplitting + QR redesign) — unconfirmed; re-check with FinalMoment WebPs live
   - `dashboard.mediceen.app` subdomain nameserver migration to Vercel was recently completed by a senior team member; propagation should be settled but hasn't been explicitly re-verified since
   - `ProductShowcase.tsx` renders its content twice in the DOM (once for the desktop sticky-scroll layout, once for the mobile stacked layout) — causes a Seobility duplicate-content warning; judged low real-world SEO impact and deliberately left alone
-- **Next planned step:** Confirm the desktop perf regression is real or noise. Once confirmed live Play Store + App Store URLs exist, add the `sameAs` field (currently missing) to the `SoftwareApplication` JSON-LD in `__root.tsx`.
+- **Next planned step:** Confirm the desktop perf regression is real or noise. Once confirmed live Play Store + App Store URLs exist, replace `STORE_LINKS` / `QR_DESTINATION` placeholders in `constants.ts` and add the `sameAs` field (currently missing) to the `SoftwareApplication` JSON-LD in `__root.tsx`.
 
 ## Conventions
 
@@ -51,11 +55,12 @@ This file is the single source of truth for any AI coding assistant (Claude, Cur
 
 ## Architecture Notes
 
-- **`vite.config.ts` is wrapped by `@lovable.dev/vite-tanstack-config`** (a public npm package, MIT licensed). The project was originally scaffolded on Lovable.dev; all *active* connections to Lovable (OAuth, git-sync, etc.) have been cut, but this config wrapper is deliberately still in use — fully removing it and hand-writing a plain `vite.config.ts` was estimated at 6–8 hours of work and is intentionally deferred, not forgotten. Config overrides are passed through via `defineConfig({ tanstackStart: {...}, nitro: {...} })` — this is how `nitro.preset` and TanStack Router's `autoCodeSplitting` were both configured.
+- **`vite.config.ts` is wrapped by `@lovable.dev/vite-tanstack-config`** (a public npm package, MIT licensed). The project was originally scaffolded on Lovable.dev; all _active_ connections to Lovable (OAuth, git-sync, etc.) have been cut, but this config wrapper is deliberately still in use — fully removing it and hand-writing a plain `vite.config.ts` was estimated at 6–8 hours of work and is intentionally deferred, not forgotten. Config overrides are passed through via `defineConfig({ tanstackStart: {...}, nitro: {...} })` — this is how `nitro.preset` and TanStack Router's `autoCodeSplitting` were both configured.
 - **Nitro preset is `"vercel"`** (changed from `"node-server"`, which was correct for the old cPanel/Passenger hosting but wrong for Vercel's Build Output format).
 - **DNS is authoritative on Vercel, not cPanel.** Nameservers were switched during the hosting migration. Any new DNS record (MX, TXT, A, CNAME) must be added in **Vercel's dashboard DNS records for the domain**, not cPanel's Zone Editor — cPanel will still let you edit its own (now-irrelevant) zone file, which does nothing.
 - **Vercel's wildcard `*` ALIAS record silently catches any subdomain without its own explicit record** — this caused real bugs twice (mail delivery, and briefly a `dashboard` subdomain issue) before being understood. Any new subdomain needs its own explicit record in Vercel's DNS, or it'll transparently route through Vercel instead of wherever it's actually supposed to go.
-- **`PhoneMockup.tsx`** is the single shared device-frame component every phone screen renders through — includes the ambient glow (togglable via a `glow` prop, default `true`), fixed 9:18 aspect ratio, and `@container` context for `cqw` sizing. Changes here affect every phone mockup site-wide.
+- **`PhoneMockup.tsx`** is the shared device-frame for interactive Experience screens (Hero, ProductShowcase, etc.) — ambient glow, fixed 9:18 aspect, `@container` for `cqw`. `FinalMomentSection` does **not** use it; that section uses static designer device images instead.
+- **`FinalMomentSection.tsx`** — spaced horizontal gallery of four static device images with theme swap (`dark:hidden` / `dark:block`), DLR-style hover lift/dim, and “Get the app” CTAs (see Current State). Keep badge as a sibling under the image (`top-full`), never percentage-overlaid on the PNG.
 - **`ProductShowcase.tsx`** has two structurally different DOM trees for desktop (sticky-scroll phone via absolute-positioned stacked panels + GSAP `ScrollTrigger`) vs. mobile (stacked, always-visible panels) — this is a known, deliberate tradeoff (see "Known issues" above), not an oversight to "fix" without discussion.
 
 ## Do NOT
@@ -66,6 +71,7 @@ This file is the single source of truth for any AI coding assistant (Claude, Cur
 - Don't assume a manual build/deploy has already happened — confirm before assuming the live site reflects local code changes.
 - Don't touch DNS/nameservers without first confirming whether Vercel or cPanel is currently authoritative for the zone (see Architecture Notes) — getting this backwards has caused real outages before.
 - Don't attempt to fully remove the `@lovable.dev/vite-tanstack-config` wrapper without an explicit go-ahead — it's a known, deliberately deferred, larger task.
+- Don't put designer comps back into `public/` (use `design-refs/`) — shipping multi‑MB reference JPGs hurts PageSpeed.
 
 ## Environment / Setup
 

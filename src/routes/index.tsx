@@ -3,7 +3,6 @@ import { Hero } from "@/components/sections/Hero";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { JourneySection } from "@/components/sections/JourneySection";
 import { FinalMomentSection } from "@/components/sections/FinalMomentSection";
-import { DownloadSection } from "@/components/sections/DownloadSection";
 
 const title = "Mediceen - MECEE-BL Medical Entrance Prep";
 const description =
@@ -52,7 +51,6 @@ function Home() {
       <ProductShowcase />
       <JourneySection />
       <FinalMomentSection />
-      <DownloadSection />
     </main>
   );
 }

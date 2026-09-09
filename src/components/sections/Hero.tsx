@@ -6,12 +6,23 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { heroTimeline } from "@/animations/heroTimeline";
 import { wordOfTheDay } from "@/data/product";
-import { Bell, Flame, Sparkles, ChevronDown, ListChecks, BookOpen, Home, SquarePen, Trophy, BarChart3, User } from "lucide-react";
+import {
+  Bell,
+  Flame,
+  Sparkles,
+  ChevronDown,
+  ListChecks,
+  BookOpen,
+  Home,
+  SquarePen,
+  Trophy,
+  BarChart3,
+  User,
+} from "lucide-react";
 import { useState } from "react";
 import { quizReviewsDueTotal, flashcardReviewSummary } from "@/data/product";
 import { StyledQrCode } from "@/components/ui/StyledQrCode";
-
-const QR_DESTINATION = "https://mediceen.app/";
+import { QR_DESTINATION } from "@/lib/constants";
 
 export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
@@ -30,20 +41,20 @@ export function Hero() {
               Mediceen
             </p>
             <h1 className="mt-6" data-reveal>
-  <span className="block text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold text-brand-ink">
-    Prepare smarter for MECEE-BL
-  </span>{" "}
-  <span className="mt-2 block font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-medium text-muted-foreground">
-    Medical entrance exam prep for Nepal
-  </span>
-</h1>
+              <span className="block text-balance-tight font-display text-[clamp(2.8rem,6.5vw,4.8rem)] font-semibold text-brand-ink">
+                Prepare smarter for MECEE-BL
+              </span>{" "}
+              <span className="mt-2 block font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-medium text-muted-foreground">
+                Medical entrance exam prep for Nepal
+              </span>
+            </h1>
             <p
-  className="mt-6 max-w-lg text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
-  data-reveal
->
-  Practice. Review. Improve smarter. Mediceen helps Nepal medical aspirants build recall with
-  MCQs, spaced repetition, flashcards, and weekly MECEE-style mocks.
-</p>
+              className="mt-6 max-w-lg text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
+              data-reveal
+            >
+              Practice. Review. Improve smarter. Mediceen helps Nepal medical aspirants build recall
+              with MCQs, spaced repetition, flashcards, and weekly MECEE-style mocks.
+            </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3" data-reveal>
               <Button asChild variant="outline" size="lg">
@@ -61,20 +72,18 @@ export function Hero() {
           <div className="flex justify-center lg:justify-end">
             <div data-hero-phone className="relative will-change-transform">
               <a
-               
-                             
-               href={QR_DESTINATION}
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Scan to open Mediceen on your phone"
-               className="group absolute -left-28 bottom-8 z-20 hidden -rotate-3 overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10 lg:block"
-             >
-               <span
-                 aria-hidden="true"
-                 className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80"
-               />
-               <StyledQrCode data={QR_DESTINATION} size={144} />
-             </a>
+                href={QR_DESTINATION}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Scan to open Mediceen on your phone"
+                className="group absolute -left-28 bottom-8 z-20 hidden -rotate-3 overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10 lg:block"
+              >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80"
+                />
+                <StyledQrCode data={QR_DESTINATION} size={144} />
+              </a>
               <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(25vw,17.5rem)]">
                 <HeroScreen />
               </PhoneMockup>
@@ -97,9 +106,24 @@ const QUICK_STATS = [
   { label: "Study time", value: "18h" },
 ];
 const RECENT_ACTIVITY = [
-  { subject: "Biochemistry", meta: "10 questions · 60% accuracy", time: "Mon, 09:12", accent: "bg-warning" },
-  { subject: "Genetics", meta: "15 questions · 87% accuracy", time: "Wed, 09:12", accent: "bg-success" },
-  { subject: "Anatomy", meta: "20 questions · 75% accuracy", time: "Today, 09:12", accent: "bg-success" },
+  {
+    subject: "Biochemistry",
+    meta: "10 questions · 60% accuracy",
+    time: "Mon, 09:12",
+    accent: "bg-warning",
+  },
+  {
+    subject: "Genetics",
+    meta: "15 questions · 87% accuracy",
+    time: "Wed, 09:12",
+    accent: "bg-success",
+  },
+  {
+    subject: "Anatomy",
+    meta: "20 questions · 75% accuracy",
+    time: "Today, 09:12",
+    accent: "bg-success",
+  },
 ];
 
 function HeroScreen() {
@@ -141,8 +165,6 @@ function HeroScreen() {
           </div>
         </div>
 
-       
-
         {/* Word of the Day card */}
         <div className="px-[5.7cqw] pt-[3.6cqw]">
           <div
@@ -152,7 +174,9 @@ function HeroScreen() {
             <div className="absolute -right-[6cqw] -top-[8cqw] h-[18cqw] w-[18cqw] rounded-full bg-white/10 blur-xl" />
             <div className="relative flex items-center gap-[1.4cqw] text-white/90">
               <Sparkles className="h-[3cqw] w-[3cqw]" strokeWidth={2.5} />
-              <p className="text-[2.7cqw] font-semibold uppercase tracking-[0.18em]">Word of the day</p>
+              <p className="text-[2.7cqw] font-semibold uppercase tracking-[0.18em]">
+                Word of the day
+              </p>
             </div>
             <p className="relative mt-[2.1cqw] font-display text-[5cqw] font-bold text-white">
               {wordOfTheDay.term}
@@ -228,7 +252,9 @@ function HeroScreen() {
             </p>
             <div className="relative mt-[2.9cqw] flex items-center justify-between text-[2.6cqw] font-medium text-white/80">
               <span>Progress</span>
-              <span>{WEEKLY_MOCK.progress} / {WEEKLY_MOCK.total}</span>
+              <span>
+                {WEEKLY_MOCK.progress} / {WEEKLY_MOCK.total}
+              </span>
             </div>
             <div className="relative mt-[1.1cqw] h-[1.1cqw] overflow-hidden rounded-full bg-white/25">
               <div className="h-full rounded-full bg-white" style={{ width: `${mockPct}%` }} />
@@ -254,7 +280,9 @@ function HeroScreen() {
                 <ListChecks className="h-[4cqw] w-[4cqw] text-muted-foreground" strokeWidth={2} />
               </span>
               <p className="mt-[3.6cqw] text-[3.4cqw] font-semibold text-brand-ink">Quiz reviews</p>
-              <p className="text-[2.6cqw] text-muted-foreground">{quizReviewsDueTotal} questions due</p>
+              <p className="text-[2.6cqw] text-muted-foreground">
+                {quizReviewsDueTotal} questions due
+              </p>
               <p className="mt-[1.8cqw] text-[2.6cqw] font-semibold text-success">Start review</p>
             </div>
             <div className="flex-1 rounded-xl border border-border bg-card p-[3.2cqw] shadow-soft">
@@ -262,7 +290,9 @@ function HeroScreen() {
                 <BookOpen className="h-[4cqw] w-[4cqw] text-teal" strokeWidth={2} />
               </span>
               <p className="mt-[3.6cqw] text-[3.4cqw] font-semibold text-brand-ink">Flashcards</p>
-              <p className="text-[2.6cqw] text-muted-foreground">{flashcardReviewSummary.count} cards due</p>
+              <p className="text-[2.6cqw] text-muted-foreground">
+                {flashcardReviewSummary.count} cards due
+              </p>
               <p className="mt-[1.8cqw] text-[2.6cqw] font-semibold text-success">Start review</p>
             </div>
           </div>
@@ -273,7 +303,10 @@ function HeroScreen() {
           <p className="font-display text-[4cqw] font-semibold text-brand-ink">Quick stats</p>
           <div className="mt-[2.1cqw] flex items-center justify-between rounded-2xl border border-border bg-card px-[3.2cqw] py-[3.6cqw] shadow-soft">
             {QUICK_STATS.map((stat, i) => (
-              <div key={stat.label} className={`flex flex-1 flex-col items-center ${i > 0 ? "border-l border-border" : ""}`}>
+              <div
+                key={stat.label}
+                className={`flex flex-1 flex-col items-center ${i > 0 ? "border-l border-border" : ""}`}
+              >
                 <p className="text-[3.6cqw] font-bold text-brand-ink">{stat.value}</p>
                 <p className="mt-[0.4cqw] text-[2.3cqw] text-muted-foreground">{stat.label}</p>
               </div>

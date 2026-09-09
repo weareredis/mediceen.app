@@ -136,7 +136,7 @@ src/
 │ ├── MockSection.tsx
 │ ├── ProgressSection.tsx
 │ ├── JourneySection.tsx
-│ └── DownloadSection.tsx
+│ └── FinalMomentSection.tsx
 │
 ├── pages/
 │ ├── Home.tsx
