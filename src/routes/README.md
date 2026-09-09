@@ -21,7 +21,7 @@ is `src/routes/__root.tsx`.
 | `__root.tsx` | app shell — wraps every page; preserve `<Outlet />` |
 
 Home (`index.tsx`) renders: `Hero` → `ProductShowcase` → `JourneySection` → `FinalMomentSection`.
-`FinalMomentSection` owns `id="download"` (Navbar / skip-link target).
+`FinalMomentSection` owns `id="download"` (Navbar / skip-link target). On mobile it is a full-bleed decorative device collage (no store CTAs; section `pb-0` so brand-wash meets the footer); on desktop it is the 4-device hover gallery with “Get the app” badges — see AGENTS.md.
 `__root.tsx` also has a “Skip to download” link (`#download`) — visually hidden until keyboard focus (`sr-only` / `focus:not-sr-only`).
 
 `../routeTree.gen.ts` is auto-generated. Don't edit it by hand.

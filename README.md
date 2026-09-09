@@ -33,11 +33,11 @@ For AI assistants and detailed project state, see **[AGENTS.md](./AGENTS.md)** (
 1. `Hero` — brand, CTA, store badges, QR card, phone mockup
 2. `ProductShowcase` — sticky-scroll feature tour (8 Experience screens)
 3. `JourneySection` — how-it-works path
-4. `FinalMomentSection` — 4-device gallery + “Get the app” CTAs (`id="download"`)
+4. `FinalMomentSection` — `id="download"`; **mobile:** full-bleed decorative DLR-style device collage (no store CTAs; `pt-28 pb-0` meets footer); **desktop:** 4-device hover gallery + “Get the app” badges
 
 There is no separate `DownloadSection` anymore. Navbar / skip-link `#download` targets FinalMoment.
 
-Download / store conversion surfaces (Navbar **Download App**, Hero QR, live store badges, FinalMoment live CTAs) use a brand capsule custom cursor (`cursor-capsule` → `public/capsule-cursor.png`). Content images still use `<Picture>` PNG+WebP pairs; the cursor asset is PNG-only (CSS `cursor: url()`).
+Download / store conversion surfaces (Navbar **Download App**, Hero QR, live store badges, FinalMoment **desktop** live CTAs) use a brand capsule custom cursor (`cursor-capsule` → `public/capsule-cursor.png`). Content images still use `<Picture>` PNG+WebP pairs; the cursor asset is PNG-only (CSS `cursor: url()`).
 
 ## Layout overview
 

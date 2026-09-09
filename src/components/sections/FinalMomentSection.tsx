@@ -59,6 +59,12 @@ const DEVICES: Device[] = [
   },
 ];
 
+const DEVICE_BY_ID = Object.fromEntries(DEVICES.map((d) => [d.id, d])) as Record<DeviceId, Device>;
+
+/** Soft floating shadow for mobile collage pieces (DLR desk look). */
+const COLLAGE_SHADOW =
+  "drop-shadow-[0_18px_28px_oklch(0.34_0.07_260_/_0.22)] dark:drop-shadow-[0_18px_32px_oklch(0_0_0_/_0.55)]";
+
 function DevicePicture({ lightSrc, darkSrc, alt }: Pick<Device, "lightSrc" | "darkSrc" | "alt">) {
   return (
     <>
@@ -117,6 +123,23 @@ function GetTheAppBadge({ href }: { href: string }) {
   );
 }
 
+type CollagePieceProps = {
+  device: Device;
+  /** Absolute placement + rotation on the outer shell (not animated by GSAP). */
+  className: string;
+};
+
+function CollagePiece({ device, className }: CollagePieceProps) {
+  return (
+    <div data-collage-piece className={cn("absolute", className)}>
+      {/* Inner wrapper: GSAP animates opacity/y here so CSS rotate on the outer shell stays intact. */}
+      <div className={cn("relative", COLLAGE_SHADOW)}>
+        <DevicePicture lightSrc={device.lightSrc} darkSrc={device.darkSrc} alt={device.alt} />
+      </div>
+    </div>
+  );
+}
+
 export function FinalMomentSection() {
   const [active, setActive] = useState<DeviceId | null>(null);
   const hovering = active !== null;
@@ -124,22 +147,39 @@ export function FinalMomentSection() {
   const ref = useScrollAnimation<HTMLElement>(({ root, reducedMotion }) => {
     revealFrom(root.querySelectorAll("[data-reveal]"), root, reducedMotion);
     if (reducedMotion) return;
-    const stage = root.querySelector("[data-final-stage]");
-    if (!stage) return;
-    gsap.from(stage, {
-      opacity: 0,
-      y: 40,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: root, start: "top 70%" },
-    });
+
+    const collageInners = root.querySelectorAll("[data-collage-piece] > div");
+    if (collageInners.length) {
+      gsap.from(collageInners, {
+        opacity: 0,
+        y: 36,
+        duration: 0.85,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: root.querySelector("[data-final-collage]") ?? root,
+          start: "top 75%",
+        },
+      });
+    }
+
+    const desktopStage = root.querySelector("[data-final-stage]");
+    if (desktopStage) {
+      gsap.from(desktopStage, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: root, start: "top 70%" },
+      });
+    }
   });
 
   return (
     <section
       id="download"
       ref={ref}
-      className="brand-wash scroll-mt-24 overflow-hidden py-28 sm:py-32"
+      className="brand-wash scroll-mt-24 overflow-hidden pt-28 pb-0 sm:py-32"
       aria-labelledby="final-heading"
     >
       <PageContainer width="wide" className="flex flex-col items-center text-center">
@@ -159,9 +199,48 @@ export function FinalMomentSection() {
           Your pace.
         </p>
 
-        <div data-final-stage data-reveal className="relative mt-14 w-full max-w-6xl">
-          <div className="flex w-full items-end justify-center overflow-x-auto pb-16 pt-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-visible sm:pb-20 [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-[min(100%,64rem)] min-w-[26rem] items-end justify-center gap-5 px-3 sm:w-full sm:min-w-0 sm:gap-8 lg:gap-12">
+        {/* Mobile — decorative DLR-style overflowing desk collage (no store CTAs).
+            Full-bleed: break out of PageContainer px-6/sm:px-8 so devices clip at the viewport edge.
+            Adjust: PageContainer padding in src/components/layout/PageContainer.tsx (`px-6 sm:px-8`),
+            or the -mx / w-[calc] breakout classes below. */}
+        <div
+          data-final-collage
+          data-reveal
+          className="relative mt-12 w-[calc(100%+3rem)] max-w-none -mx-6 sm:w-[calc(100%+4rem)] sm:-mx-8 md:hidden"
+          aria-label="Mediceen on phone, tablet, and laptop"
+        >
+          {/* Taller stage so MacBook/tablet aren't clipped at the bottom */}
+          <div className="relative h-[min(165vw,48rem)] w-full overflow-hidden">
+            {/* Phones: smaller + closer, top cluster */}
+            <CollagePiece
+              device={DEVICE_BY_ID.iphone}
+              className="left-[14%] top-[0%] z-[3] w-[34%] -rotate-[8deg]"
+            />
+            <CollagePiece
+              device={DEVICE_BY_ID.samsung}
+              className="right-[14%] top-[-1%] z-[3] w-[34%] rotate-[7deg]"
+            />
+            {/* MacBook: left bleed, lowered further + pulled inward */}
+            <CollagePiece
+              device={DEVICE_BY_ID.macbook}
+              className="top-[53%] left-[-8%] z-[1] w-[72%] -rotate-[6deg]"
+            />
+            {/* Tablet: lower hero, shifted further right of center */}
+            <CollagePiece
+              device={DEVICE_BY_ID.tablet}
+              className="top-[58%] left-[78%] z-[2] w-[62%] -translate-x-1/2 rotate-[3deg]"
+            />
+          </div>
+        </div>
+
+        {/* Desktop — spaced hover gallery (unchanged behavior) */}
+        <div
+          data-final-stage
+          data-reveal
+          className="relative mt-14 hidden w-full max-w-6xl md:block"
+        >
+          <div className="flex w-full items-end justify-center overflow-visible pb-20 pt-6">
+            <div className="flex w-full items-end justify-center gap-8 px-3 lg:gap-12">
               {DEVICES.map((device) => {
                 const isOn = active === device.id;
                 const dimmed = hovering && !isOn;
