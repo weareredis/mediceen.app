@@ -198,7 +198,7 @@
     cursor: pointer;
 
     @media (pointer: fine) {
-      cursor: url("/capsule-cursor.png") 4 4, pointer;
+      cursor: url("/capsule-cursor.png") 3 2, pointer;
     }
   }
 

@@ -23,7 +23,7 @@ This file is the single source of truth for any AI coding assistant (Claude, Cur
   - `src/router.tsx`, `src/routeTree.gen.ts` (auto-generated, never hand-edit), `src/server.ts` (custom SSR error wrapper)
   - `vite.config.ts` — wrapped by `@lovable.dev/vite-tanstack-config` (see Architecture Notes)
   - `design-refs/` — designer comps (`Light-design.jpg`, `Dark-design.jpg` for FinalMoment desktop; `IMG_6718.PNG` / `IMG_6719.PNG` for DLR mobile collage refs); **not** served from `public/`, do not deploy as site assets
-  - `public/` — FinalMoment devices `macbook|iphone|samsung|tablet-{light,dark}.{png,webp}`; also logos, store badges, og-image, flashcard/results assets; `capsule.png` (full art) + `capsule-cursor.png` (48×48 CSS cursor, no WebP). Orphan / unused assets may exist (`lp-mock-*`, etc.) — do not reintroduce them without checking references
+  - `public/` — FinalMoment devices `macbook|iphone|samsung|tablet-{light,dark}.{png,webp}`; also logos, store badges, og-image, flashcard/results assets; `capsule.png` (full art) + `capsule-cursor.png` (32×32 CSS cursor, no WebP). Orphan / unused assets may exist (`lp-mock-*`, etc.) — do not reintroduce them without checking references
 
 ## Current State (update this often — this is the important part)
 
