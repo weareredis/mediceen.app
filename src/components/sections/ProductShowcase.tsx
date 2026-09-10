@@ -134,20 +134,21 @@ export function ProductShowcase() {
     <section
       id="product"
       ref={rootRef}
-      className="scroll-mt-24 py-0 sm:py-24"
+      className="scroll-mt-24 py-12 sm:py-16 lg:py-24"
       aria-labelledby="product-showcase-heading"
     >
       <h2 id="product-showcase-heading" className="sr-only">
         Inside the Mediceen app
       </h2>
 
-      {/* Desktop: sticky phone on the right, copy always from the left */}
+      {/*
+        Sticky two-column layout only from xl (1280+). At lg (1024) the sticky
+        phone pins awkwardly on tall tablets — use the stacked layout instead.
+      */}
       <PageContainer
         width="wide"
-        className="relative hidden lg:grid lg:grid-cols-[max-content_1fr] lg:gap-14"
+        className="relative hidden xl:grid xl:grid-cols-[max-content_1fr] xl:gap-14"
       >
-        {/* gap-6 for justify center of sticky phone */}
-        {/* Left column: scrolling copy panels */}
         <div className="relative">
           {steps.map((step, i) => (
             <div
@@ -160,14 +161,12 @@ export function ProductShowcase() {
           ))}
         </div>
 
-        {/* Right column: sticky phone */}
-        <div className="pointer-events-auto sticky top-0 flex h-screen items-center justify-end">
+        {/* Sticky phone — top offset clears the fixed navbar */}
+        <div className="pointer-events-auto sticky top-24 flex h-[calc(100dvh-6rem)] items-center justify-end">
           <div className="relative">
             <PhoneMockup className="w-[min(25vw,17.5rem)]" screenClassName="bg-background">
-              {/* desktoptablet ko stuck vako phone ko size */}
-
               <div className="relative h-full w-full">
-              {steps.map((step, i) => (
+                {steps.map((step, i) => (
                   <div
                     key={step.id}
                     className={cn(
@@ -198,17 +197,17 @@ export function ProductShowcase() {
         </div>
       </PageContainer>
 
-      {/* Mobile / tablet: compact stacked pairs, phone close to its copy */}
-<PageContainer className="space-y-20 lg:hidden">
-  {steps.map((step, i) => (
-    <div key={step.id} data-showcase-panel className="flex flex-col items-center gap-6">
-      <Copy step={step} index={i} className="max-w-md text-center" headingTag="p" />
-      <PhoneMockup className="w-[min(70.5vw,13rem)]" tilt={i % 2 === 0 ? "right" : "left"}>
-        {step.screen}
-      </PhoneMockup>
-    </div>
-  ))}
-</PageContainer>
+      {/* Below xl: stacked copy + phone pairs (includes 1024 tablet) */}
+      <PageContainer className="space-y-20 xl:hidden">
+        {steps.map((step, i) => (
+          <div key={step.id} data-showcase-panel className="flex flex-col items-center gap-6">
+            <Copy step={step} index={i} className="max-w-md text-center" headingTag="p" />
+            <PhoneMockup className="w-[min(70.5vw,13rem)]" tilt={i % 2 === 0 ? "right" : "left"}>
+              {step.screen}
+            </PhoneMockup>
+          </div>
+        ))}
+      </PageContainer>
     </section>
   );
 }

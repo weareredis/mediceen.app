@@ -169,6 +169,9 @@ export const pastMocks = [
   { week: "Week 5", date: "10 Jul 2026", questions: 20, score: 20 },
 ];
 
+/** Shared mock score for ResultsExperience + hero floater peeks. */
+export const resultsPreview = { score: 5, total: 10 };
+
 export const profileUser = {
   initials: "AK",
   name: "Alex Karki",

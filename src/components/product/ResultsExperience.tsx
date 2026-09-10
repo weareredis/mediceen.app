@@ -1,8 +1,9 @@
 import { Atom, Microscope, HeartPulse, FlaskConical, Target, CheckCircle2 } from "lucide-react";
 import { Picture } from "@/components/ui/Picture";
+import { resultsPreview } from "@/data/product";
 
-const SCORE = 5;
-const SCORE_TOTAL = 10;
+const SCORE = resultsPreview.score;
+const SCORE_TOTAL = resultsPreview.total;
 const TIME_TAKEN = "1m 34s";
 
 const subjects = [

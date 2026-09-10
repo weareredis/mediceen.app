@@ -23,16 +23,28 @@ import { useState } from "react";
 import { quizReviewsDueTotal, flashcardReviewSummary } from "@/data/product";
 import { StyledQrCode } from "@/components/ui/StyledQrCode";
 import { QR_DESTINATION } from "@/lib/constants";
+import { HeroFeatureFloaters } from "@/components/sections/HeroFeatureFloaters";
 
 export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
 
   return (
-    <section ref={ref} className="brand-wash relative flex min-h-dvh flex-col  pt-24 sm:pt-28">
+    <section
+      ref={ref}
+      className="brand-wash relative flex flex-col overflow-x-clip pt-24 pb-16 sm:pt-28 sm:pb-20 [@media(max-height:800px)]:min-h-dvh"
+    >
       <div className="grid-fade pointer-events-none absolute inset-0 opacity-50" />
 
-      <PageContainer width="wide" className="relative flex flex-1 items-center">
-        <div className="grid w-full items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+      {/*
+        Height follows content so tall tablets don’t get a dead band under the
+        hero before ProductShowcase. Full-viewport min-height only on short screens.
+        Top-align by default; center only on short wide viewports.
+      */}
+      <PageContainer
+        width="wide"
+        className="relative items-start pt-2 sm:pt-4 lg:pt-6 [@media(min-width:1024px)_and_(max-height:900px)]:flex [@media(min-width:1024px)_and_(max-height:900px)]:flex-1 [@media(min-width:1024px)_and_(max-height:900px)]:items-center [@media(min-width:1024px)_and_(max-height:900px)]:pt-0"
+      >
+        <div className="grid w-full items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
           <div className="max-w-xl">
             <p
               className="text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-brand"
@@ -69,30 +81,61 @@ export function Hero() {
             </div>
           </div>
 
+          {/*
+            Stage anchors floaters to the phone box. Outer section clips x-scroll;
+            the stage itself may paint past the phone edges (overflow-visible).
+            Stacking: behind floaters (z-0) → device (z-10) → front floaters (z-20) → QR (z-30).
+          */}
           <div className="flex justify-center lg:justify-end">
-            <div data-hero-phone className="relative will-change-transform">
-              <a
-                href={QR_DESTINATION}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Scan to open Mediceen on your phone"
-                className="group absolute -left-28 bottom-8 z-20 hidden -rotate-3 cursor-capsule overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10 lg:block"
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80"
-                />
-                <StyledQrCode data={QR_DESTINATION} size={144} />
-              </a>
-              <PhoneMockup className="w-[min(56vw,14rem)] lg:w-[min(25vw,17.5rem)]">
-                <HeroScreen />
-              </PhoneMockup>
+            <div
+              data-hero-stage
+              className="relative w-[min(56vw,14rem)] overflow-visible lg:w-[min(25vw,17.5rem)] xl:w-[min(22vw,17.5rem)]"
+            >
+              {/* z: behind (0) → phone (10) → front (20) → QR (30). Scrub/idle applied to phone + QR nodes together. */}
+              <HeroFeatureFloaters layer="behind" />
+
+              <div data-hero-device className="relative z-10 w-full">
+                <div data-hero-device-enter className="w-full">
+                  <div data-hero-device-scrub className="w-full">
+                    <div data-hero-device-idle className="relative w-full will-change-transform">
+                      <PhoneMockup className="w-full">
+                        <HeroScreen />
+                      </PhoneMockup>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <HeroFeatureFloaters layer="front" />
+
+              <div className="pointer-events-none absolute inset-0 z-30 hidden lg:block">
+                <div data-hero-qr-enter className="absolute inset-0">
+                  <div data-hero-qr-scrub className="absolute inset-0">
+                    <div
+                      data-hero-qr-idle
+                      className="absolute inset-0 will-change-transform"
+                    >
+                      <a
+                        href={QR_DESTINATION}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Scan to open Mediceen on your phone"
+                        className="group pointer-events-auto absolute -left-28 bottom-8 -rotate-3 cursor-capsule overflow-hidden rounded-2xl border border-white/50 bg-white/25 p-3 shadow-[0_22px_55px_-18px_rgba(31,60,104,0.42)] backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 dark:border-white/15 dark:bg-white/10"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80"
+                        />
+                        <StyledQrCode data={QR_DESTINATION} size={144} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </PageContainer>
-
-      <div className="h-12 sm:h-16" />
     </section>
   );
 }
