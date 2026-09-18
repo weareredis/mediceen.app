@@ -34,11 +34,11 @@ export const ADDRESS_MAP_URL = "https://maps.app.goo.gl/5aaBp2MfAxmq9Akt9";
 /** Store URLs are placeholders until the listings are live (Part 0). */
 export const STORE_LINKS = {
   appStore: "[APP_STORE_URL]",
-  playStore: "[PLAY_STORE_URL]",
+  playStore: "https://play.google.com/store/apps/details?id=com.mediceen.app",
 } as const;
 
 /** Desktop QR / tablet CTA destination — replace with a single OS-store redirect when ready. */
-export const QR_DESTINATION = "https://mediceen.app/";
+export const QR_DESTINATION = "https://play.google.com/store/apps/details?id=com.mediceen.app";
 
 export const isStoreLinkLive = (url: string): boolean => !url.startsWith("[");
 
