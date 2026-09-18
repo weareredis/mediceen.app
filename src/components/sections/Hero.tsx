@@ -24,6 +24,7 @@ import { quizReviewsDueTotal, flashcardReviewSummary } from "@/data/product";
 import { StyledQrCode } from "@/components/ui/StyledQrCode";
 import { QR_DESTINATION } from "@/lib/constants";
 import { HeroFeatureFloaters } from "@/components/sections/HeroFeatureFloaters";
+import { Notice } from "@/components/ui/Notice";
 
 export function Hero() {
   const ref = useScrollAnimation<HTMLElement>(heroTimeline);
@@ -34,7 +35,7 @@ export function Hero() {
       className="brand-wash relative flex flex-col overflow-x-clip pt-24 pb-16 sm:pt-28 sm:pb-20 [@media(max-height:800px)]:min-h-dvh"
     >
       <div className="grid-fade pointer-events-none absolute inset-0 opacity-50" />
-
+      <Notice />
       {/*
         Height follows content so tall tablets don’t get a dead band under the
         hero before ProductShowcase. Full-viewport min-height only on short screens.
