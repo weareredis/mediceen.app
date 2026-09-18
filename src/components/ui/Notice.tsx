@@ -10,7 +10,6 @@ export function Notice() {
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-      {/* Dimmed backdrop — click to dismiss (optional) */}
       <button
         type="button"
         className="absolute inset-0 bg-brand-ink/50 backdrop-blur-[2px]"
@@ -18,43 +17,37 @@ export function Notice() {
         onClick={() => setShowNotice(false)}
       />
 
-      {/* Centered card (like your screenshot) */}
       <div
         role="dialog"
         aria-modal="true"
-        aria-labelledby="notice-title"
-        className="relative z-10 w-full max-w-md rounded-2xl border border-border bg-card p-8 text-center shadow-soft"
+        aria-label="Mediceen is live on the Play Store"
+        className="relative z-10 w-full max-w-4xl"
       >
         <button
           type="button"
           onClick={() => setShowNotice(false)}
-          className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface text-brand-ink"
+          className="absolute -right-2 -top-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-brand-ink shadow-soft"
           aria-label="Close"
         >
           <X className="h-4 w-4" />
         </button>
 
-        <h2
-          id="notice-title"
-          className="font-display text-xl font-semibold text-brand-ink sm:text-2xl"
-        >
-          Mediceen is live on the Play Store
-        </h2>
-        <p className="mt-2 text-muted-foreground">Get it now</p>
-
         <a
           href={STORE_LINKS.playStore}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex cursor-capsule"
+          className="block overflow-hidden rounded-2xl shadow-soft cursor-capsule"
           aria-label="Get Mediceen on Google Play"
         >
           <Picture
-            src="/google-play-badge"
-            alt="Get Mediceen on Google Play"
-            width={1360}
-            height={410}
-            className="h-12 w-auto sm:h-14"
+            src="/notice-play-light"
+            alt="Mediceen is live on the Play Store — get it now"
+            className="block h-auto w-full dark:hidden"
+          />
+          <Picture
+            src="/notice-play-dark"
+            alt="Mediceen is live on the Play Store — get it now"
+            className="hidden h-auto w-full dark:block"
           />
         </a>
       </div>
