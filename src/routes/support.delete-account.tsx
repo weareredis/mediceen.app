@@ -60,7 +60,8 @@ function DeleteAccountPage() {
             ))}
           </ol>
           <p>
-            If you signed up with Google only and cannot email from that address, contact{" "}
+            If you signed up with Google or Apple only (including Hide My Email) and cannot email
+            from that address, contact{" "}
             <a
               href={`mailto:${PLACEHOLDERS.supportEmail}?subject=Account%20ownership%20verification`}
               className="text-brand transition-colors hover:text-green-700"

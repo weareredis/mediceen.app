@@ -40,13 +40,13 @@ export const howItWorks = [
     step: "01",
     title: "Sign up",
     description:
-      "Register with email (verification code) or Google, set your password and profile, then verify your mobile number once with an SMS code.",
+      "Register with email (verification code), Google, or Apple (on Apple devices), set your password and profile, then verify your mobile number once with an SMS code.",
   },
   {
     step: "02",
     title: "Practice",
     description:
-      "Run MCQs, flashcards, or due reviews on your schedule. Log in later with email or Google — no SMS every time.",
+      "Run MCQs, flashcards, or due reviews on your schedule. Log in later with email, Google, or Apple — no SMS every time.",
   },
   {
     step: "03",

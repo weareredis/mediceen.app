@@ -16,10 +16,10 @@ export const PLACEHOLDERS = {
   legalEntityName: "Mediceen",
   registeredAddress: "Panipokhari, Kathmandu, Nepal",
   supportEmail: "support@mediceen.app",
-  privacyEmail: "support@mediceen.app",
+  privacyEmail: "privacy@mediceen.app",
   publishDate: "2026-08-24",
   governingLaw: "Nepal",
-  minimumAge: "10+",
+  minimumAge: "10",
   supabaseRegion: "South Asia (Mumbai)",
 } as const;
 
@@ -42,7 +42,7 @@ export const QR_DESTINATION = "https://play.google.com/store/apps/details?id=com
 
 export const isStoreLinkLive = (url: string): boolean => !url.startsWith("[");
 
-export const LEGAL_LAST_UPDATED = "2026-09-04";
+export const LEGAL_LAST_UPDATED = "2026-09-21";
 
 export const DISCLAIMER =
   "Mediceen is a study aid for exam preparation. It does not provide medical advice, diagnosis, or treatment. Content is for educational use only. Mediceen is not affiliated with, endorsed by, or operated by MECEE, NMC, or any official exam authority unless explicitly stated by Redis Digital.";

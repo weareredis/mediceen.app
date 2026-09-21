@@ -85,7 +85,7 @@ function PrivacyPage() {
             items={[
               "Email address and password (password stored in hashed form by our auth provider)",
               "Display name",
-              "Avatar image URL (including from Google Sign-In if you use it)",
+              "Avatar image URL (including from Google or Apple Sign-In if you use them)",
               "Email verification codes sent during signup (processed in transit; not stored as message content)",
               "Mobile phone number (required verification at signup — see §3.5)",
             ]}
@@ -94,6 +94,11 @@ function PrivacyPage() {
             If you sign in with Google, we receive profile information Google shares with us
             (typically name, email, and profile picture URL). You still complete phone verification
             before full access to the app.
+          </p>
+          <p>
+            On Apple devices, you may also use Sign in with Apple. If you choose Hide My Email, we
+            receive Apple’s private relay address rather than your personal email. You still complete
+            phone verification before full access to the app.
           </p>
 
           <h3 className="font-display text-base font-semibold text-brand-ink">
@@ -129,13 +134,14 @@ function PrivacyPage() {
           <h3 className="font-display text-base font-semibold text-brand-ink">3.5 Phone number</h3>
           <p>
             We require a verified mobile phone number during signup (after you create your account
-            with email or Google). We send a one-time SMS code to confirm you control the number.
-            The verified number is stored on your account in our auth system (Supabase).
+            with email, Google, or Apple on supported devices). We send a one-time SMS code to
+            confirm you control the number. The verified number is stored on your account in our auth
+            system (Supabase).
           </p>
           <LegalList
             items={[
               "When: Once at signup (and again if you change your number in Profile, when that feature is available).",
-              "Login: Ongoing sign-in uses email/password or Google — we do not send an SMS code every time you log in.",
+              "Login: Ongoing sign-in uses email/password, Google, or Apple — we do not send an SMS code every time you log in.",
               "Purpose: Reduce fake accounts, abuse, and duplicate registrations; support account recovery where applicable.",
               "SMS providers: Messages are delivered through third-party SMS gateways (regional providers such as for Nepal and India). Providers process your number and message content only to deliver the OTP.",
               "Marketing: We do not send promotional or marketing SMS.",
@@ -188,6 +194,7 @@ function PrivacyPage() {
             rows={[
               ["Supabase", "Authentication, database, and API hosting"],
               ["Google", "Optional Sign-In"],
+              ["Apple", "Optional Sign-In (Sign in with Apple, including Hide My Email when enabled)"],
               ["Resend (via Supabase Auth)", "Transactional email"],
               ["SMS delivery providers", "One-time phone verification at signup"],
               ["Sentry (optional)", "Error monitoring"],
@@ -259,9 +266,16 @@ function PrivacyPage() {
 
         <LegalSection heading="9. Children">
           <p>
-            Mediceen is not directed at children under {PLACEHOLDERS.minimumAge}. We do not
-            knowingly collect data from anyone below that age. Contact us if you believe we have
-            collected a child&apos;s data in error.
+            Mediceen’s age rating is 10+. The service is not directed at children under{" "}
+            {PLACEHOLDERS.minimumAge}, and we do not knowingly collect personal data from anyone
+            under {PLACEHOLDERS.minimumAge}. Contact{" "}
+            <a
+              href={`mailto:${PLACEHOLDERS.privacyEmail}`}
+              className="text-brand transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.privacyEmail}
+            </a>{" "}
+            if you believe we have collected a child&apos;s data in error.
           </p>
         </LegalSection>
 

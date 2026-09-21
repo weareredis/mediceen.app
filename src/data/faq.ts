@@ -17,7 +17,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How do I sign up?",
     answer:
-      "Register with your email (verification code), set a password and display name, then verify your mobile number with a one-time SMS code. You can also use Continue with Google on supported devices and complete phone verification before using the app. Day-to-day login uses email/password or Google — not SMS each time.",
+      "Register with your email (verification code), set a password and display name, then verify your mobile number with a one-time SMS code. You can also use Continue with Google on supported devices, or Sign in with Apple on Apple devices, then complete phone verification before using the app. Day-to-day login uses email/password, Google, or Apple — not SMS each time.",
   },
   {
     question: "Why do you need my phone number?",
@@ -56,7 +56,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How do I delete my account?",
-    answer: "See Delete account & data or email support@mediceen.app from your registered email.",
+    answer: `See Delete account & data or email ${PLACEHOLDERS.privacyEmail} from your registered email.`,
   },
   {
     question: "Does Mediceen give medical advice?",

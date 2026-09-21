@@ -8,21 +8,27 @@ const description =
   "Answers about signup, phone verification, weekly mocks, leaderboards, password reset, and account deletion.";
 
 function renderAnswer(answer: string) {
-  const parts = answer.split(PLACEHOLDERS.supportEmail);
+  const emails = [PLACEHOLDERS.privacyEmail, PLACEHOLDERS.supportEmail].filter(
+    (email, index, all) => all.indexOf(email) === index,
+  );
 
-  return parts.map((part, index) => (
-    <span key={`${part}-${index}`}>
-      {part}
-      {index < parts.length - 1 ? (
+  const pattern = new RegExp(`(${emails.map((e) => e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`);
+  const parts = answer.split(pattern);
+
+  return parts.map((part, index) => {
+    if (emails.includes(part as (typeof emails)[number])) {
+      return (
         <a
-          href={`mailto:${PLACEHOLDERS.supportEmail}`}
+          key={`${part}-${index}`}
+          href={`mailto:${part}`}
           className="text-brand transition-colors hover:text-green-700"
         >
-          {PLACEHOLDERS.supportEmail}
+          {part}
         </a>
-      ) : null}
-    </span>
-  ));
+      );
+    }
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
 }
 
 export const Route = createFileRoute("/faq")({
