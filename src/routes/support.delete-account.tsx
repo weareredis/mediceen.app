@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, LegalList, LegalSection } from "@/components/layout/LegalPage";
+import { DeleteAccountForm } from "@/components/support/DeleteAccountForm";
 import { PLACEHOLDERS } from "@/lib/constants";
 
 const title = "Delete Account & Data - Mediceen";
@@ -30,7 +31,7 @@ function DeleteAccountPage() {
       <LegalPage
         eyebrow="Support"
         title="Delete account & data"
-        intro="To delete your Mediceen account and associated personal data, follow the steps below."
+        intro="To delete your Mediceen account and associated personal data, email us or use the optional form at the bottom of this page."
       >
         <LegalSection heading="Request deletion">
           <p>
@@ -69,6 +70,13 @@ function DeleteAccountPage() {
               {PLACEHOLDERS.supportEmail}
             </a>{" "}
             with proof of account ownership (we will verify manually).
+          </p>
+          <p>
+            Prefer a form instead? Use{" "}
+            <a href="#request-by-form" className="text-brand transition-colors hover:text-green-700">
+              Request by form
+            </a>{" "}
+            below — email still works the same way.
           </p>
           <p>
             When in-app account deletion is added to the app, this page will be updated to describe
@@ -110,10 +118,35 @@ function DeleteAccountPage() {
 
         <LegalSection heading="Timeline">
           <p>
-            We process verified requests within 30 days and confirm by email when complete. More
+            We process verified requests within 48 hours and confirm by email when complete. More
             complex requests may take longer if we need to confirm ownership or complete backup
             rotation.
           </p>
+        </LegalSection>
+
+        <LegalSection heading="Request by form">
+          <div id="request-by-form" className="scroll-mt-24 space-y-4">
+            <p>
+              You can still email{" "}
+              <a
+                href={`mailto:${PLACEHOLDERS.privacyEmail}?subject=Account%20deletion%20request`}
+                className="text-brand transition-colors hover:text-green-700"
+              >
+                {PLACEHOLDERS.privacyEmail}
+              </a>{" "}
+              or{" "}
+              <a
+                href={`mailto:${PLACEHOLDERS.supportEmail}?subject=Account%20ownership%20verification`}
+                className="text-brand transition-colors hover:text-green-700"
+              >
+                {PLACEHOLDERS.supportEmail}
+              </a>
+              . The form below is optional — choose how you signed up so we route the request to
+              the right inbox (email / password → privacy; Google or Apple → support). We do not
+              delete your account automatically from this form; we verify ownership first.
+            </p>
+            <DeleteAccountForm />
+          </div>
         </LegalSection>
 
         <LegalSection heading="Questions">

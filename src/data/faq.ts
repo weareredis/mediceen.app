@@ -56,7 +56,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How do I delete my account?",
-    answer: `See Delete account & data or email ${PLACEHOLDERS.privacyEmail} from your registered email.`,
+    answer: `See Delete account & data — email ${PLACEHOLDERS.privacyEmail} from your registered email, or use the optional form on that page. Google / Apple (including Hide My Email) requests go to ${PLACEHOLDERS.supportEmail} for ownership verification.`,
   },
   {
     question: "Does Mediceen give medical advice?",

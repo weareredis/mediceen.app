@@ -260,7 +260,8 @@ function PrivacyPage() {
             >
               {PLACEHOLDERS.privacyEmail}
             </a>{" "}
-            or follow the delete-account process.
+            or follow the delete-account process (email or the optional form on that
+            page).
           </p>
         </LegalSection>
 
