@@ -40,9 +40,12 @@ export const STORE_LINKS = {
 /** Desktop QR / tablet CTA destination — replace with a single OS-store redirect when ready. */
 export const QR_DESTINATION = "https://play.google.com/store/apps/details?id=com.mediceen.app";
 
+/** Google Analytics 4 measurement ID (public — appears in page source). */
+export const GA_MEASUREMENT_ID = "G-ZS8FFTDP00";
+
 export const isStoreLinkLive = (url: string): boolean => !url.startsWith("[");
 
-export const LEGAL_LAST_UPDATED = "2026-09-21";
+export const LEGAL_LAST_UPDATED = "2026-09-23";
 
 export const DISCLAIMER =
   "Mediceen is a study aid for exam preparation. It does not provide medical advice, diagnosis, or treatment. Content is for educational use only. Mediceen is not affiliated with, endorsed by, or operated by MECEE, NMC, or any official exam authority unless explicitly stated by Redis Digital.";

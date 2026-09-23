@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, LegalList, LegalSection } from "@/components/layout/LegalPage";
 import { PLACEHOLDERS } from "@/lib/constants";
 
@@ -154,7 +154,20 @@ function PrivacyPage() {
           </p>
 
           <h3 className="font-display text-base font-semibold text-brand-ink">
-            3.6 What we do not collect
+            3.6 Marketing website analytics
+          </h3>
+          <p>
+            The public website at mediceen.app uses Google Analytics 4 to measure visits, pages
+            viewed, referrers, and similar usage data. This is separate from the mobile app and is
+            not used to identify you as an app account holder. See our{" "}
+            <Link to="/cookies" className="text-brand transition-colors hover:text-green-700">
+              Cookie notice
+            </Link>{" "}
+            for details.
+          </p>
+
+          <h3 className="font-display text-base font-semibold text-brand-ink">
+            3.7 What we do not collect
           </h3>
           <p>
             We do not collect payment card data, precise GPS location, contact lists, or use your
@@ -173,6 +186,7 @@ function PrivacyPage() {
               ["Send transactional email (OTP, password reset)", "Contract"],
               ["Verify phone at signup (SMS OTP)", "Contract / legitimate interest"],
               ["Monitor reliability and fix bugs", "Legitimate interest"],
+              ["Measure marketing-site usage (Google Analytics)", "Legitimate interest"],
               ["Prevent fraud and abuse", "Legitimate interest"],
             ]}
           />
@@ -196,6 +210,7 @@ function PrivacyPage() {
               ["Google", "Optional Sign-In"],
               ["Apple", "Optional Sign-In (Sign in with Apple, including Hide My Email when enabled)"],
               ["Resend (via Supabase Auth)", "Transactional email"],
+              ["Google Analytics 4", "Marketing website usage measurement"],
               ["SMS delivery providers", "One-time phone verification at signup"],
               ["Sentry (optional)", "Error monitoring"],
               ["Expo / EAS", "App build and update delivery"],

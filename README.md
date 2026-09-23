@@ -39,7 +39,7 @@ There is no separate `DownloadSection` anymore. Navbar / skip-link `#download` t
 
 Download / store conversion surfaces (Navbar **Download App**, Hero QR, live store badges, FinalMoment **desktop** live CTAs, Notice poster) use a brand capsule custom cursor (`cursor-capsule` → `public/capsule-cursor.png`). Content images still use `<Picture>` PNG+WebP pairs; the cursor asset is PNG-only (CSS `cursor: url()`).
 
-Legal / support contact: product help → `support@mediceen.app`; privacy & account deletion → `privacy@mediceen.app` (`PLACEHOLDERS` in `constants.ts`). `/support/delete-account` keeps mailto steps and an optional Resend-backed form (email → privacy@; Google/Apple → support@). Auth copy documents email/password, Google, and Sign in with Apple (incl. Hide My Email). Age eligibility is 10+ (`minimumAge: "10"`).
+Legal / support contact: product help → `support@mediceen.app`; privacy & account deletion → `privacy@mediceen.app` (`PLACEHOLDERS` in `constants.ts`). `/support/delete-account` keeps mailto steps and an optional Resend-backed form (email → privacy@; Google/Apple → support@). Auth copy documents email/password, Google, and Sign in with Apple (incl. Hide My Email). Age eligibility is 10+ (`minimumAge: "10"`). Marketing site uses Google Analytics 4 (`GA_MEASUREMENT_ID`).
 
 ## Layout overview
 
@@ -47,7 +47,7 @@ Legal / support contact: product help → `support@mediceen.app`; privacy & acco
 src/
 ├── routes/                 # TanStack file routes (not src/pages/)
 ├── components/
-│   ├── layout/             # Navbar, Footer, PageContainer
+│   ├── layout/             # Navbar, Footer, PageContainer, GoogleAnalytics
 │   ├── sections/           # page sections (see AGENTS.md for active vs unused)
 │   ├── product/            # PhoneMockup Experience UIs
 │   ├── support/            # DeleteAccountForm

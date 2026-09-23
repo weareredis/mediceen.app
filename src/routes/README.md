@@ -24,7 +24,9 @@ Home (`index.tsx`) renders: `Hero` (includes Play Store `Notice` modal) → `Pro
 `FinalMomentSection` owns `id="download"` (Navbar / skip-link target). On mobile it is a full-bleed decorative device collage (no store CTAs; section `pb-0` so brand-wash meets the footer); on desktop it is the 4-device hover gallery with “Get the app” badges — see AGENTS.md.
 `__root.tsx` also has a “Skip to download” link (`#download`) — visually hidden until keyboard focus (`sr-only` / `focus:not-sr-only`).
 
-Legal routes (`privacy`, `terms`, `cookies`, `support/*`) pull contact/age strings from `PLACEHOLDERS` in `src/lib/constants.ts` (`privacyEmail`, `supportEmail`, `minimumAge`).
+Legal routes (`privacy`, `terms`, `cookies`, `support/*`) pull contact/age strings from `PLACEHOLDERS` in `src/lib/constants.ts` (`privacyEmail`, `supportEmail`, `minimumAge`). Cookie notice documents Google Analytics 4 on the marketing site.
+
+`__root.tsx` loads gtag (`GA_MEASUREMENT_ID`) in `RootShell` and mounts `GoogleAnalytics` for SPA page views.
 
 `support.delete-account.tsx` keeps the full delete/retain/timeline copy plus mailto steps, and mounts `DeleteAccountForm` under **Request by form**. Submissions go through `src/lib/submit-delete-account.ts` (Resend); email/password → privacy@, Google/Apple → support@. Phone is required for Google/Apple. Ticket only — no auto-delete.
 

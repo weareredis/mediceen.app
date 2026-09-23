@@ -60,15 +60,11 @@ export const deleteAccountSchema = z
 
 export type DeleteAccountFormValues = z.infer<typeof deleteAccountSchema>;
 
-export function inboxForAccountType(
-  accountType: DeleteAccountFormValues["accountType"],
-): string {
+export function inboxForAccountType(accountType: DeleteAccountFormValues["accountType"]): string {
   return accountType === "email" ? PLACEHOLDERS.privacyEmail : PLACEHOLDERS.supportEmail;
 }
 
-export function accountTypeLabel(
-  accountType: DeleteAccountFormValues["accountType"],
-): string {
+export function accountTypeLabel(accountType: DeleteAccountFormValues["accountType"]): string {
   switch (accountType) {
     case "email":
       return "Email / password";

@@ -137,11 +137,7 @@ export function DeleteAccountForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative space-y-6"
-      noValidate
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-6" noValidate>
       <fieldset className="space-y-3">
         <legend className="text-sm font-medium text-brand-ink">How did you sign up?</legend>
         <RadioGroup
@@ -203,7 +199,7 @@ export function DeleteAccountForm() {
           </SelectTrigger>
           <SelectContent>
             {DELETE_REASON_OPTIONS.map((option) => (
-              <SelectItem key={option.value} value={option.value} className="whitespace-normal">
+              <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
             ))}
@@ -272,9 +268,7 @@ export function DeleteAccountForm() {
             required={phoneRequired}
             {...register("phone")}
           />
-          {errors.phone ? (
-            <p className="text-sm text-destructive">{errors.phone.message}</p>
-          ) : null}
+          {errors.phone ? <p className="text-sm text-destructive">{errors.phone.message}</p> : null}
         </div>
       </div>
 

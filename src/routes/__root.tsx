@@ -20,6 +20,11 @@ import "@fontsource/inter/600.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import {
+  GA_INIT_SCRIPT,
+  GA_SCRIPT_SRC,
+  GoogleAnalytics,
+} from "@/components/layout/GoogleAnalytics";
 
 function NotFoundComponent() {
   return (
@@ -151,6 +156,8 @@ function RootShell({ children }: { children: ReactNode }) {
             __html: `(function(){try{var t=localStorage.getItem('mediceen-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark'){document.documentElement.classList.add('dark');}document.documentElement.style.colorScheme=t;}catch(e){}})();`,
           }}
         />
+        <script async src={GA_SCRIPT_SRC} />
+        <script dangerouslySetInnerHTML={{ __html: GA_INIT_SCRIPT }} />
       </head>
       <body>
         {children}
@@ -165,6 +172,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GoogleAnalytics />
       <a
         href="#download"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-primary-foreground"

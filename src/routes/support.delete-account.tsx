@@ -73,7 +73,10 @@ function DeleteAccountPage() {
           </p>
           <p>
             Prefer a form instead? Use{" "}
-            <a href="#request-by-form" className="text-brand transition-colors hover:text-green-700">
+            <a
+              href="#request-by-form"
+              className="text-brand transition-colors hover:text-green-700"
+            >
               Request by form
             </a>{" "}
             below — email still works the same way.
@@ -141,9 +144,9 @@ function DeleteAccountPage() {
               >
                 {PLACEHOLDERS.supportEmail}
               </a>
-              . The form below is optional — choose how you signed up so we route the request to
-              the right inbox (email / password → privacy; Google or Apple → support). We do not
-              delete your account automatically from this form; we verify ownership first.
+              . The form below is optional — choose how you signed up so we route the request to the
+              right inbox (email / password → privacy; Google or Apple → support). We do not delete
+              your account automatically from this form; we verify ownership first.
             </p>
             <DeleteAccountForm />
           </div>

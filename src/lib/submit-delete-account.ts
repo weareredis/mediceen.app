@@ -39,9 +39,7 @@ function pruneBuckets(map: Map<string, RateBucket>) {
   }
 }
 
-export type SubmitDeleteAccountResult =
-  | { ok: true }
-  | { ok: false; error: string };
+export type SubmitDeleteAccountResult = { ok: true } | { ok: false; error: string };
 
 /**
  * Client-callable RPC. Handler runs only on the server (TanStack Start).
@@ -53,10 +51,7 @@ export const submitDeleteAccount = createServerFn({ method: "POST" })
     const { getRequestHeader, getRequestIP } = await import("@tanstack/react-start/server");
     const { Resend } = await import("resend");
 
-    const payload = (data && typeof data === "object" ? data : {}) as Record<
-      string,
-      unknown
-    >;
+    const payload = (data && typeof data === "object" ? data : {}) as Record<string, unknown>;
 
     // Honeypot — bots fill this; humans leave it empty. Fake success.
     if (typeof payload["website"] === "string" && payload["website"].trim() !== "") {
@@ -78,18 +73,13 @@ export const submitDeleteAccount = createServerFn({ method: "POST" })
     if (hitRateLimit(ipBuckets, ip, MAX_PER_IP)) {
       return {
         ok: false,
-        error:
-          "Too many requests from this network. Please wait a bit, or email us directly.",
+        error: "Too many requests from this network. Please wait a bit, or email us directly.",
       };
     }
-    if (
-      contactEmailPreview &&
-      hitRateLimit(emailBuckets, contactEmailPreview, MAX_PER_EMAIL)
-    ) {
+    if (contactEmailPreview && hitRateLimit(emailBuckets, contactEmailPreview, MAX_PER_EMAIL)) {
       return {
         ok: false,
-        error:
-          "Too many requests for this email. Please wait a bit, or email us directly.",
+        error: "Too many requests for this email. Please wait a bit, or email us directly.",
       };
     }
 
@@ -113,8 +103,7 @@ export const submitDeleteAccount = createServerFn({ method: "POST" })
     }
 
     const to = inboxForAccountType(values.accountType);
-    const from =
-      process.env["RESEND_FROM"]?.trim() || "Mediceen <noreply@mediceen.app>";
+    const from = process.env["RESEND_FROM"]?.trim() || "Mediceen <noreply@mediceen.app>";
     const userAgent = (getRequestHeader("user-agent") ?? "unknown").slice(0, 300);
     const body = buildEmailBody(values, userAgent);
 
