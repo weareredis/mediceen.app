@@ -33,12 +33,12 @@ export const ADDRESS_MAP_URL = "https://maps.app.goo.gl/5aaBp2MfAxmq9Akt9";
 
 /** Store URLs are placeholders until the listings are live (Part 0). */
 export const STORE_LINKS = {
-  appStore: "[APP_STORE_URL]",
+  appStore: "[https://apps.apple.com/np/app/mediceen/id6814357859]",
   playStore: "https://play.google.com/store/apps/details?id=com.mediceen.app",
 } as const;
 
 /** Desktop QR / tablet CTA destination — replace with a single OS-store redirect when ready. */
-export const QR_DESTINATION = "https://play.google.com/store/apps/details?id=com.mediceen.app";
+export const QR_DESTINATION = "https://onelink.to/xms2aj";
 
 /** Google Analytics 4 measurement ID (public — appears in page source). */
 export const GA_MEASUREMENT_ID = "G-ZS8FFTDP00";
