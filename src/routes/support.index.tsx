@@ -1,6 +1,7 @@
+import { MapPin } from "lucide-react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, LegalList, LegalSection } from "@/components/layout/LegalPage";
-import { PLACEHOLDERS, DEVELOPER } from "@/lib/constants";
+import { PLACEHOLDERS, DEVELOPER, ADDRESS_MAP_URL } from "@/lib/constants";
 
 const title = "Support - Mediceen";
 const description =
@@ -36,7 +37,7 @@ function SupportPage() {
             >
               {PLACEHOLDERS.supportEmail}
             </a>
-            . We aim to respond within 2-5 business days. Complex issues (account recovery, data
+            . We aim to respond within 48 hours. Complex issues (account recovery, data
             deletion) may take longer.
           </>
         }
@@ -104,7 +105,14 @@ function SupportPage() {
           <p>
             {DEVELOPER.name}
             <br />
-            {PLACEHOLDERS.registeredAddress}
+            <a
+              href={ADDRESS_MAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors hover:text-green-700"
+            >
+              {PLACEHOLDERS.registeredAddress}
+            </a>
           </p>
         </LegalSection>
       </LegalPage>

@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, LegalList, LegalSection } from "@/components/layout/LegalPage";
-import { DEVELOPER, PLACEHOLDERS } from "@/lib/constants";
+import { DEVELOPER, PLACEHOLDERS, ADDRESS_MAP_URL } from "@/lib/constants";
 
 const title = "Terms of Service - Mediceen";
 const description = "Terms of use for the Mediceen mobile app and website.";
@@ -173,7 +173,7 @@ function TermsPage() {
 
         <LegalSection heading="14. Changes">
           <p>
-            We may modify these Terms. We will post updates at https://mediceen.app/terms. Material
+            We may modify these Terms. We will post updates at <Link to="/terms" className="text-brand transition-colors hover:text-green-700">https://mediceen.app/terms</Link>. Material
             changes may be communicated via the app or email where appropriate. If a change is
             material, we will take reasonable steps to make it visible before it applies.
           </p>
@@ -183,13 +183,17 @@ function TermsPage() {
           <p>
             {DEVELOPER.name}
             <br />
-            {PLACEHOLDERS.registeredAddress}
+            <a href={ADDRESS_MAP_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-green-700">
+              {PLACEHOLDERS.registeredAddress}
+            </a>
             <br />
             <a
               href={`mailto:${PLACEHOLDERS.supportEmail}`}
               className="text-brand transition-colors hover:text-green-700"
             >
               {PLACEHOLDERS.supportEmail}
+              <br />
+              {PLACEHOLDERS.privacyEmail}
             </a>
           </p>
         </LegalSection>

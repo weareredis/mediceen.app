@@ -79,7 +79,7 @@ function DeleteAccountPage() {
             >
               Request by form
             </a>{" "}
-            below — email still works the same way.
+            below or email still works the same way.
           </p>
           <p>
             When in-app account deletion is added to the app, this page will be updated to describe
@@ -144,7 +144,7 @@ function DeleteAccountPage() {
               >
                 {PLACEHOLDERS.supportEmail}
               </a>
-              . The form below is optional — choose how you signed up so we route the request to the
+              . The form below is optional, choose how you signed up so we route the request to the
               right inbox (email / password → privacy; Google or Apple → support). We do not delete
               your account automatically from this form; we verify ownership first.
             </p>

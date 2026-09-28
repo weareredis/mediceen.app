@@ -17,7 +17,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How do I sign up?",
     answer:
-      "Register with your email (verification code), set a password and display name, then verify your mobile number with a one-time SMS code. You can also use Continue with Google on supported devices, or Sign in with Apple on Apple devices, then complete phone verification before using the app. Day-to-day login uses email/password, Google, or Apple — not SMS each time.",
+      "Register with your email (verification code), set a password and display name, then verify your mobile number with a one-time SMS code. You can also use Continue with Google on supported devices, or Sign in with Apple on Apple devices, then complete phone verification before using the app. Day-to-day login uses email/password, Google, or Apple (not SMS each time).",
   },
   {
     question: "Why do you need my phone number?",
@@ -56,7 +56,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How do I delete my account?",
-    answer: `See Delete account & data — email ${PLACEHOLDERS.privacyEmail} from your registered email, or use the optional form on that page. Google / Apple (including Hide My Email) requests go to ${PLACEHOLDERS.supportEmail} for ownership verification.`,
+    answer: `See Delete account & data, email ${PLACEHOLDERS.privacyEmail} from your registered email, or use the optional form on that page. Google / Apple (including Hide My Email) requests go to ${PLACEHOLDERS.supportEmail} for ownership verification.`,
   },
   {
     question: "Does Mediceen give medical advice?",
@@ -70,6 +70,6 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How do I get help?",
-    answer: "Email support@mediceen.app — see the Support page for what to include in your message.",
+    answer: "Email support@mediceen.app or see the Support page for what to include in your message.",
   },
 ];

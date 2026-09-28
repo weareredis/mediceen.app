@@ -36,24 +36,24 @@ function AboutPage() {
           <LegalList
             items={[
               <>
-                <span className="font-medium text-brand-ink">Practice</span> — MCQs across core Phase
+                <span className="font-medium text-brand-ink">Practice</span> : MCQs across core Phase
                 1 subjects so you can drill what the exam actually tests.
               </>,
               <>
-                <span className="font-medium text-brand-ink">Recall</span> — Spaced repetition (SM-2)
+                <span className="font-medium text-brand-ink">Recall</span> : Spaced repetition (SM-2)
                 and flashcards so review happens when it helps most.
               </>,
               <>
-                <span className="font-medium text-brand-ink">Mocks</span> — Weekly timed MECEE-style
+                <span className="font-medium text-brand-ink">Mocks</span> : Weekly timed MECEE-style
                 mocks so pacing and stamina aren’t a surprise on exam day.
               </>,
               <>
-                <span className="font-medium text-brand-ink">Progress</span> — Insights and a
-                leaderboard so you can see streaks, weak spots, and how you compare — as motivation,
+                <span className="font-medium text-brand-ink">Progress</span> : Insights and a
+                leaderboard so you can see streaks, weak spots, and how you compare(as motivation),
                 not as a ranking guarantee.
               </>,
               <>
-                <span className="font-medium text-brand-ink">Word of the Day</span> — A small daily
+                <span className="font-medium text-brand-ink">Word of the Day</span> : A small daily
                 habit to keep vocabulary and concepts moving.
               </>,
             ]}
@@ -88,13 +88,13 @@ function AboutPage() {
             >
               {DEVELOPER.name}
             </a>{" "}
-            (also known as Redis — Re-digify Idea Solution), a Kathmandu-based digital product
+            (Redigify Idea Solution), a Kathmandu-based digital product
             studio. Redis Digital designs and builds websites, mobile apps, and other digital
-            products for teams that need strategy and execution in one place — from branding and
+            products for teams that need strategy and execution in one place from branding and
             digital presence through to engineering.
           </p>
           <p>
-            They are based in {PLACEHOLDERS.registeredAddress}, and work on products like Mediceen
+            They are based in {PLACEHOLDERS.registeredAddress} and work on products like Mediceen
             that are meant for real users in Nepal’s education and exam-prep space.
           </p>
           <p>

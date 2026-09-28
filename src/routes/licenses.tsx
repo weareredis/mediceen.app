@@ -36,11 +36,11 @@ function LicensesPage() {
           </p>
           <LegalList
             items={[
-              "React and React DOM — user interface rendering",
-              "TanStack Router and TanStack Query — routing and data fetching",
-              "Radix UI — accessible UI primitives",
-              "Tailwind CSS — styling system",
-              "Lucide React — icon set",
+              "React and React DOM: User interface rendering",
+              "TanStack Router and TanStack Query: Routing and data fetching",
+              "Radix UI: Accessible UI primitives",
+              "Tailwind CSS: Styling system",
+              "Lucide React: Icon set",
             ]}
           />
           <p>

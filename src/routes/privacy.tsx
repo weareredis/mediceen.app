@@ -52,7 +52,17 @@ function PrivacyPage() {
         eyebrow="Legal"
         title="Privacy Policy"
         showEffectiveDate
-        intro={`This Privacy Policy describes how ${PLACEHOLDERS.legalEntityName} (“Mediceen”, “we”, “us”) collects, uses, and protects personal data when you use the Mediceen mobile application (iOS and Android) and our public website at https://mediceen.app.`}
+        intro={
+          <>
+            This Privacy Policy describes how {PLACEHOLDERS.legalEntityName} (“Mediceen”, “we”,
+            “us”) collects, uses, and protects personal data when you use the Mediceen mobile
+            application (iOS and Android) and our public website at{" "}
+            <Link to="/" className="text-brand transition-colors hover:text-green-700">
+              https://mediceen.app
+            </Link>
+            .
+          </>
+        }
       >
         <LegalSection heading="1. Contact">
           <p>
@@ -78,7 +88,7 @@ function PrivacyPage() {
 
         <LegalSection heading="3. Data we collect">
           <h3 className="font-display text-base font-semibold text-brand-ink">
-            3.1 Account and profile
+            3.1 {"\u00A0"}Account and profile
           </h3>
           <p>When you register or sign in, we collect:</p>
           <LegalList
@@ -102,7 +112,7 @@ function PrivacyPage() {
           </p>
 
           <h3 className="font-display text-base font-semibold text-brand-ink">
-            3.2 Learning and usage data
+            3.2{"\u00A0"}Learning and usage data
           </h3>
           <p>To provide the app, we store:</p>
           <LegalList
@@ -115,7 +125,7 @@ function PrivacyPage() {
           />
 
           <h3 className="font-display text-base font-semibold text-brand-ink">
-            3.3 Technical and diagnostic data
+            3.3{"\u00A0"}Technical and diagnostic data
           </h3>
           <LegalList
             items={[
@@ -125,13 +135,13 @@ function PrivacyPage() {
             ]}
           />
 
-          <h3 className="font-display text-base font-semibold text-brand-ink">3.4 Leaderboards</h3>
+          <h3 className="font-display text-base font-semibold text-brand-ink">3.4{"\u00A0"}Leaderboards</h3>
           <p>
             If you participate in leaderboards, your display name and score may be visible to other
             users for weekly, monthly, or all-time rankings.
           </p>
 
-          <h3 className="font-display text-base font-semibold text-brand-ink">3.5 Phone number</h3>
+          <h3 className="font-display text-base font-semibold text-brand-ink">3.5{"\u00A0"}Phone number</h3>
           <p>
             We require a verified mobile phone number during signup (after you create your account
             with email, Google, or Apple on supported devices). We send a one-time SMS code to
@@ -154,7 +164,7 @@ function PrivacyPage() {
           </p>
 
           <h3 className="font-display text-base font-semibold text-brand-ink">
-            3.6 Marketing website analytics
+            3.6{"\u00A0"}Marketing website analytics
           </h3>
           <p>
             The public website at mediceen.app uses Google Analytics 4 to measure visits, pages
@@ -167,7 +177,7 @@ function PrivacyPage() {
           </p>
 
           <h3 className="font-display text-base font-semibold text-brand-ink">
-            3.7 What we do not collect
+            3.7{"\u00A0"}What we do not collect
           </h3>
           <p>
             We do not collect payment card data, precise GPS location, contact lists, or use your
@@ -193,7 +203,7 @@ function PrivacyPage() {
           <p>
             We do not use student data to train public AI models. AI tools on our platform are used
             by administrators only to assist with content ingestion (e.g. extracting questions from
-            past papers) — not by students in the mobile app.
+            past papers) not by students in the mobile app.
           </p>
         </LegalSection>
 

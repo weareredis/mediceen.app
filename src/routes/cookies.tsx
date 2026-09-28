@@ -38,9 +38,9 @@ function CookiesPage() {
           </p>
           <LegalList
             items={[
-              "Strictly necessary cookies — keep the site available and secure",
-              "Preference storage — remember basic site settings (for example light/dark theme)",
-              "Analytics — Google Analytics 4 on mediceen.app (measurement only, no ads)",
+              "Strictly necessary cookies keep the site available and secure",
+              "Preference storage: remember basic site settings (for example light/dark theme)",
+              "Analytics: Google Analytics 4 on mediceen.app (measurement only, no ads)",
             ]}
           />
         </LegalSection>
