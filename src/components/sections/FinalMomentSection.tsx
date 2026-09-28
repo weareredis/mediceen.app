@@ -1,5 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Picture } from "@/components/ui/Picture";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -16,8 +15,9 @@ type Device = {
   darkSrc: string;
   width: string;
   className?: string;
-  /** Hover CTA href; null = no badge (MacBook). */
+  /** Store / download URL; null = not a CTA (MacBook). */
   href: string | null;
+  ctaLabel?: string;
 };
 
 const DEVICES: Device[] = [
@@ -38,6 +38,7 @@ const DEVICES: Device[] = [
     width: "w-[16%] min-w-[5rem] sm:w-[13%]",
     className: "z-[3] self-center rotate-[-3deg]",
     href: STORE_LINKS.appStore,
+    ctaLabel: "Download Mediceen on the App Store",
   },
   {
     id: "samsung",
@@ -47,6 +48,7 @@ const DEVICES: Device[] = [
     width: "w-[16%] min-w-[5rem] sm:w-[13%]",
     className: "z-[3] self-center rotate-[3deg]",
     href: STORE_LINKS.playStore,
+    ctaLabel: "Get Mediceen on Google Play",
   },
   {
     id: "tablet",
@@ -56,6 +58,7 @@ const DEVICES: Device[] = [
     width: "w-[28%] min-w-[8rem] sm:w-[24%]",
     className: "z-[2] rotate-2 self-end",
     href: QR_DESTINATION,
+    ctaLabel: "Get Mediceen",
   },
 ];
 
@@ -65,7 +68,11 @@ const DEVICE_BY_ID = Object.fromEntries(DEVICES.map((d) => [d.id, d])) as Record
 const COLLAGE_SHADOW =
   "drop-shadow-[0_18px_28px_oklch(0.34_0.07_260_/_0.22)] dark:drop-shadow-[0_18px_32px_oklch(0_0_0_/_0.55)]";
 
-function DevicePicture({ lightSrc, darkSrc, alt }: Pick<Device, "lightSrc" | "darkSrc" | "alt">) {
+function DevicePicture({
+  lightSrc,
+  darkSrc,
+  alt,
+}: Pick<Device, "lightSrc" | "darkSrc" | "alt">) {
   return (
     <>
       <Picture
@@ -86,39 +93,27 @@ function DevicePicture({ lightSrc, darkSrc, alt }: Pick<Device, "lightSrc" | "da
   );
 }
 
-function GetTheAppBadge({ href }: { href: string }) {
-  const live = isStoreLinkLive(href);
-  const className =
-    "inline-flex w-max shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-brand-ink px-5 py-2.5 text-sm font-semibold leading-none text-white shadow-[0_10px_28px_-6px_oklch(0.34_0.07_260_/_0.4)] ring-1 ring-brand-ink/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand hover:shadow-[0_14px_32px_-6px_color-mix(in_oklch,var(--brand)_45%,transparent)] dark:bg-brand dark:text-primary-foreground dark:shadow-[0_12px_32px_-8px_color-mix(in_oklch,var(--brand)_65%,transparent)] dark:ring-white/25 dark:hover:bg-brand dark:hover:brightness-110 dark:hover:shadow-[0_16px_36px_-8px_color-mix(in_oklch,var(--brand)_75%,transparent)]";
-
-  const label = (
-    <>
-      Get the app
-      <ArrowUpRight className="size-3.5 opacity-90" aria-hidden="true" />
-    </>
+function DeviceLink({ device, children }: { device: Device; children: ReactNode }) {
+  const live = device.href !== null && isStoreLinkLive(device.href);
+  const frameClass = cn(
+    "block outline-none",
+    live &&
+      "cursor-capsule focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background",
   );
 
-  if (!live) {
-    return (
-      <span
-        className={cn(className, "cursor-default opacity-90")}
-        title="Store link will be available at launch"
-        aria-label="Get the app — coming at launch"
-      >
-        {label}
-      </span>
-    );
+  if (!live || !device.href) {
+    return <div className={frameClass}>{children}</div>;
   }
 
   return (
     <a
-      href={href}
+      href={device.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn(className, "cursor-capsule")}
-      aria-label="Get the app"
+      aria-label={device.ctaLabel ?? "Get the app"}
+      className={frameClass}
     >
-      {label}
+      {children}
     </a>
   );
 }
@@ -130,11 +125,19 @@ type CollagePieceProps = {
 };
 
 function CollagePiece({ device, className }: CollagePieceProps) {
+  const linked = device.href !== null && isStoreLinkLive(device.href);
+
   return (
     <div data-collage-piece className={cn("absolute", className)}>
       {/* Inner wrapper: GSAP animates opacity/y here so CSS rotate on the outer shell stays intact. */}
       <div className={cn("relative", COLLAGE_SHADOW)}>
-        <DevicePicture lightSrc={device.lightSrc} darkSrc={device.darkSrc} alt={device.alt} />
+        <DeviceLink device={device}>
+          <DevicePicture
+            lightSrc={device.lightSrc}
+            darkSrc={device.darkSrc}
+            alt={linked ? "" : device.alt}
+          />
+        </DeviceLink>
       </div>
     </div>
   );
@@ -199,7 +202,7 @@ export function FinalMomentSection() {
           Your pace.
         </p>
 
-        {/* Mobile — decorative DLR-style overflowing desk collage (no store CTAs).
+        {/* Mobile — overflowing desk collage; phones + tablet are store links (MacBook is not).
             Full-bleed: break out of PageContainer px-6/sm:px-8 so devices clip at the viewport edge.
             Adjust: PageContainer padding in src/components/layout/PageContainer.tsx (`px-6 sm:px-8`),
             or the -mx / w-[calc] breakout classes below. */}
@@ -233,19 +236,18 @@ export function FinalMomentSection() {
           </div>
         </div>
 
-        {/* Desktop — spaced hover gallery (unchanged behavior) */}
+        {/* Desktop / tablet — spaced hover gallery; devices themselves are the store links. */}
         <div
           data-final-stage
           data-reveal
           className="relative mt-14 hidden w-full max-w-6xl md:block"
         >
-          <div className="flex w-full items-end justify-center overflow-visible pb-20 pt-6">
+          <div className="flex w-full items-end justify-center overflow-visible pb-6 pt-6">
             <div className="flex w-full items-end justify-center gap-8 px-3 lg:gap-12">
               {DEVICES.map((device) => {
                 const isOn = active === device.id;
                 const dimmed = hovering && !isOn;
-                const hasBadge = device.href !== null;
-                const badgeLive = device.href !== null && isStoreLinkLive(device.href);
+                const linked = device.href !== null && isStoreLinkLive(device.href);
 
                 return (
                   <div
@@ -272,37 +274,14 @@ export function FinalMomentSection() {
                           "-translate-y-[clamp(1.25rem,3vw,2.75rem)] motion-reduce:translate-y-0",
                       )}
                     >
-                      <div
-                        tabIndex={hasBadge ? 0 : undefined}
-                        role={hasBadge ? "group" : undefined}
-                        aria-label={hasBadge ? device.alt : undefined}
-                        className={cn(
-                          "block outline-none",
-                          hasBadge &&
-                            "focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                          badgeLive ? "cursor-capsule" : hasBadge && "cursor-pointer",
-                        )}
-                      >
+                      <DeviceLink device={device}>
                         <DevicePicture
                           lightSrc={device.lightSrc}
                           darkSrc={device.darkSrc}
-                          alt={device.alt}
+                          alt={linked ? "" : device.alt}
                         />
-                      </div>
+                      </DeviceLink>
                     </div>
-
-                    {/* Sibling of the lift — sits under the image, not on it (DLR pattern). */}
-                    {device.href ? (
-                      <div
-                        className={cn(
-                          "pointer-events-none absolute left-1/2 top-full z-10 -translate-x-1/2 -translate-y-2 opacity-0 transition-opacity duration-[400ms] ease-out",
-                          isOn && "pointer-events-auto opacity-100 delay-100",
-                          "motion-reduce:delay-0",
-                        )}
-                      >
-                        <GetTheAppBadge href={device.href} />
-                      </div>
-                    ) : null}
                   </div>
                 );
               })}

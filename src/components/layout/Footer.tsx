@@ -4,6 +4,7 @@ import { footerNav } from "@/data/navigation";
 import { DISCLAIMER, PLACEHOLDERS, SITE, DEVELOPER, DEVELOPER_URL, ADDRESS_MAP_URL } from "@/lib/constants";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { StoreBadges } from "@/components/ui/StoreBadge";
+import { onRepeatHashClick } from "@/lib/hash-scroll";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -29,7 +30,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     to={item.to}
-                    {...(item.hash ? { hash: item.hash } : {})}
+                    {...(item.hash ? { hash: item.hash, onClick: onRepeatHashClick(item.hash) } : {})}
                     className="text-sm text-muted-foreground transition-colors hover:text-green-700"
                   >
                     {item.label}

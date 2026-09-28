@@ -20,11 +20,13 @@ import "@fontsource/inter/600.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import {
   GA_INIT_SCRIPT,
   GA_SCRIPT_SRC,
   GoogleAnalytics,
 } from "@/components/layout/GoogleAnalytics";
+import { onRepeatHashClick } from "@/lib/hash-scroll";
 
 function NotFoundComponent() {
   return (
@@ -175,6 +177,7 @@ function RootComponent() {
       <GoogleAnalytics />
       <a
         href="#download"
+        onClick={onRepeatHashClick("download")}
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-primary-foreground"
       >
         Skip to download
@@ -183,6 +186,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Footer />
+      <ScrollToTop />
     </QueryClientProvider>
   );
 }

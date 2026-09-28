@@ -3,6 +3,7 @@ import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { StoreBadges } from "@/components/ui/StoreBadge";
 import { Button } from "@/components/ui/brand-button";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { onRepeatHashClick } from "@/lib/hash-scroll";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { heroTimeline } from "@/animations/heroTimeline";
 import { wordOfTheDay } from "@/data/product";
@@ -71,7 +72,7 @@ export function Hero() {
 
             <div className="mt-9 flex flex-wrap items-center gap-3" data-reveal>
               <Button asChild variant="outline" size="lg">
-                <Link to="/" hash="product">
+                <Link to="/" hash="product" onClick={onRepeatHashClick("product")}>
                   See how it works
                 </Link>
               </Button>

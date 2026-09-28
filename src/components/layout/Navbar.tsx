@@ -7,6 +7,7 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 import { cn } from "@/lib/utils";
+import { onRepeatHashClick } from "@/lib/hash-scroll";
 
 function Wordmark() {
   return (
@@ -50,7 +51,7 @@ export function Navbar() {
             <li key={item.label}>
               <Link
                 to={item.to}
-                {...(item.hash ? { hash: item.hash } : {})}
+                {...(item.hash ? { hash: item.hash, onClick: onRepeatHashClick(item.hash) } : {})}
                 className="text-sm text-muted-foreground transition-colors hover:text-green-700"
                 activeOptions={{ exact: true, includeHash: false }}
                 activeProps={{ className: "text-brand-ink" }}
@@ -64,7 +65,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button asChild size="sm" className="hidden cursor-capsule md:inline-flex">
-            <Link to="/" hash="download">
+            <Link to="/" hash="download" onClick={onRepeatHashClick("download")}>
               Download App
             </Link>
           </Button>
@@ -91,7 +92,15 @@ export function Navbar() {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  {...(item.hash ? { hash: item.hash } : {})}
+                  {...(item.hash
+                    ? {
+                      hash: item.hash,
+                      onClick: (e) => {
+                        onRepeatHashClick(item.hash)(e);
+                        setOpen(false);
+                      },
+                    }
+                    : {})}
                   className="block rounded-xl px-3 py-3 text-base text-brand-ink transition-colors hover:bg-surface-2 hover:text-green-700"
                 >
                   {item.label}
@@ -100,7 +109,14 @@ export function Navbar() {
             ))}
             <li className="pt-2">
               <Button asChild className="w-full cursor-capsule">
-                <Link to="/" hash="download">
+                <Link
+                  to="/"
+                  hash="download"
+                  onClick={(e) => {
+                    onRepeatHashClick("download")(e);
+                    setOpen(false);
+                  }}
+                >
                   Download App
                 </Link>
               </Button>
