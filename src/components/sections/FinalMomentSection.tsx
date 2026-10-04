@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useLayoutEffect, useState, type ReactNode } from "react";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Picture } from "@/components/ui/Picture";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -64,6 +64,24 @@ const DEVICES: Device[] = [
 
 const DEVICE_BY_ID = Object.fromEntries(DEVICES.map((d) => [d.id, d])) as Record<DeviceId, Device>;
 
+type DocumentTheme = "light" | "dark";
+
+/** Matches the inline theme script in `__root.tsx` and `StyledQrCode`'s class observer. */
+function useDocumentTheme(): DocumentTheme | null {
+  const [theme, setTheme] = useState<DocumentTheme | null>(null);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const read = () => setTheme(root.classList.contains("dark") ? "dark" : "light");
+    read();
+    const observer = new MutationObserver(read);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  return theme;
+}
+
 /** Soft floating shadow for mobile collage pieces (DLR desk look). */
 const COLLAGE_SHADOW =
   "drop-shadow-[0_18px_28px_oklch(0.34_0.07_260_/_0.22)] dark:drop-shadow-[0_18px_32px_oklch(0_0_0_/_0.55)]";
@@ -72,24 +90,18 @@ function DevicePicture({
   lightSrc,
   darkSrc,
   alt,
-}: Pick<Device, "lightSrc" | "darkSrc" | "alt">) {
+  theme,
+}: Pick<Device, "lightSrc" | "darkSrc" | "alt"> & { theme: DocumentTheme | null }) {
+  if (!theme) return null;
+
   return (
-    <>
-      <Picture
-        src={lightSrc}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className="block h-auto w-full dark:hidden"
-      />
-      <Picture
-        src={darkSrc}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className="hidden h-auto w-full dark:block"
-      />
-    </>
+    <Picture
+      src={theme === "dark" ? darkSrc : lightSrc}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className="block h-auto w-full"
+    />
   );
 }
 
@@ -120,11 +132,12 @@ function DeviceLink({ device, children }: { device: Device; children: ReactNode 
 
 type CollagePieceProps = {
   device: Device;
+  theme: DocumentTheme | null;
   /** Absolute placement + rotation on the outer shell (not animated by GSAP). */
   className: string;
 };
 
-function CollagePiece({ device, className }: CollagePieceProps) {
+function CollagePiece({ device, theme, className }: CollagePieceProps) {
   const linked = device.href !== null && isStoreLinkLive(device.href);
 
   return (
@@ -136,6 +149,7 @@ function CollagePiece({ device, className }: CollagePieceProps) {
             lightSrc={device.lightSrc}
             darkSrc={device.darkSrc}
             alt={linked ? "" : device.alt}
+            theme={theme}
           />
         </DeviceLink>
       </div>
@@ -146,6 +160,7 @@ function CollagePiece({ device, className }: CollagePieceProps) {
 export function FinalMomentSection() {
   const [active, setActive] = useState<DeviceId | null>(null);
   const hovering = active !== null;
+  const theme = useDocumentTheme();
 
   const ref = useScrollAnimation<HTMLElement>(({ root, reducedMotion }) => {
     revealFrom(root.querySelectorAll("[data-reveal]"), root, reducedMotion);
@@ -217,20 +232,24 @@ export function FinalMomentSection() {
             {/* Phones: smaller + closer, top cluster */}
             <CollagePiece
               device={DEVICE_BY_ID.iphone}
+              theme={theme}
               className="left-[14%] top-[0%] z-[3] w-[34%] -rotate-[8deg]"
             />
             <CollagePiece
               device={DEVICE_BY_ID.samsung}
+              theme={theme}
               className="right-[14%] top-[-1%] z-[3] w-[34%] rotate-[7deg]"
             />
             {/* MacBook: left bleed, lowered further + pulled inward */}
             <CollagePiece
               device={DEVICE_BY_ID.macbook}
+              theme={theme}
               className="top-[53%] left-[-8%] z-[1] w-[72%] -rotate-[6deg]"
             />
             {/* Tablet: lower hero, shifted further right of center */}
             <CollagePiece
               device={DEVICE_BY_ID.tablet}
+              theme={theme}
               className="top-[58%] left-[78%] z-[2] w-[62%] -translate-x-1/2 rotate-[3deg]"
             />
           </div>
@@ -279,6 +298,7 @@ export function FinalMomentSection() {
                           lightSrc={device.lightSrc}
                           darkSrc={device.darkSrc}
                           alt={linked ? "" : device.alt}
+                          theme={theme}
                         />
                       </DeviceLink>
                     </div>
