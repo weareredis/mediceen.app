@@ -133,12 +133,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           operatingSystem: "Android, iOS",
           description:
             "MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
-          offers: {
-            "@type": "Offer",
-            price: "0",
-            priceCurrency: "USD",
-          },
-        }),
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            sameAs: [
+              "https://play.google.com/store/apps/details?id=com.mediceen.app",
+              "https://apps.apple.com/np/app/mediceen/id6814357859",
+            ],
+          }),
       },
     ],
   }),
