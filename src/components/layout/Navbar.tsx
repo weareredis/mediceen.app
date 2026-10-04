@@ -89,25 +89,28 @@ export function Navbar() {
           className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden"
         >
           <ul className="mx-auto flex max-w-[88rem] flex-col gap-1 px-6 py-4">
-            {primaryNav.map((item) => (
-              <li key={item.label}>
-                <Link
-                  to={item.to}
-                  {...(item.hash
-                    ? {
-                      hash: item.hash,
-                      onClick: (e) => {
-                        onRepeatHashClick(item.hash)(e);
-                        setOpen(false);
-                      },
-                    }
-                    : {})}
-                  className="block rounded-xl px-3 py-3 text-base text-brand-ink transition-colors hover:bg-surface-2 hover:text-green-700"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {primaryNav.map((item) => {
+              const hash = item.hash;
+              return (
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
+                    {...(hash
+                      ? {
+                          hash,
+                          onClick: (e) => {
+                            onRepeatHashClick(hash)(e);
+                            setOpen(false);
+                          },
+                        }
+                      : {})}
+                    className="block rounded-xl px-3 py-3 text-base text-brand-ink transition-colors hover:bg-surface-2 hover:text-green-700"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="pt-2">
               <Button asChild className="w-full cursor-capsule">
                 <Link
