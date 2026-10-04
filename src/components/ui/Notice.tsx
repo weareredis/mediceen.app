@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import { STORE_LINKS } from "@/lib/constants";
+import { QR_DESTINATION } from "@/lib/constants";
 import { Picture } from "@/components/ui/Picture";
 
 export function Notice() {
@@ -20,7 +20,7 @@ export function Notice() {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Mediceen is live on the Play Store"
+        aria-label="Download Mediceen"
         className="relative z-10 w-full max-w-4xl"
       >
         <button
@@ -33,20 +33,20 @@ export function Notice() {
         </button>
 
         <a
-          href={STORE_LINKS.playStore}
+          href={QR_DESTINATION}
           target="_blank"
           rel="noopener noreferrer"
           className="block overflow-hidden rounded-2xl shadow-soft cursor-capsule"
-          aria-label="Get Mediceen on Google Play"
+          aria-label="Get Mediceen on the App Store or Google Play"
         >
           <Picture
-            src="/notice-play-light"
-            alt="Mediceen is live on the Play Store — get it now"
+            src="/notice-app-light"
+            alt="Your MECEE-BL prep, now in your pocket. Available on iOS and Android."
             className="block h-auto w-full dark:hidden"
           />
           <Picture
-            src="/notice-play-dark"
-            alt="Mediceen is live on the Play Store — get it now"
+            src="/notice-app-dark"
+            alt="Your MECEE-BL prep, now in your pocket. Available on iOS and Android."
             className="hidden h-auto w-full dark:block"
           />
         </a>

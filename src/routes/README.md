@@ -20,7 +20,7 @@ is `src/routes/__root.tsx`.
 | `licenses.tsx` | `/licenses` |
 | `__root.tsx` | app shell — wraps every page; preserve `<Outlet />` |
 
-Home (`index.tsx`) renders: `Hero` (includes Play Store `Notice` modal) → `ProductShowcase` → `JourneySection` → `FinalMomentSection`.
+Home (`index.tsx`) renders: `Hero` (includes the download `Notice` modal) → `ProductShowcase` → `JourneySection` → `FinalMomentSection`.
 `FinalMomentSection` owns `id="download"` (Navbar / skip-link target). On mobile it is a full-bleed device collage (`pb-0` so brand-wash meets the footer); phones and tablet are store links, MacBook is not. On desktop it is the 4-device hover gallery with the same device-image links. Only the light or dark device image for the current theme is rendered — see AGENTS.md.
 `__root.tsx` also has a “Skip to download” link (`#download`) — visually hidden until keyboard focus (`sr-only` / `focus:not-sr-only`).
 

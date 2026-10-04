@@ -30,7 +30,7 @@ For AI assistants and detailed project state, see **[AGENTS.md](./AGENTS.md)** (
 
 ### Home page sections (in order)
 
-1. `Hero` — brand, CTA, store badges, QR card, phone mockup, Play Store launch `Notice` modal
+1. `Hero` — brand, CTA, store badges, QR card, phone mockup, download `Notice` modal
 2. `ProductShowcase` — sticky-scroll feature tour (8 Experience screens)
 3. `JourneySection` — how-it-works path
 4. `FinalMomentSection` — `id="download"`; **mobile:** full-bleed device collage (phones + tablet link to stores; `pt-28 pb-0` meets footer); **desktop:** 4-device hover gallery; iPhone / Samsung / tablet images link to the stores
