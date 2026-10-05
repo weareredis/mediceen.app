@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { X } from "lucide-react";
 import { QR_DESTINATION } from "@/lib/constants";
 import { Picture } from "@/components/ui/Picture";
 
 export function Notice() {
   const [showNotice, setShowNotice] = useState(true);
+
+  // Skip the notice if the visitor arrived via the #download anchor (e.g. the
+  // OneLink fallback) — they're already on the download CTA, showing a
+  // "get the app" popup on top of it is redundant.
+  useLayoutEffect(() => {
+    if (window.location.hash.startsWith("#download")) {
+      setShowNotice(false);
+    }
+  }, []);
 
   if (!showNotice) return null;
 
