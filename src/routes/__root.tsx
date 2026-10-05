@@ -20,8 +20,7 @@ import {
   GA_SCRIPT_SRC,
   GoogleAnalytics,
 } from "@/components/layout/GoogleAnalytics";
-import { onRepeatHashClick } from "@/lib/hash-scroll";
-
+import { onRepeatHashClick, scrollToHash } from "@/lib/hash-scroll";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -169,6 +168,30 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+  
+    const correct = () => scrollToHash(hash, "instant");
+  
+    // The browser already attempted a scroll on load — but tall GSAP-animated
+    // sections and late-loading images can still shift layout afterward,
+    // leaving the initial scroll short. Re-correct once things settle.
+    if (document.readyState === "complete") {
+      correct();
+    } else {
+      window.addEventListener("load", correct, { once: true });
+    }
+  
+    // GSAP's ScrollTrigger can adjust pinned-section heights slightly even
+    // after window.load — one more correction shortly after covers that.
+    const timer = window.setTimeout(correct, 500);
+  
+    return () => {
+      window.removeEventListener("load", correct);
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
