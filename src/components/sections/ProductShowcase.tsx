@@ -27,7 +27,7 @@ const steps: Step[] = [
     eyebrow: "Practice MCQs",
     title: "Practice with purpose.",
     description:
-      "Filter by subject and difficulty, choose how many questions to run, and work through a MECEE-BL scoped bank.",
+      "Filter by subject and difficulty, choose how many questions to run, and work through a MECEE-BL question bank in this MCQ practice app for Nepal.",
     points: ["Subject and difficulty filters", "Pick your question count"],
     screen: <McqExperience />,
   },
@@ -35,7 +35,8 @@ const steps: Step[] = [
     id: "recall",
     eyebrow: "Flashcards",
     title: "Turn information into recall.",
-    description: "Use flashcards to strengthen memory and rate each card as Easy, Hard, or Missed.",
+    description:
+      "Use flashcards to strengthen memory and rate each card as Easy, Hard, or Missed — a medical flashcards app for Nepal, in the same study flow.",
     points: ["Flip to reveal the answer", "Self-rate to shape your next session"],
     screen: <FlashcardExperience />,
   },
@@ -44,7 +45,7 @@ const steps: Step[] = [
     eyebrow: "Spaced review",
     title: "Review before you forget.",
     description:
-      "Mediceen uses SM-2 scheduling to bring questions back when they are due for review.",
+      "Mediceen is a spaced repetition MCQ app: SM-2 scheduling brings questions back when they are due for review.",
     points: ["Due-today queue on your Home screen", "Missed items return sooner"],
     screen: <ReviewQueueExperience />,
   },
@@ -53,7 +54,7 @@ const steps: Step[] = [
     eyebrow: "Weekly MECEE mock",
     title: "Feel the pressure before exam day.",
     description:
-      "Take the weekly MECEE-style mock with countdown timing, auto-submit, and a cohort paper shared by the whole batch.",
+      "Take the weekly MECEE mock exam — a MECEE-BL mock test and a CEE mock test — with countdown timing, auto-submit, and a cohort paper shared by the whole batch.",
     points: ["Paced toward 200 questions in 3 hours", "Resume if the app is interrupted"],
     screen: <MockTestExperience />,
   },
@@ -70,7 +71,8 @@ const steps: Step[] = [
     id: "progress",
     eyebrow: "Insights",
     title: "Know exactly where you stand.",
-    description: "Track subject accuracy and study trends across 7 and 30 days.",
+    description:
+      "A MECEE-BL progress tracker for subject accuracy and study trends across 7 and 30 days.",
     points: ["Accuracy per subject", "Trends over 7 and 30 days"],
     screen: <ProgressExperience />,
   },

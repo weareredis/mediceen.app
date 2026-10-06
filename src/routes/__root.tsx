@@ -90,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Practice MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+          "The Mediceen app is a CEE preparation app and a MECEE-BL preparation app. MCQs, spaced review, flashcards, and a MECEE-BL mock test app for Nepal's medical entrance exam.",
       },
       { property: "og:site_name", content: "Mediceen" },
       { property: "og:type", content: "website" },
@@ -99,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Practice MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+          "The Mediceen app is a CEE preparation app and a MECEE-BL preparation app. MCQs, spaced review, flashcards, and a MECEE-BL mock test app for Nepal's medical entrance exam.",
       },
       { property: "og:image", content: "https://mediceen.app/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Practice MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+          "The Mediceen app is a CEE preparation app and a MECEE-BL preparation app. MCQs, spaced review, flashcards, and a MECEE-BL mock test app for Nepal's medical entrance exam.",
       },
       { name: "twitter:image", content: "https://mediceen.app/og-image.png" },
     ],
@@ -125,7 +125,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           applicationCategory: "EducationalApplication",
           operatingSystem: "Android, iOS",
           description:
-            "MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants.",
+            "The Mediceen app is a CEE preparation app and a MECEE-BL preparation app. MCQs, spaced review, flashcards, and a MECEE-BL mock test app for Nepal's medical entrance exam.",
             offers: {
               "@type": "Offer",
               price: "0",

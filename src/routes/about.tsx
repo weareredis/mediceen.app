@@ -4,7 +4,7 @@ import { DEVELOPER, DEVELOPER_URL, PLACEHOLDERS } from "@/lib/constants";
 
 const title = "About Mediceen";
 const description =
-  "Mediceen helps MECEE-BL aspirants prepare with curated MCQs, spaced repetition, and weekly timed mocks. Built by Redis Digital in Kathmandu.";
+  "CEE and MECEE-BL preparation for Nepal's medical entrance exam. Curated MCQs, spaced repetition, and weekly timed mocks. Built by Redis Digital in Kathmandu.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,7 +14,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: title },
       {
         property: "og:description",
-        content: "Independent MECEE-BL prep for Nepal medical entrance students. Built by Redis Digital.",
+        content:
+          "Independent CEE and MECEE-BL preparation for Nepal's medical entrance exam. Built by Redis Digital in Kathmandu.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://mediceen.app/about" },
@@ -30,7 +31,7 @@ function AboutPage() {
       <LegalPage
         eyebrow="About"
         title="Our mission"
-        intro="Mediceen exists to give MECEE-BL aspirants in Nepal a clearer, more focused way to prepare — practice that builds recall, review that respects how memory works, and timed mocks that feel closer to exam day. We build for students who need structure, not noise: curated MCQs, spaced repetition, flashcards, progress insights, and weekly mocks in one mobile app."
+        intro="Mediceen exists to give MECEE-BL aspirants in Nepal a clearer, more focused way to prepare — practice that builds recall, review that respects how memory works, and timed mocks that feel closer to exam day. It is CEE preparation and MECEE-BL preparation in one mobile app: curated MCQs, spaced repetition, flashcards, progress insights, and weekly mocks."
       >
         <LegalSection heading="What Mediceen offers">
           <LegalList
@@ -66,6 +67,17 @@ function AboutPage() {
             Pathology, Biochemistry, Microbiology, and Immunology. Support for additional exams may
             follow as the product grows.
           </p>
+          <LegalList
+            items={[
+              "Anatomy MCQs for MECEE-BL, filtered by subject and difficulty.",
+              "Physiology questions for students who still call the exam CEE.",
+              "Pharmacology MCQ practice for Nepal's bachelor-level medical entrance.",
+              "Pathology MECEE-BL questions in the same question bank.",
+              "Biochemistry MCQs for Nepal, alongside the other Phase 1 subjects.",
+              "Microbiology practice questions for MECEE-BL.",
+              "Immunology MCQs for CEE-style revision of the same exam.",
+            ]}
+          />
         </LegalSection>
 
         <LegalSection heading="Who we serve">
@@ -95,7 +107,9 @@ function AboutPage() {
           </p>
           <p>
             They are based in {PLACEHOLDERS.registeredAddress} and work on products like Mediceen
-            that are meant for real users in Nepal’s education and exam-prep space.
+            that are meant for real users in Nepal’s education and exam-prep space. The app is
+            MECEE-BL preparation for students across Nepal, built in Kathmandu — not a coaching
+            center or a set of CEE classes.
           </p>
           <p>
             Studio questions:{" "}
@@ -136,9 +150,10 @@ function AboutPage() {
 
         <LegalSection heading="Disclaimer">
           <p>
-            Mediceen is an independent learning product. References to MECEE, NMC, or MECEE-BL
-            describe the exam we prepare for; they do not imply official partnership, endorsement,
-            or certification. Mediceen does not provide medical advice, diagnosis, or treatment.
+            Mediceen is an independent learning product. References to the Medical Education
+            Commission (MEC), NMC, or MECEE-BL describe the exam we prepare for; they do not imply
+            official partnership, endorsement, or certification. Mediceen does not provide medical
+            advice, diagnosis, or treatment.
           </p>
         </LegalSection>
       </LegalPage>

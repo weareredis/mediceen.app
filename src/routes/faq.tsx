@@ -5,7 +5,7 @@ import { PLACEHOLDERS } from "@/lib/constants";
 
 const title = "FAQ - Mediceen";
 const description =
-  "Answers about signup, phone verification, weekly mocks, leaderboards, password reset, and account deletion.";
+  "Answers about CEE and MECEE-BL preparation, the Mediceen app, weekly mocks, signup, and account questions.";
 
 function renderAnswer(answer: string) {
   const emails = [PLACEHOLDERS.privacyEmail, PLACEHOLDERS.supportEmail].filter(

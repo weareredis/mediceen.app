@@ -15,6 +15,36 @@ export const faqItems: FaqItem[] = [
     answer: `Medical entrance aspirants in Nepal (phase 1). You should be at least ${PLACEHOLDERS.minimumAge} years old to create an account.`,
   },
   {
+    question: "What is CEE, and how does it relate to MECEE-BL?",
+    answer:
+      "CEE is the name many students in Nepal still use for the bachelor-level medical entrance exam. That exam is now MECEE-BL. Mediceen is built for that same preparation.",
+  },
+  {
+    question: "Is the Mediceen app a CEE preparation app?",
+    answer:
+      "Yes. The Mediceen app is a CEE preparation app and a MECEE-BL preparation app: MCQ practice, spaced review, flashcards, and weekly mocks on your phone. It is not a classroom course.",
+  },
+  {
+    question: "Does Mediceen include a MECEE-BL mock test?",
+    answer:
+      "Yes. Each week there is a MECEE-BL mock test: a timed cohort paper, one scored attempt, and a leaderboard. Students who still call the exam CEE can use it as a CEE mock test. It is a weekly MECEE mock exam inside the app, not an official Medical Education Commission paper.",
+  },
+  {
+    question: "Which subjects are in the question bank?",
+    answer:
+      "Phase 1 covers seven subjects. You can practice Anatomy MCQs for MECEE-BL, Physiology questions for CEE, Pharmacology MCQ practice for Nepal, Pathology MECEE-BL questions, Biochemistry MCQs for Nepal, Microbiology practice questions for MECEE-BL, and Immunology MCQs for CEE. Filter by subject in the app.",
+  },
+  {
+    question: "Is Mediceen medical entrance coaching or CEE classes?",
+    answer:
+      "No. Mediceen is not medical entrance coaching and it does not run CEE classes in Nepal. It is a mobile app for self-paced MECEE-BL preparation, for students in Kathmandu and across Nepal.",
+  },
+  {
+    question: "Does Mediceen help with the MBBS or BDS entrance exam in Nepal?",
+    answer:
+      "MECEE-BL is the bachelor-level medical entrance exam in Nepal for seats such as MBBS and BDS. The Mediceen app helps you prepare for that exam. It is not the official Medical Education Commission or NMC paper.",
+  },
+  {
     question: "How do I sign up?",
     answer:
       "Register with your email (verification code), set a password and display name, then verify your mobile number with a one-time SMS code. You can also use Continue with Google on supported devices, or Sign in with Apple on Apple devices, then complete phone verification before using the app. Day-to-day login uses email/password, Google, or Apple (not SMS each time).",

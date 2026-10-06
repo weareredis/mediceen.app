@@ -59,15 +59,16 @@ export function Hero() {
                 Prepare smarter for MECEE-BL
               </span>{" "}
               <span className="mt-2 block font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-medium text-muted-foreground">
-                Medical entrance exam prep for Nepal
+                CEE and MECEE-BL preparation for Nepal&apos;s medical entrance exam
               </span>
             </h1>
             <p
               className="mt-6 max-w-lg text-[clamp(1.02rem,1.4vw,1.2rem)] leading-relaxed text-muted-foreground"
               data-reveal
             >
-              Practice. Review. Improve smarter. Mediceen helps Nepal medical aspirants build recall
-              with MCQs, spaced repetition, flashcards, and weekly MECEE-style mocks.
+              Practice. Review. Improve smarter. The Mediceen app is a CEE preparation app and a
+              MECEE-BL preparation app, with MCQs, spaced repetition, flashcards, and a MECEE-BL
+              mock test app for the medical entrance exam in Nepal.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3" data-reveal>

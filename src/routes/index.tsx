@@ -6,7 +6,7 @@ import { FinalMomentSection } from "@/components/sections/FinalMomentSection";
 
 const title = "Mediceen - MECEE-BL Medical Entrance Prep";
 const description =
-  "Practice MCQs, spaced review, flashcards, and weekly MECEE-style mocks. Built for Nepal medical aspirants. Download free.";
+  "The Mediceen app is a CEE preparation app and a MECEE-BL preparation app. MCQs, spaced review, flashcards, and a MECEE-BL mock test app for Nepal's medical entrance exam.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,8 +16,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: title },
       {
         property: "og:description",
-        content:
-          "Practice, review, and mock exams in one app. Verify once at signup; study on your schedule.",
+        content: description,
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://mediceen.app/" },
